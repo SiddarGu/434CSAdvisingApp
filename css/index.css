@@ -4,42 +4,60 @@ html {
   background-color: antiquewhite;
 }
 
-#mainContainer {
-	margin: auto;
-	position: relative;
-	
-}
-
-#buttons{
-	display: flex;
-	flex-direction: column;
-  	justify-content: center;
-  	align-items: center;
-}
-
-a.button {
+#imgs {
   display: flex;
-  padding: 0.3em 1.2em;
-  margin: 0 0.3em 0.3em 0;
-  width: 7%;
-  border-radius: 2em;
-  box-sizing: border-box;
-  text-decoration: none;
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  color: #ffffff;
-  background-color: red;
-  text-align: center;
-  transition: all 0.2s;
+  align-items: center;
   justify-content: center;
+  margin: auto;
 }
-a.button:hover {
-  background-color: yellow;
-  color: black;
+
+#mainContainer {
+  margin: auto;
+  position: relative;
 }
-@media all and (max-width: 30em) {
-  a.button {
-    display: block;
-    margin: 0.2em auto;
-  }
+
+#buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  width: 170px;
+  white-space: nowrap;
+  border-radius: 10px;
+  background-color: rgb(181, 19, 41);
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 20px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
 }

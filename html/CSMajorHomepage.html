@@ -15,12 +15,20 @@
 
 <body>
     <div>
+        <p id="imgs">
+            <img id="globe" src="../UMDGlobe.gif" alt="UMDGlobe Image" />
+            <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
+        </p>
         <h1>Welcome, CS Major!</h1>
         <div id="buttons">
-            <a href="fourYearPlanner.html" class="button">Create/Edit Your 4-Year Plan</a>
-            <a href="graduationRequirement.html" class="button">Check Your Graduation Requirements</a>
-            <a href="index.html" class="button">Go Back</a>
+            
+            <button class="button" onclick="location.href = 'fourYearPlanner.html';"><span>Create/Edit Your 4-Year Plan</span></button>
+            <button class="button" onclick="location.href = 'graduationRequirement.html';"><span>Check Your Graduation Requirements</span></button>
+            <button class="back" onclick="history.back()"><span>Go Back</span></button>
+            
+            
         </div>
+
     </div>
 </body>
 

@@ -10,6 +10,19 @@
     <style>
         h1 {text-align: center;}
         h2 {text-align: center;}
+        h3 {text-align: center;}
+        h4 {text-align: center;}
+
+        .column {
+            float: left;
+            width: 50%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 95%;
+        }
     </style>
 </head>
 
@@ -17,7 +30,84 @@
     <div>
         <h1>Graduation Requirements</h1>
         <div>
-            Tabbed interface kind of like the example at the bottom <a href=https://www.w3.org/Style/Examples/007/target.en.html>here</a>
+            Maybe, because Gen Ed and Upper Level Concentration requirements (which we'll put in the left column) 
+            are the same across all tracks, have the left column be unchangeable but have the right column 
+            (track-specific CS major requirements) be a tabbed interface kind of like the example at the bottom 
+            <a href=https://www.w3.org/Style/Examples/007/target.en.html>here</a>.
+        </div>
+
+        <h2>General Track</h2>
+        <div class="column">
+            <table>
+                <tr>
+                    <th colspan="3">General Education Requirements</th>
+                </tr>
+                <tr>
+                    <th colspan="3">Fundamental Studies (FS)</th>
+                </tr>
+                <tr>
+                    <td><b>Requirement</b></td>
+                    <td><b>Course</b></td>
+                    <td><b>Credits</b></td>
+                </tr>
+                <tr>
+                    <td>FSAW Academic Writing (before 30 credits)</td>
+                    <td>[Placeholder]</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>FSPW Professional Writing (after 60 credits)</td>
+                    <td>[Placeholder]</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>FSOC Oral Communication</td>
+                    <td>[Placeholder]</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <th colspan="3">Distributive Studies (DS)</th>
+                </tr>
+            </table>
+        </div>
+        <div class="column">
+            <table>
+                <tr>
+                    <th colspan="3">Major Requirements</th>
+                </tr>
+                <tr>
+                    <th colspan="3">Lower Level Requirements (must pass with a grade of C- or higher)</th>
+                </tr>
+                <tr>
+                    <td><b>Title</b></td>
+                    <td><b>Course</b></td>
+                    <td><b>Credits</b></td>
+                </tr>
+                <tr>
+                    <td>Calculus I</td>
+                    <td>MATH 140</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Calculus II</td>
+                    <td>MATH 141</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Object-Oriented Programming I
+                        <br>OR
+                        <br>Object-Oriented Programming I Beyond Fundamentals
+                    </td>
+                    <td>CMSC131
+                        <br>OR
+                        <br>CMSC133
+                    </td>
+                    <td>4
+                        <br>OR
+                        <br>2
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </body>

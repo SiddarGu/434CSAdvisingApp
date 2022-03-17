@@ -4,7 +4,7 @@ html {
   background-color: antiquewhite;
 }
 
-p {
+#imgs {
   display: flex;
   align-items: center;
   justify-content: center;

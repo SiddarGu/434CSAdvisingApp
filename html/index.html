@@ -16,16 +16,20 @@
 
 <body>
     <div id="mainContainer">
-        <p>
+        <p id="imgs">
             <img id="globe" src="../UMDGlobe.gif" alt="UMDGlobe Image" />
             <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
         </p>
         <h1>Welcome to the CS Advising App!</h1>
         <h2>Are you a CS major?</h2>
         <div id="buttons">
-            <a href="CSMajorHomepage.html" class="button">I am a CS major</a>
-            <a href="LTSCMajorHomepage.html" class="button">I am a LTSC major</a>
+
+            <button class="button" onclick="location.href = 'CSMajorHomepage.html';"><span>I am a CS major</span></button>
+            <button class="button" onclick="location.href = 'LTSCMajorHomepage.html';"><span>I am a LTSC major</span></button>
+
         </div>
+
+
         
     </div>
 </body>

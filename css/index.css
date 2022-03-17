@@ -4,17 +4,23 @@ html {
   background-color: antiquewhite;
 }
 
-#mainContainer {
-	margin: auto;
-	position: relative;
-	
+p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
 }
 
-#buttons{
-	display: flex;
-	flex-direction: column;
-  	justify-content: center;
-  	align-items: center;
+#mainContainer {
+  margin: auto;
+  position: relative;
+}
+
+#buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 a.button {

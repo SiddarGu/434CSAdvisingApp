@@ -8,10 +8,7 @@
     <link rel="stylesheet" href="../css/fourYearPlanner.css" type="text/css" />
 
     <style>
-        h1 {text-align: center;}
-        h2 {text-align: center;}
-        h3 {text-align: center;}
-        h4 {text-align: center;}
+        h1, h2, h3, h4 {text-align: center;}
 
         .column {
             float: left;
@@ -29,85 +26,348 @@
 <body>
     <div>
         <h1>Graduation Requirements</h1>
-        <div>
-            Maybe, because Gen Ed and Upper Level Concentration requirements (which we'll put in the left column) 
-            are the same across all tracks, have the left column be unchangeable but have the right column 
-            (track-specific CS major requirements) be a tabbed interface kind of like the example at the bottom 
-            <a href=https://www.w3.org/Style/Examples/007/target.en.html>here</a>.
-        </div>
 
+        <!-- Will be 5 tabs, 1 for each track -->
         <h2>General Track</h2>
+
         <div class="column">
+            <!-- Gen Ed -->
             <table>
                 <tr>
-                    <th colspan="3">General Education Requirements</th>
+                    <th colspan="5">General Education Requirements</th>
+                </tr>
+
+                <!-- Fundamental Studies (FS) -->
+                <tr>
+                    <th colspan="5">Fundamental Studies (FS)</th>
                 </tr>
                 <tr>
-                    <th colspan="3">Fundamental Studies (FS)</th>
+                    <td></td>
+                    <td><i>Requirement</i></td>
+                    <td><i>Course</i></td>
+                    <td><i>Credits</i></td>
+                    <td><i>Completed?</i></td>
                 </tr>
                 <tr>
-                    <td><b>Requirement</b></td>
-                    <td><b>Course</b></td>
-                    <td><b>Credits</b></td>
-                </tr>
-                <tr>
-                    <td>FSAW Academic Writing (before 30 credits)</td>
-                    <td>[Placeholder]</td>
+                    <td>FSAW</td>
+                    <td>Academic Writing (before 30 credits)</td>
+                    <td></td>
                     <td>3</td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td>FSPW Professional Writing (after 60 credits)</td>
-                    <td>[Placeholder]</td>
+                    <td>FSPW</td>
+                    <td>Professional Writing (after 60 credits)</td>
+                    <td></td>
                     <td>3</td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td>FSOC Oral Communication</td>
-                    <td>[Placeholder]</td>
+                    <td>FSOC</td>
+                    <td>Oral Communication</td>
+                    <td></td>
                     <td>3</td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <th colspan="3">Distributive Studies (DS)</th>
+                    <td>FSMA</td>
+                    <td>Math (satisfied in the major)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>FSAR</td>
+                    <td>Analytic Reasoning (satisfied in the major)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <!-- Distributive Studies (DS) -->
+                <tr>
+                    <th colspan="5">Distributive Studies (DS)</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><i>Requirement</i></td>
+                    <td><i>Course</i></td>
+                    <td><i>Credits</i></td>
+                    <td><i>Completed?</i></td>
+                </tr>
+                <tr>
+                    <td>DSNL</td>
+                    <td>Natural Science with Lab</td>
+                    <td></td>
+                    <td>4</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>DSNS</td>
+                    <td>Natural Science</td>
+                    <td></td>
+                    <td>3 or 4</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>DSHS</td>
+                    <td>History and Social Sciences</td>
+                    <td></td>
+                    <td>3</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>DSHS</td>
+                    <td>History and Social Sciences</td>
+                    <td></td>
+                    <td>3</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>DSHU</td>
+                    <td>Humanities</td>
+                    <td></td>
+                    <td>3</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>DSHU</td>
+                    <td>Humanities</td>
+                    <td></td>
+                    <td>3</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>DSSP</td>
+                    <td>Scholarship in Practice (non-major)</td>
+                    <td></td>
+                    <td>3</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>DSSP</td>
+                    <td>Scholarship in Practice (non-major)</td>
+                    <td></td>
+                    <td>3</td>
+                    <td></td>
+                </tr>
+
+                <!-- I-Series (SCIS) -->
+                <tr>
+                    <th colspan="5">I-Series (SCIS)
+                        <br><span style="font-weight: normal"><i>Overlap with Distributive Studies and/or I-Series</span></i>
+                    </th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><i>Requirement</i></td>
+                    <td><i>Course</i></td>
+                    <td><i>Credits</i></td>
+                    <td><i>Completed?</i></td>
+                </tr>
+                <tr>
+                    <td>SCIS</td>
+                    <td>I-Series</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>SCIS</td>
+                    <td>I-Series</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <!-- Diversity (DV) -->
+                <tr>
+                    <th colspan="5">Diversity (DV)
+                        <br><span style="font-weight: normal"><i>Can overlap with Distributive Studies or I-Series</span></i>
+                    </th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><i>Requirement</i></td>
+                    <td><i>Course</i></td>
+                    <td><i>Credits</i></td>
+                    <td><i>Completed?</i></td>
+                </tr>
+                <tr>
+                    <td>DVUP</td>
+                    <td>Understanding Plural Societies</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>DVUP
+                        <br><i>or</i>
+                        <br>DVCC
+                    </td>
+                    <td>Understanding Plural Societies
+                        <br>
+                        <br>Cultural Competence
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </table>
-        </div>
-        <div class="column">
+
+            <!-- Upper Level Concentration -->
+            <br>
             <table>
                 <tr>
-                    <th colspan="3">Major Requirements</th>
+                    <th colspan="3">Upper Level Concentration</th>
                 </tr>
                 <tr>
-                    <th colspan="3">Lower Level Requirements (must pass with a grade of C- or higher)</th>
+                    <td colspan="3">Students must complete a minimum of 12 credit hours of 300 - 400 level courses in one discipline
+                        outside of Computer Science. No course that is in, or cross-listed as, CMSC may be counted in this
+                        requirement. Only 1 independent study or experiential learning course may be used. Students who
+                        are pursuing a minor or a second major can use those credits in this area. Consult with your
+                        academic advisor to ensure each course you plan to take will satisfy this area.</td>
                 </tr>
                 <tr>
-                    <td><b>Title</b></td>
-                    <td><b>Course</b></td>
-                    <td><b>Credits</b></td>
+                    <td><i>Course</i></td>
+                    <td><i>Credits</i></td>
+                </tr>
+                <tr>
+                    <td style="color: antiquewhite">Placeholder</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="color: antiquewhite">Placeholder</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="color: antiquewhite">Placeholder</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="color: antiquewhite">Placeholder</td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <br>
+            <table>
+                <tr>
+                    <th colspan="3">Elective Credits</th>
+                </tr>
+                <tr>
+                    <td colspan="3">Students must take enough elective courses in any discipline(s) they choose to reach the total
+                        number of 120 credits required for graduation. Students who are pursuing a minor or a second major can use
+                        those credits in this area.</td>
+                </tr>
+                <tr>
+                    <td><i>Course</i></td>
+                    <td><i>Credits</i></td>
+                </tr>
+                <tr>
+                    <td style="color: antiquewhite">Placeholder</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="color: antiquewhite">Placeholder</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="color: antiquewhite">Placeholder</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="color: antiquewhite">Placeholder</td>
+                    <td></td>
+                </tr>
+            </table>
+            <br>
+        </div>
+
+        <div class="column">
+            <!-- Major Requirements -->
+            <table>
+                <tr>
+                    <th colspan="4">Major Requirements</th>
+                </tr>
+                <tr>
+                    <th colspan="4">Lower Level Requirements (must pass with a grade of C- or higher)</th>
+                </tr>
+                <tr>
+                    <td><i>Title</i></td>
+                    <td><i>Course</i></td>
+                    <td><i>Credits</i></td>
+                    <td><i>Completed?</i></td>
                 </tr>
                 <tr>
                     <td>Calculus I</td>
                     <td>MATH 140</td>
                     <td>4</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>Calculus II</td>
                     <td>MATH 141</td>
                     <td>4</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>Object-Oriented Programming I
                         <br>OR
                         <br>Object-Oriented Programming I Beyond Fundamentals
                     </td>
-                    <td>CMSC131
+                    <td>CMSC 131
                         <br>OR
-                        <br>CMSC133
+                        <br>CMSC 133
                     </td>
                     <td>4
                         <br>OR
                         <br>2
                     </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Object-Oriented Programming II</td>
+                    <td>CMSC 132</td>
+                    <td>4</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Introduction to Computer Systems</td>
+                    <td>CMSC 216</td>
+                    <td>4</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discrete Structures</td>
+                    <td>CMSC 250</td>
+                    <td>4</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Organization of Programming Languages</td>
+                    <td>CMSC 330</td>
+                    <td>3</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Algorithms</td>
+                    <td>CMSC 351</td>
+                    <td>3</td>
+                    <td></td>
                 </tr>
             </table>
+
+            <br>
+            <b>*Track-specific math and CS requirements coming soon!*</b>
+            <br>
+            <br>
+            <div>
+                Note on future design: Because Gen Ed and Upper Level Concentration requirements (which we've put
+                in the left column) are the same across all tracks, have the left column be unchangeable but have
+                the right column (track-specific CS major requirements) be a tabbed interface kind of like the
+                example at the bottom <a href=https://www.w3.org/Style/Examples/007/target.en.html>here</a>.
+            </div>
         </div>
     </div>
 </body>

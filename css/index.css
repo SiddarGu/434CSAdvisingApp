@@ -29,7 +29,7 @@ html {
   border-radius: 10px;
   background-color: rgb(181, 19, 41);
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   padding: 20px;
   transition: all 0.5s;
@@ -45,7 +45,7 @@ html {
 }
 
 .button span:after {
-  content: '\00bb';
+  content: "\00bb";
   position: absolute;
   opacity: 0;
   top: 0;
@@ -60,4 +60,9 @@ html {
 .button:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+h1,
+h2 {
+  text-align: center;
 }

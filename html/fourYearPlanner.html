@@ -2,6 +2,25 @@
 <html lang="en">
 
 <head>
+    <script>
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+      
+      // Close the dropdown menu if the user clicks outside of it
+      window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+              openDropdown.classList.remove('show');
+            }
+          }
+        }
+      }
+    </script>
     <meta charset="utf-8" />
     <title>Four Year Planner</title>
     <link rel="icon" type="image/x-icon" href="../logo.ico">
@@ -20,9 +39,16 @@
             <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
         </p>
         <h1>Four Year Planner</h1>
-        <div>
-            placeholder
-        </div>
+        <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">New...</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#">CS General Track</a>
+              <a href="#">Cybersecurity</a>
+              <a href="#">Data Science</a>
+              <a href="#">Machine Learning</a>
+              <a href="#">Quantum Information</a>
+            </div>
+          </div>
     </div>
 </body>
 

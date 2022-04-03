@@ -12,24 +12,24 @@
         isOpened = false;
 
         function openNav() {
-            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("sidebar").style.width = "250px";
             document.getElementById("mainContainer").style.marginLeft = "250px";
         }
 
         /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
         function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("sidebar").style.width = "0";
             document.getElementById("mainContainer").style.marginLeft = "0";
         }
 
         function swap(x) {
             x.classList.toggle("change");
             if (isOpened) {
-                document.getElementById("mySidebar").style.width = "0";
+                document.getElementById("sidebar").style.width = "0";
                 document.getElementById("mainContainer").style.marginLeft = "0";
                 isOpened = false;
             } else {
-                document.getElementById("mySidebar").style.width = "250px";
+                document.getElementById("sidebar").style.width = "250px";
                 document.getElementById("mainContainer").style.marginLeft = "250px";
                 isOpened = true;
             }
@@ -38,7 +38,7 @@
 </head>
 
 <body>
-    <div id="mySidebar" class="sidebar">
+    <div id="sidebar" class="sidebar">
         <a href="#">Anchor 1</a>
         <a href="#">Anchor 2</a>
         <a href="#">Anchor 3</a>
@@ -46,7 +46,6 @@
     </div>
 
     <div id="mainContainer">
-        <!-- <button class="openbtn" onclick="swap()" id="openbtn">&#8801</button> -->
         <div class="container" onclick="swap(this)">
             <div class="bar1"></div>
             <div class="bar2"></div>

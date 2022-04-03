@@ -75,41 +75,44 @@ h2 {
 
  /* The sidebar menu */
  .sidebar {
-  height: 100%; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
+  height: 100%; 
+  width: 0; 
+  position: fixed; 
+  z-index: 1; 
   top: 0;
   left: 0;
-  background-color: rgb(181, 19, 41); /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+  background-color: rgb(181, 19, 41); 
+  overflow-x: hidden; 
+  padding-top: 60px; 
+  transition: 0.5s; 
 }
 
 /* The sidebar links */
-.sidebar a {
+.sidebar button {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
   color: white;
   display: block;
   transition: 0.3s;
+  background:none;
+  border:none;
+  margin:0;
+  cursor: pointer;
 }
 
 /* When you mouse over the navigation links, change their color */
-.sidebar a:hover {
-  color: #f1f1f1;
+.sidebar button:hover {
+  color: yellow;
 }
 
 /* Position and style the close button (top right corner) */
-.sidebar  {
+/* .sidebar  {
   position: absolute;
   top: 0;
   right: 25px;
   font-size: 36px;
-
-}
+} */
 
 .bar1, .bar2, .bar3 {
   width: 35px;

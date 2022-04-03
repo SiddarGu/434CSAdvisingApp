@@ -5,18 +5,32 @@ window.onload = main;
 
 function main() {}
 
+// replace with json file
+var CMSCCourses = [];
+
 function getTitleByCourseId(courseId) {
   for (var i = 0; i < CMSCCourses.length; i++) {
-    if (CMSCCourses[i].course_number == courseId) {
-      return CMSCCourses[i].title;
+    var course = CMSCCourses[i];
+    if (course.course_id == courseId) {
+      return course.title;
     }
   }
 }
 
 function getDescriptionByCourseId(courseId) {
   for (var i = 0; i < CMSCCourses.length; i++) {
-    if (CMSCCourses[i].course_number == courseId) {
-      return CMSCCourses[i].description;
+    var course = CMSCCourses[i];
+    if (course.course_id == courseId) {
+      return course.description;
+    }
+  }
+}
+
+function getCreditByCourseId(courseId) {
+  for (var i = 0; i < CMSCCourses.length; i++) {
+    var course = CMSCCourses[i];
+    if (course.course_id == courseId) {
+      return parseInt(course.credits);
     }
   }
 }
@@ -38,21 +52,22 @@ function completedLowerMath(classes, isDataScience) {
   var i;
 
   for (i = 0; i < sortedClasses.length; i++) {
-    if (sortedClasses[i].course_id == "MATH140") {
+    var course = sortedClasses[i];
+    if (course.course_id == "MATH140") {
       m140 = true;
     }
-    if (sortedClasses[i].course_id == "MATH141") {
+    if (course.course_id == "MATH141") {
       m141 = true;
     }
-    if (sortedClasses[i].course_id == "MATH240") {
+    if (course.course_id == "MATH240") {
       m240 = true;
     }
     if (
       // STAT 4XX
-      sortedClasses[i].course_id.substring(0, 4) == "STAT" &&
-      sortedClasses[i].course_id.charAt(4) == "4" &&
+      course.course_id.substring(0, 4) == "STAT" &&
+      course.course_id.charAt(4) == "4" &&
       // 3 credits
-      sortedClasses[i].credits == "3"
+      course.credits == "3"
     ) {
       s4xx = true;
     }
@@ -60,12 +75,12 @@ function completedLowerMath(classes, isDataScience) {
       // the previous 4XX must be satisfied first
       s4xx &&
       // STAT/MATH 4XX
-      (sortedClasses[i].course_id.substring(0, 4) == "STAT" ||
-        sortedClasses[i].course_id.substring(0, 4) == "MATH") &&
+      (course.course_id.substring(0, 4) == "STAT" ||
+      course.course_id.substring(0, 4) == "MATH") &&
       // 3 or 4 credits
-      (sortedClasses[i].credits == "3" || sortedClasses[i].credits == "4") &&
+      (course.credits == "3" || course.credits == "4") &&
       // prereq of MATH141
-      sortedClasses[i].relationships.prereqs.includes("MATH141")
+      course.relationships.prereqs.includes("MATH141")
     ) {
       ms4xx = true;
     }
@@ -100,22 +115,23 @@ function completedLowerCS(classes, e131, e132, e216, e250) {
   var i;
 
   for (i = 0; i < sortedClasses.length; i++) {
-    if (sortedClasses[i].course_id == "CMSC131") {
+    var courseId = sortedClasses[i].course_id;
+    if (courseId == "CMSC131") {
       c131 = true;
     }
-    if (sortedClasses[i].course_id == "CMSC133") {
+    if (courseId == "CMSC133") {
       c133 = true;
     }
-    if (sortedClasses[i].course_id == "CMSC216") {
+    if (courseId == "CMSC216") {
       c216 = true;
     }
-    if (sortedClasses[i].course_id == "CMSC250") {
+    if (courseId == "CMSC250") {
       c250 = true;
     }
-    if (sortedClasses[i].course_id == "CMSC330") {
+    if (courseId == "CMSC330") {
       c330 = true;
     }
-    if (sortedClasses[i].course_id == "CMSC351") {
+    if (courseId == "CMSC351") {
       c351 = true;
     }
   }
@@ -141,19 +157,20 @@ function completed45LEPBenchmark(classes, gpa) {
   var i;
 
   for (i = 0; i < sortedClasses.length; i++) {
-    if (sortedClasses[i].course_id == "CMSC131") {
+    var courseId = sortedClasses[i].course_id;
+    if (courseId == "CMSC131") {
       c131 = true;
     }
 
-    if (sortedClasses[i].course_id == "CMSC132") {
+    if (courseId == "CMSC132") {
       c132 = true;
     }
-    if (sortedClasses[i].course_id == "MATH140") {
+    if (courseId == "MATH140") {
       m140 = true;
     }
   }
 
-  if (c131 && c216 && m140 && gpa > 2.0) {
+  if (c131 && c132 && m140 && gpa > 2.0) {
     return true;
   }
   return false;
@@ -175,29 +192,32 @@ function completed75LEPBenchmark(classes, gpa) {
   var i;
 
   for (i = 0; i < sortedClasses.length; i++) {
-    if (sortedClasses[i].course_id == "CMSC330") {
+    var course = sortedClasses[i]
+    var courseId = course.course_id;
+    var coursePrereqs = course.relationships.prereqs;
+    if (courseId == "CMSC330") {
       c330 = true;
     }
 
-    if (sortedClasses[i].course_id == "CMSC351") {
+    if (courseId == "CMSC351") {
       c351 = true;
     }
     if (
       // STAT 4XX
-      sortedClasses[i].course_id.substring(0, 4) == "STAT" &&
-      sortedClasses[i].course_id.charAt(4) == "4" &&
+      courseId.substring(0, 4) == "STAT" &&
+      courseId.charAt(4) == "4" &&
       // prereq of MATH141
-      sortedClasses[i].relationships.prereqs.includes("MATH141")
+      coursePrereqs.includes("MATH141")
     ) {
       s4xx = true;
     }
     if (
-      // STAT/MATH 4XX
-      (sortedClasses[i].course_id.substring(0, 4) == "STAT" ||
-        sortedClasses[i].course_id.substring(0, 4) == "MATH" ||
-        sortedClasses[i].course_id.substring(0, 4) == "AMSC") &&
+      // STAT/MATH/AMSC XXX
+      (courseId.substring(0, 4) == "STAT" ||
+      courseId.substring(0, 4) == "MATH" ||
+      courseId.substring(0, 4) == "AMSC") &&
       // prereq of MATH141
-      sortedClasses[i].relationships.prereqs.includes("MATH141")
+      coursePrereqs.includes("MATH141")
     ) {
       mas = true;
     }
@@ -220,7 +240,7 @@ function completed75LEPBenchmark(classes, gpa) {
  */
 
 function getCourseArea(course) {
-  courseNumber = course.substring(4);
+  courseNumber = course.course_id.substring(4);
   if (
     courseNumber == "320" ||
     courseNumber == "335" ||
@@ -266,13 +286,98 @@ function getCourseArea(course) {
  * @return {boolean}
  */
 
-function completedGeneral(classes) {
+function completedGeneralTrack(classes) {
+  var sortedClasses = classes.sort();
   var a1 = 0;
   var a2 = 0;
   var a3 = 0;
   var a4 = 0;
   var a5 = 0;
   var electives = 0;
+  var i;
+  var nonZeroAreas = 0;
+  var electiveCredits = 0;
+  var electiveList = [];
+
+  for (i = 0; i < sortedClasses.length; i++) {
+    var curr = sortedClasses[i].course_id;
+    var area = getCourseArea(curr);
+    if (area == 1) {
+      if (a1 > 3) {
+        electives++;
+        electiveList.push(curr);
+      } else {
+        a1++;
+      }
+    } else if (area == 2) {
+      if (a1 > 3) {
+        electives++;
+        electiveList.push(curr);
+      } else {
+        a2++;
+      }
+    } else if (area == 3) {
+      if (a1 > 3) {
+        electives++;
+        electiveList.push(curr);
+      } else {
+        a3++;
+      }
+    } else if (area == 4) {
+      if (a1 > 3) {
+        electives++;
+        electiveList.push(curr);
+      } else {
+        a4++;
+      }
+    } else if (area == 5) {
+      if (a1 > 3) {
+        electives++;
+        electiveList.push(curr);
+      } else {
+        a5++;
+      }
+    } else if (area == 6) {
+      electiveList.push(curr);
+      electives++;
+    }
+  }
+
+  for (i = 0; i < sortedClasses.length; i++) {
+    if (getCourseArea(sortedClasses[i].course_id) != 0) {
+      nonZeroAreas++;
+    }
+  }
+
+  for (i = 0; i < electiveList.length; i++) {
+    electiveCredits += getCourseCredits(electiveList[i]);
+  }
+
+  if (a1 > 0) {
+    nonZeroAreas++;
+  }
+  if (a2 > 0) {
+    nonZeroAreas++;
+  }
+  if (a3 > 0) {
+    nonZeroAreas++;
+  }
+  if (a4 > 0) {
+    nonZeroAreas++;
+  }
+  if (a5 > 0) {
+    nonZeroAreas++;
+  }
+
+  if (
+    a1 + a2 + a3 + a4 + a5 + electives > 4 &&
+    nonZeroAreas > 2 &&
+    electives > 1 &&
+    electiveCredits > 5
+  ) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -281,9 +386,7 @@ function completedGeneral(classes) {
  * @return {boolean}
  */
 
-function completedCybersecurity(classes) {
-
-}
+function completedCybersecurity(classes) {}
 
 /**
  * The function checks if a user finished the data science track
@@ -291,9 +394,7 @@ function completedCybersecurity(classes) {
  * @return {boolean}
  */
 
-function completedDataScience(classes) {
-
-}
+function completedDataScience(classes) {}
 
 /**
  * The function checks if a user finished the quantum information track
@@ -301,9 +402,7 @@ function completedDataScience(classes) {
  * @return {boolean}
  */
 
-function completedQuantumInformation(classes) {
-
-}
+function completedQuantumInformation(classes) {}
 
 /**
  * The function checks if a user finished the machine learning track
@@ -311,6 +410,4 @@ function completedQuantumInformation(classes) {
  * @return {boolean}
  */
 
-function completedMachineLearning(classes) {
-
-}
+function completedMachineLearning(classes) {}

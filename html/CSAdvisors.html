@@ -15,10 +15,13 @@
             <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
         </p>
         <h1>CS Advisors</h1>        
-        </div>
-        <div>
-            <div class="column left">
-            <table width = "90%">
+    </div>
+    <div class = "row">
+        <table width = "100%">
+        <tr style="border:0px">
+        <td style="border:0px">
+        <div    >
+            <table id="advisors" width = "90%">
                 <th>Name</th>
                 <th>Location</th>
                 <th>Phone</th>
@@ -92,15 +95,20 @@
                 </tr>
               </table>
             </div>
-            <div class="column right">
+        </td>
+        <td style="border:0px; text-align:center; vertical-align:top">
+            <div>
                 <h2>Useful Links </h2>
-                <button class="button" onclick="location.href = 'ContactAdvisor.html';"><span>Contact an Advisor</span></button><br>
-                <button class="button" onclick="location.href = 'ScheduleAppt.html';"><span>Schedule an Appointment</span></button>
+                <button class="back" onclick="location.href = 'ContactAdvisor.html';"><span>Contact an Advisor</span></button><br>
+                <button class="back" onclick="location.href = 'ScheduleAppt.html';"><span>Schedule an Appointment</span></button>
             </div>
+        </td>
+    </tr>
+        </table>
     </div>
-        <div id="buttons">
-            <button class="back" onclick="history.back()"><span>Go Back</span></button>
-        </div>
+    <div style="text-align:center">
+    <button class="back" onclick="history.back()"><span>Go Back</span></button>
+    </div>
     </div>
 </body>
 

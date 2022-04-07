@@ -40,7 +40,7 @@ html {
   
 .back span:after {
     content: "\00ab";
-    position: absolute;
+    position:fixed;
     opacity: 0;
     top: 0;
     left: -20px;
@@ -72,14 +72,7 @@ tr:nth-child(even) {
 
 .column {
     float: left;
-  }
-  
-  .left {
-    text-align: center;
+    text-align:center;
     width: 50%;
   }
   
-  .right {
-    text-align: center;
-    width: 50%;
-  }

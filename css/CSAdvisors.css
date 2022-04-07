@@ -10,6 +10,14 @@ html {
     justify-content: center;
     margin: auto;
 }
+
+#csdept {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: 50%;
+    padding: 10px;
+}
   
 #buttons {
     display: flex;

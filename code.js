@@ -386,7 +386,31 @@ function completedGeneralTrack(classes) {
  * @return {boolean}
  */
 
-function completedCybersecurity(classes) {}
+function completedCybersecurity(classes) {
+  sorted = classes.sort();
+  var c414 = false;
+  var c456 = false;
+  var count = 0;
+  var electives = 0;
+
+  for (var i = 0; i < sorted.length; i++) {
+    var curr = sorted[i].course_id;
+    if (curr == "CMSC414") {
+      c414 = true;
+    } else if (curr == "CMSC456") {
+      c456 = true;
+    } else if (curr = "CMSC411" || curr == "CMSC412" || curr == "CMSC417" || curr == "CMSC430" || curr == "CMSC433" || curr == "CMSC451") {
+      count++;
+    } else {
+      electives += sorted[i].credits;
+    }
+  }
+  
+  if (c414 && c456 && count > 3 && electives > 2) {
+    return true;
+  }
+  return false;
+}
 
 /**
  * The function checks if a user finished the data science track
@@ -394,7 +418,36 @@ function completedCybersecurity(classes) {}
  * @return {boolean}
  */
 
-function completedDataScience(classes) {}
+function completedDataScience(classes) {
+  var sorted = classes.sort();
+  var c320 = false;
+  var c422 = false;
+  var c424 = false;
+  var category1 = 0;
+  var category2 = 0;
+  var category3 = 0;
+
+  for (var i = 0; i < sorted.length; i++) {
+    curr = sorted[i].course_id;
+    if (curr == "CMSC320") {
+      c320 = true;
+    } else if (curr == "CMSC422") {
+      c422 = true;
+    } else if (curr == "CMSC424") {
+      c424 = true;
+    } else if (curr == "CMSC402" || curr == "CMSC420" || curr == "CMSC421" || curr == "CMSC423" || curr == "CMSC425" || curr == "CMSC426" || curr == "CMSC427" || curr == "CMSC470") {
+      category1++;
+    } else if (curr == "CMSC451" || curr == "CMSC454" || curr == "460") {
+      category2++;
+    } else if (curr == "CMSC411" || curr == "CMSC412" || curr == "CMSC414" || curr == "CMSC417" || curr == "CMSC430" || curr == "CMSC433" || curr == "CMSC434" || curr == "CMSC435") {
+      category3++;
+    }
+  }
+  if (c320 && c422 && c424 && category1 > 0 && category2 > 0 && category3 > 1) {
+    return true;
+  }
+  return false;
+}
 
 /**
  * The function checks if a user finished the quantum information track
@@ -402,7 +455,38 @@ function completedDataScience(classes) {}
  * @return {boolean}
  */
 
-function completedQuantumInformation(classes) {}
+function completedQuantumInformation(classes) {
+  sorted = classes.sort();
+  var c457 = false;
+  var p467 = false;
+  electives = 0;
+  var a4 = 0;
+  var otherArea = 0;
+
+  for (var i = 0; i < sorted.length; i++) {
+    curr = sorted[i].course_id;
+    if (curr == "CMSC457") {
+      c457 = true;
+    } else if (curr == "CMSC467") {
+      p467 = true;
+    } else{
+      category = getCourseArea(curr);
+      if (category == 4) {
+        a4++;
+      } else if (category == 6) {
+        electives+= sorted[i].credits;
+      } else {
+        otherArea++;
+      }
+
+    }
+  }
+
+  if (c457 && p467 && otherArea > 1 && (a4 + otherArea > 3) && electives > 2) {
+    return true;
+  }
+  return false;
+}
 
 /**
  * The function checks if a user finished the machine learning track
@@ -410,4 +494,30 @@ function completedQuantumInformation(classes) {}
  * @return {boolean}
  */
 
-function completedMachineLearning(classes) {}
+function completedMachineLearning(classes) {
+  sorted = classes.sort();
+  var c320 = false;
+  var c421 = false;
+  var c422 = false;
+  var category1 = 0;
+  var electives = 0;
+
+  for (var i = 0; i < sorted.length; i++) {
+    curr = sorted[i].course_id;
+    if (curr == "CMSC320") {
+      c320 = true;
+    } else if (curr == "CMSC421") {
+      c421 = true;
+    } else if (curr == "CMSC422") {
+      c422 = true;
+    } else if (curr == "CMSC426" || curr == "CMSC460" || curr == "CMSC466" || curr == "MATH401" || curr == "CMSC470" || curr == "CMSC472" || curr == "CMSC473" || curr == "CMSC474" || curr == "CMSC476") {
+      category1++;
+    } else {
+      electives += sorted[i].credits;
+    }
+  }
+  if (c320 && c421 && c422 && category1 > 1 && electives > 5) {
+    return true;
+  }
+  return false;
+}

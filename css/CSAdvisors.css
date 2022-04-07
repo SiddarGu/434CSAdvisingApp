@@ -61,11 +61,25 @@ h2 {
     text-align: center;
 }
 td, th {
-    border: 1px solid #dddddd;
+    border: 1px solid #ec8787;
     text-align: left;
     padding: 8px;
 }
   
 tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: #ec8787;
 }
+
+.column {
+    float: left;
+  }
+  
+  .left {
+    text-align: center;
+    width: 50%;
+  }
+  
+  .right {
+    text-align: center;
+    width: 50%;
+  }

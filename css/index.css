@@ -18,6 +18,14 @@ html {
   padding: 20px;
 }
 
+#csdept {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 50%;
+  padding: 10px;
+}
+
 .container {
   width: min-content;
 }

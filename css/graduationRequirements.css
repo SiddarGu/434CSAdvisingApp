@@ -17,6 +17,14 @@ h4 {
   text-align: center;
 }
 
+#csdept {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 50%;
+  padding: 10px;
+}
+
 .column {
   float: left;
   width: 50%;

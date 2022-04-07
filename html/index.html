@@ -8,29 +8,67 @@
     <link rel="icon" type="image/x-icon" href="../logo.ico">
     <link rel="stylesheet" href="../css/index.css" type="text/css" />
 
-    <style>
-        h1 {text-align: center;}
-        h2 {text-align: center;}
-    </style>
+    <script>
+        isOpened = false;
+
+        function openNav() {
+            document.getElementById("sidebar").style.width = "250px";
+            document.getElementById("mainContainer").style.marginLeft = "250px";
+        }
+
+        /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+        function closeNav() {
+            document.getElementById("sidebar").style.width = "0";
+            document.getElementById("mainContainer").style.marginLeft = "0";
+        }
+
+        function swap(x) {
+            x.classList.toggle("change");
+            if (isOpened) {
+                document.getElementById("sidebar").style.width = "0";
+                document.getElementById("mainContainer").style.marginLeft = "0";
+                isOpened = false;
+            } else {
+                document.getElementById("sidebar").style.width = "250px";
+                document.getElementById("mainContainer").style.marginLeft = "250px";
+                isOpened = true;
+            }
+        }
+    </script>
 </head>
 
 <body>
+    <div id="sidebar" class="sidebar">
+        <button onclick="location.href = 'index.html';"><span>Index Page</span></button>
+        <button onclick="location.href = 'CSMajorHomepage.html';"><span>CMSC Home Page</span></button>
+        <button onclick="location.href = 'index.html';"><span>Index Page</span></button>
+        <button onclick="location.href = 'index.html';"><span>Index Page</span></button>
+    </div>
+
     <div id="mainContainer">
+        <div class="container" onclick="swap(this)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+
         <p id="imgs">
-            <img id="globe" src="../UMDGlobe.gif" alt="UMDGlobe Image" />
+            
             <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
         </p>
         <h1>Welcome to the CS Advising App!</h1>
         <h2>Are you a CS major?</h2>
         <div id="buttons">
 
-            <button class="button" onclick="location.href = 'CSMajorHomepage.html';"><span>I am a CS major</span></button>
-            <button class="button" onclick="location.href = 'LTSCMajorHomepage.html';"><span>I am a LTSC major</span></button>
+            <button class="button" onclick="location.href = 'CSMajorHomepage.html';"><span>I am a CS
+                    major</span></button>
+            <button class="button" onclick="location.href = 'LTSCMajorHomepage.html';"><span>I am a LTSC
+                    major</span></button>
 
         </div>
 
 
-        
+
     </div>
 </body>
 

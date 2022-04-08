@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <script>
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+    
+    function myFunction2() {
+        document.getElementById("myDropdown2").classList.toggle("show");
+    }
+	
+	//Start with planner hidden
+	document.getElementById("planner").style.display = "block";
+      
+      // Close the dropdown menu if the user clicks outside of it
+      /*
+	  window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+              openDropdown.classList.remove('show');
+            }
+          }
+        }
+      }
+	  */
+	 
+	  
+	//Regardless of which option the user picks in new, create empty plan for them to interact with
+	//Afterwards, check requirements
+	 
+	function opClicked(element) {
+	
+	  //Close dropdown menu
+	  var dropdowns = document.getElementsByClassName("dropdown-content");
+	  var i;
+	  for (i = 0; i < dropdowns.length; i++) {
+		var openDropdown = dropdowns[i];
+		if (openDropdown.classList.contains('show')) {
+		  openDropdown.classList.remove('show');
+		}
+	  }
+	  
+	  //Hide buttons
+	  document.getElementbyId("button1").hidden = true;
+	  document.getElementbyId("button2").hidden = true;
+	  
+	  //Open planner
+	  document.getElementById("planner").style.display = "none";
+	}
+	  
+	  
+	  //Afterwards, check requirements based on which track they selected
+    </script>
+    <meta charset="utf-8" />
+    <title>Four Year Planner</title>
+    <link rel="icon" type="image/x-icon" href="../logo.ico">
+    <link rel="stylesheet" href="../css/fourYearPlanner.css" type="text/css" />
+
+</head>
+
+<body>
+    <div style="text-align:center">
+        <p id="imgs">
+            <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
+        </p>
+        <h1>Four Year Planner</h1>
+        
+        <div class="dropdown">
+          <button id="button1" onclick="myFunction();" class="dropbtn">New...</button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="#" onclick = "return opClicked(this)">CS General Track</a>
+            <a href="#" onclick = "return opClicked(this)">Cybersecurity</a>
+            <a href="#" onclick = "return opClicked(this)">Data Science</a>
+            <a href="#"onclick = "return opClicked(this)">Machine Learning</a>
+            <a href="#"onclick = "return opClicked(this)">Quantum Information</a>
+          </div>
+        </div>
+        <br>
+        <div class="dropdown">
+          <button id="button2" onclick="myFunction2();" class="dropbtn">Load...</button>
+          <div id="myDropdown2" class="dropdown-content">
+            <a href="#" id="myGen">My General Track</a>
+            <a href="#"id="myCyb">My Cybersecurity Track</a>
+          </div>
+        </div>
+		
+		
+		<table id="planner" border="1">
+		  <tr>
+			<td> Course </td>
+			<td> Credits </td>
+			<td> Grade </td>
+		  </tr>
+		  
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		</table>
+		
+		
+		  
+</body>
+
+</html>

@@ -66,6 +66,7 @@ td {
 /* Create an active/current tablink class */
 .tab button.active {
   background-color: #ccc;
+  display: block;
 }
 
 /* Style the tab content */

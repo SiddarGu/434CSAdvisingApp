@@ -2,22 +2,52 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <title>Contact An Advisor</title>
-    <link rel="icon" type="image/x-icon" href="../logo.ico">
-    <link rel="stylesheet" href="../css/ContactAdvisor.css" type="text/css" />
-    <script>
-        function submit() {
-            document.getElementById("submitted").innerHTML = "Submitted! Expect an email from the advisor in the next 3-5 business days.";
-        }
-    </script>
+  <meta charset="utf-8" />
+  <title>Contact An Advisor</title>
+  <link rel="icon" type="image/x-icon" href="../logo.ico">
+  <link rel="stylesheet" href="../css/ContactAdvisor.css" type="text/css" />
+  <script>
+    function submit() {
+      document.getElementById("submitted").innerHTML = "Submitted! Expect an email from the advisor in the next 3-5 business days.";
+    }
+    isOpened = false;
+    function swap(x) {
+      x.classList.toggle("change");
+      if (isOpened) {
+        document.getElementById("sidebar").style.width = "0";
+        document.getElementById("mainContainer").style.marginLeft = "0";
+        isOpened = false;
+      } else {
+        document.getElementById("sidebar").style.width = "260px";
+        document.getElementById("mainContainer").style.marginLeft = "260px";
+        isOpened = true;
+      }
+    }
+  </script>
 </head>
 
 <body>
-    <div>
-        <p id="imgs">
-            <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
-        </p>
+  <div id="sidebar" class="sidebar">
+    <h1>Directory</h1>
+    <button onclick="location.href = 'index.html';">Index Page</button>
+    <button onclick="location.href = 'CSMajorHomepage.html';">CMSC Home Page</button>
+    <button onclick="location.href = 'fourYearPlanner.html';">Create/Edit 4-year Plan</button>
+    <button onclick="location.href = 'graduationRequirements.html';">Check Graduation Requirements</button>
+    <button onclick="location.href = 'CSAdvisors.html';">Contact an Advisor</button>
+    <h1>Additional Information</h1>
+    <button onclick="location.href = 'graduationRequirementList.html';">Detailed Graduation Information</button>
+    <button onclick="location.href = 'ULC.html';">Upper Level Concentration</button>
+    <button onclick="location.href = 'index.html';">Index Page</button>
+  </div>
+  <div id="mainContainer">
+    <div class="container" onclick="swap(this)">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
+    <p id="imgs">
+      <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
+    </p>
         <h1>Contact An Advisor</h1>
         <div>
             <label>Select an advisor: </label>
@@ -59,10 +89,6 @@
         </div>
     </form>
     </div>
-    <form action="#">
-        Input with minlength: <input type="text" minlength="2" required name="i1">
-        <input type="submit" onclick="submit();" value="Submit"><input type="button" onclick="submit();">
-      </form>
 </body>
 
 </html>

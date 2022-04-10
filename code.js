@@ -39,7 +39,7 @@ function getCreditByCourseId(courseId) {
  * The function checks if a user finished the required lower level math coursework.
  * @param {Array} classes - An array representing the classes (e.g., MATH141) taken
  * @params {boolean} isDataScience - A boolean representing if the user is a data science student
- * @return {boolean}
+ * @return {string} - A string representing the error message
  */
 
 function completedLowerMath(classes, isDataScience) {
@@ -50,6 +50,7 @@ function completedLowerMath(classes, isDataScience) {
   var ms4xx = false;
   var m240 = false;
   var i;
+  var msg = "";
 
   for (i = 0; i < sortedClasses.length; i++) {
     var course = sortedClasses[i];
@@ -86,11 +87,29 @@ function completedLowerMath(classes, isDataScience) {
     }
   }
 
-  if (isDataScience) {
+  if (!m140) {
+    msg += "You must take MATH140. <br>";
+  }
+  if (!m141) {
+    msg += "You must take MATH141. <br>";
+  }
+  if (isDataScience && !m240) {
+    msg += "You must take MATH240. <br>";
+  }
+  if (!s4xx) {
+    msg += "You must take STAT 4XX. <br>";
+  }
+  if (!ms4xx) {
+    msg += "You must take STAT/MATH 4XX. <br>";
+  }
+
+  /* if (isDataScience) {
+
     return m140 && m141 && s4xx && ms4xx;
   } else {
     return m140 && m141 && m240 && s4xx && ms4xx;
-  }
+  } */
+  return msg;
 }
 
 /**
@@ -100,7 +119,7 @@ function completedLowerMath(classes, isDataScience) {
  * @params {boolean} e132 - A boolean representing if the user is exempt from CMSC132
  * @params {boolean} e216 - A boolean representing if the user is exempt from CMSC216
  * @params {boolean} e250 - A boolean representing if the user is exempt from CMSC250
- * @return {boolean}
+ * @return {string} - A string representing the error message
  */
 
 function completedLowerCS(classes, e131, e132, e216, e250) {
@@ -113,6 +132,7 @@ function completedLowerCS(classes, e131, e132, e216, e250) {
   var c330 = false;
   var c351 = false;
   var i;
+  var msg = "";
 
   for (i = 0; i < sortedClasses.length; i++) {
     var courseId = sortedClasses[i].course_id;
@@ -136,17 +156,37 @@ function completedLowerCS(classes, e131, e132, e216, e250) {
     }
   }
 
-  if ((c131 || c133) && c132 && c216 && c250 && c330 && c351) {
+  if (!c131 && !c133) {
+    msg += "You must take CMSC131 or CMSC133. <br>";
+  }
+  if (!c132) {
+    msg += "You must take CMSC132. <br>";
+  }
+  if (!c216) {
+    msg += "You must take CMSC216. <br>";
+  }
+  if (!c250) {
+    msg += "You must take CMSC250. <br>";
+  }
+  if (!c330) {
+    msg += "You must take CMSC330. <br>";
+  }
+  if (!c351) {
+    msg += "You must take CMSC351. <br>";
+  }
+
+  /* if ((c131 || c133) && c132 && c216 && c250 && c330 && c351) {
     return true;
   }
-  return false;
+  return false; */
+  return msg;
 }
 
 /**
  * The function checks if a user finished 45-credit LEP benchmarks.
  * @param {Array} classes - An array representing the classes (e.g., CMSC131) taken
  * @params {number} gpa - A float representing the user's current GPA
- * @return {boolean}
+ * @return {string} - A string representing the error message
  */
 
 function completed45LEPBenchmark(classes, gpa) {
@@ -155,6 +195,7 @@ function completed45LEPBenchmark(classes, gpa) {
   var c132 = false;
   var m140 = false;
   var i;
+  var msg = "";
 
   for (i = 0; i < sortedClasses.length; i++) {
     var courseId = sortedClasses[i].course_id;
@@ -170,17 +211,31 @@ function completed45LEPBenchmark(classes, gpa) {
     }
   }
 
-  if (c131 && c132 && m140 && gpa > 2.0) {
+  if (!c131) {
+    msg += "You must take CMSC131. <br>";
+  }
+  if (!c132) {
+    msg += "You must take CMSC132. <br>";
+  }
+  if (!m140) {
+    msg += "You must take MATH140. <br>";
+  }
+  if (gpa < 2.0) {
+    msg += "You must have a GPA of 2.0 or higher. <br>";
+  }
+
+  /* if (c131 && c132 && m140 && gpa >= 2.0) {
     return true;
   }
-  return false;
+  return false; */
+  return msg;
 }
 
 /**
  * The function checks if a user finished 75-credit LEP benchmarks.
  * @param {Array} classes - An array representing the classes (e.g., CMSC131) taken
  * @params {number} gpa - A float representing the user's current GPA
- * @return {boolean}
+ * @return {string} - A string representing the error message
  */
 
 function completed75LEPBenchmark(classes, gpa) {
@@ -190,6 +245,7 @@ function completed75LEPBenchmark(classes, gpa) {
   var s4xx = false;
   var mas = false;
   var i;
+  var msg = "";
 
   for (i = 0; i < sortedClasses.length; i++) {
     var course = sortedClasses[i]
@@ -223,10 +279,24 @@ function completed75LEPBenchmark(classes, gpa) {
     }
   }
 
-  if (c330 && c351 && (s4xx || mas) && gpa > 2.0) {
+  if (!c330) {
+    msg += "You must take CMSC330. <br>";
+  }
+  if (!c351) {
+    msg += "You must take CMSC351. <br>";
+  }
+  if (!s4xx || !mas) {
+    msg += "You must take STAT 4XX or MATH/STAT/AMSC 4XX with prerequisite of MATH141. <br>";
+  }
+  if (gpa < 2.0) {
+    msg += "You must have a GPA of 2.0 or higher. <br>";
+  }
+
+  /* if (c330 && c351 && (s4xx || mas) && gpa >= 2.0) {
     return true;
   }
-  return false;
+  return false; */
+  return msg;
 }
 
 /*
@@ -283,7 +353,7 @@ function getCourseArea(course) {
 /**
  * The function checks if a user finished the general track
  * @param {Array} classes - An array representing the classes (e.g., CMSC131) taken
- * @return {boolean}
+ * @return {string} - A string representing the error message
  */
 
 function completedGeneralTrack(classes) {
@@ -298,6 +368,7 @@ function completedGeneralTrack(classes) {
   var nonZeroAreas = 0;
   var electiveCredits = 0;
   var electiveList = [];
+  var msg = "";
 
   for (i = 0; i < sortedClasses.length; i++) {
     var curr = sortedClasses[i].course_id;
@@ -369,7 +440,21 @@ function completedGeneralTrack(classes) {
     nonZeroAreas++;
   }
 
-  if (
+  if (a1 + a2 + a3 + a4 + a5 + electives <= 4) {
+    msg += "You must take at least 5 courses in the general track. <br>";
+  }
+  if (nonZeroAreas <= 2) {
+    msg += "You must take courses from at least 3 areas in the general track. <br>";
+  }
+  if (electives <= 1) {
+    msg += "You must take at least 2 electives in the general track. <br>";
+  }
+  if (electiveCredits <= 5) {
+    msg += "You must have at least 5 elective credits in the general track. <br>";
+  }
+  return msg;
+
+  /* if (
     a1 + a2 + a3 + a4 + a5 + electives > 4 &&
     nonZeroAreas > 2 &&
     electives > 1 &&
@@ -377,13 +462,13 @@ function completedGeneralTrack(classes) {
   ) {
     return true;
   }
-  return false;
+  return false; */
 }
 
 /**
  * The function checks if a user finished the cybersecurity track
  * @param {Array} classes - An array representing the classes (e.g., CMSC131) taken
- * @return {boolean}
+ * @return {string} - A string representing the error message
  */
 
 function completedCybersecurity(classes) {
@@ -392,8 +477,10 @@ function completedCybersecurity(classes) {
   var c456 = false;
   var count = 0;
   var electives = 0;
+  var i;
+  var msg = "";
 
-  for (var i = 0; i < sorted.length; i++) {
+  for (i = 0; i < sorted.length; i++) {
     var curr = sorted[i].course_id;
     if (curr == "CMSC414") {
       c414 = true;
@@ -405,17 +492,31 @@ function completedCybersecurity(classes) {
       electives += sorted[i].credits;
     }
   }
+
+  if (!c414) {
+    msg += "You must take CMSC414 in the cybersecurity track. <br>";
+  }
+  if (!c456) {
+    msg += "You must take CMSC456 in the cybersecurity track. <br>";
+  }
+  if (count <= 3) {
+    msg += "You must take at least 4 courses from the given list in the cybersecurity track. <br>";
+  }
+  if (electives < 3) {
+    msg += "You must have at least 3 elective credits in the cybersecurity track. <br>";
+  }
+  return msg;
   
-  if (c414 && c456 && count > 3 && electives > 2) {
+  /* if (c414 && c456 && count > 3 && electives > 2) {
     return true;
   }
-  return false;
+  return false; */
 }
 
 /**
  * The function checks if a user finished the data science track
  * @param {Array} classes - An array representing the classes (e.g., CMSC131) taken
- * @return {boolean}
+ * @return {string} - A string representing the error message
  */
 
 function completedDataScience(classes) {
@@ -426,8 +527,10 @@ function completedDataScience(classes) {
   var category1 = 0;
   var category2 = 0;
   var category3 = 0;
+  var i = 0;
+  var msg = "";
 
-  for (var i = 0; i < sorted.length; i++) {
+  for (i = 0; i < sorted.length; i++) {
     curr = sorted[i].course_id;
     if (curr == "CMSC320") {
       c320 = true;
@@ -443,16 +546,37 @@ function completedDataScience(classes) {
       category3++;
     }
   }
-  if (c320 && c422 && c424 && category1 > 0 && category2 > 0 && category3 > 1) {
+
+  if (!c320) {
+    msg += "You must take CMSC320 in the data science track. <br>";
+  }
+  if (!c422) {
+    msg += "You must take CMSC422 in the data science track. <br>";
+  }
+  if (!c424) {
+    msg += "You must take CMSC424 in the data science track. <br>";
+  }
+  if (category1 < 1) {
+    msg += "You must take at least 1 course from the first list in the data science track. <br>";
+  }
+  if (category2 < 1) {
+    msg += "You must take at least 1 course from the second list in the data science track. <br>";
+  }
+  if (category3 < 2) {
+    msg += "You must take at least 2 courses from the third list in the data science track. <br>";
+  }
+  return msg;
+
+  /* if (c320 && c422 && c424 && category1 > 0 && category2 > 0 && category3 > 1) {
     return true;
   }
-  return false;
+  return false; */
 }
 
 /**
  * The function checks if a user finished the quantum information track
  * @param {Array} classes - An array representing the classes (e.g., CMSC131) taken
- * @return {boolean}
+ * @return {string} - A string representing the error message
  */
 
 function completedQuantumInformation(classes) {
@@ -462,8 +586,10 @@ function completedQuantumInformation(classes) {
   electives = 0;
   var a4 = 0;
   var otherArea = 0;
+  var i = 0;
+  var msg = "";
 
-  for (var i = 0; i < sorted.length; i++) {
+  for (i = 0; i < sorted.length; i++) {
     curr = sorted[i].course_id;
     if (curr == "CMSC457") {
       c457 = true;
@@ -482,16 +608,33 @@ function completedQuantumInformation(classes) {
     }
   }
 
-  if (c457 && p467 && otherArea > 1 && (a4 + otherArea > 3) && electives > 2) {
+  if (!c457) {
+    msg += "You must take CMSC457 in the quantum information track. <br>";
+  }
+  if (!p467) {
+    msg += "You must take PHYC467 in the quantum information track. <br>";
+  }
+  if (a4 < 2) {
+    msg += "You must take at least 2 courses outside area 4 in the quantum information track. <br>";
+  }
+  if (a4 + otherArea < 4) {
+    msg += "You must take at least 4 courses from the distributive areas in the quantum information track. <br>";
+  }
+  if (electives < 3) {
+    msg += "You must have at least 3 elective credits in the quantum information track. <br>";
+  }
+  return msg;
+
+  /* if (c457 && p467 && otherArea > 1 && (a4 + otherArea > 3) && electives > 2) {
     return true;
   }
-  return false;
+  return false; */
 }
 
 /**
  * The function checks if a user finished the machine learning track
  * @param {Array} classes - An array representing the classes (e.g., CMSC131) taken
- * @return {boolean}
+ * @return {string} - A string representing the error message
  */
 
 function completedMachineLearning(classes) {
@@ -501,8 +644,10 @@ function completedMachineLearning(classes) {
   var c422 = false;
   var category1 = 0;
   var electives = 0;
+  var i = 0;
+  var msg = "";
 
-  for (var i = 0; i < sorted.length; i++) {
+  for (i = 0; i < sorted.length; i++) {
     curr = sorted[i].course_id;
     if (curr == "CMSC320") {
       c320 = true;
@@ -516,8 +661,26 @@ function completedMachineLearning(classes) {
       electives += sorted[i].credits;
     }
   }
-  if (c320 && c421 && c422 && category1 > 1 && electives > 5) {
+
+  if (!c320) {
+    msg += "You must take CMSC320 in the machine learning track. <br>";
+  }
+  if (!c421) {
+    msg += "You must take CMSC421 in the machine learning track. <br>";
+  }
+  if (!c422) {
+    msg += "You must take CMSC422 in the machine learning track. <br>";
+  }
+  if (category1 < 2) {
+    msg += "You must take at least 2 courses from the given list in the machine learning track. <br>";
+  }
+  if (electives < 6) {
+    msg += "You must have at least 6 elective credits in the machine learning track. <br>";
+  }
+  return msg;
+
+  /* if (c320 && c421 && c422 && category1 > 1 && electives > 5) {
     return true;
   }
-  return false;
+  return false; */
 }

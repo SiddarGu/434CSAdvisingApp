@@ -2,115 +2,146 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <title>CS Advisors</title>
-    <link rel="icon" type="image/x-icon" href="../logo.ico">
-    <link rel="stylesheet" href="../css/CSAdvisors.css" type="text/css" />
-
+  <meta charset="utf-8" />
+  <title>CS Advisors</title>
+  <link rel="icon" type="image/x-icon" href="../logo.ico">
+  <link rel="stylesheet" href="../css/CSAdvisors.css" type="text/css" />
+  <script>
+    isOpened = false;
+    function swap(x) {
+      x.classList.toggle("change");
+      if (isOpened) {
+        document.getElementById("sidebar").style.width = "0";
+        document.getElementById("mainContainer").style.marginLeft = "0";
+        isOpened = false;
+      } else {
+        document.getElementById("sidebar").style.width = "260px";
+        document.getElementById("mainContainer").style.marginLeft = "260px";
+        isOpened = true;
+      }
+    }
+  </script>
 </head>
 
 <body>
-    <div>
-        <p id="imgs">
-            <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
-        </p>
-        <h1>CS Advisors</h1>        
-        </div>
-        <table id = "ayo" width = "100%">
-            <tr id = "ayo">
-                <td id = "ayo" width = "60%">
-                    <div>
-                        <table width = 100%>
-                            <th>Name</th>
-                            <th>Location</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <tr id = "hello">
-                              <td id = "hello">Courtney Cabansag</td>
-                              <td id = "hello">IRB 1154</td>
-                              <td id = "hello"></td>
-                              <td id = "hello">cabansag@umd.edu</td>
-                            </tr>
-                            <tr id = "hello">
-                                <td id = "hello">Bryson Daniels</td>
-                                <td id = "hello"></td>
-                                <td id = "hello"></td>
-                                <td id = "hello">bdaniel7@umd.edu</td>
-                            </tr>
-                            <tr id = "hello">
-                                <td id = "hello">Christine Denis</td>
-                                <td id = "hello">IRB 1152</td>
-                                <td id = "hello">301-405-6778</td>
-                                <td id = "hello">cdenis@umd.edu</td>
-                            </tr>
-                            <tr id = "hello">
-                                <td id = "hello">Erik Johanson</td>
-                                <td id = "hello">IRB 1140</td>
-                                <td id = "hello">301-405-2681</td>
-                                <td id = "hello">ejonanso@umd.edu</td>
-                            </tr>
-                            <tr id = "hello">
-                                <td id = "hello">Brittany Johnson</td>
-                                <td id = "hello">IRB 1144</td>
-                                <td id = "hello">301-405-2692</td>
-                                <td >jonsobr@umd.edu</td>
-                            </tr>
-                            <tr id = "hello">
-                                <td>Natalie Lightfoot-Solomon</td>
-                                <td>IRB 1148</td>
-                                <td></td>
-                                <td>nlightfo@umd.edu</td>
-                            </tr>
-                            <tr id = "hello">
-                                <td>Maggie Loughlin</td>
-                                <td></td>
-                                <td></td>
-                                <td>mloughli@umd.edu</td>
-                            </tr>
-                            <tr id = "hello">
-                                <td>Ashley Lyles</td>
-                                <td></td>
-                                <td></td>
-                                <td>alyles2@umd.edu</td>
-                            </tr>
-            
-                            <tr id>
-                                <td>Larry Petruccy</td>
-                                <td>IRB 1146</td>
-                                <td>301-405-2691</td>
-                                <td>lpetruc1@umd.edu</td>
-                            </tr>
-                            <tr>
-                                <td>Brennan Rudy</td>
-                                <td></td>
-                                <td></td>
-                                <td>brudy9@umd.edu</td>
-                            </tr>
-                            <tr>
-                                <td>Shreya Singh</td>
-                                <td></td>
-                                <td></td>
-                                <td>ssingh30@umd.edu</td>
-                            </tr>
-                          </table>
-                        </div>
-                </td>
-                <td id = "ayo" style = "vertical-align:top; text-align:center">
-                        <h2>Useful Links </h2>
-                        <button class="back" onclick="location.href = 'ContactAdvisor.html';"><span>Contact an Advisor</span></button><br>
-                        <button class="back" onclick="location.href = 'ScheduleAppt.html';"><span>Schedule an Appointment</span></button>
-                </td>
-                </tr>
-                <tr id = "ayo">
-                    <td id = "ayo" colspan="2">
-                        <div id="buttons">
-                            <button class="back" onclick="history.back()"><span>Go Back</span></button>
-                        </div>
-                    </td>
-                </tr>
-            </tr>
+  <div id="sidebar" class="sidebar">
+    <h1>Directory</h1>
+    <button onclick="location.href = 'index.html';">Index Page</button>
+    <button onclick="location.href = 'CSMajorHomepage.html';">CMSC Home Page</button>
+    <button onclick="location.href = 'fourYearPlanner.html';">Create/Edit 4-year Plan</button>
+    <button onclick="location.href = 'graduationRequirements.html';">Check Graduation Requirements</button>
+    <button onclick="location.href = 'CSAdvisors.html';">Contact an Advisor</button>
+    <h1>Additional Information</h1>
+    <button onclick="location.href = 'graduationRequirementList.html';">Detailed Graduation Information</button>
+    <button onclick="location.href = 'ULC.html';">Upper Level Concentration</button>
+    <button onclick="location.href = 'index.html';">Index Page</button>
+  </div>
+  <div id="mainContainer">
+    <div class="container" onclick="swap(this)">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
     </div>
+    <p id="imgs">
+      <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
+    </p>
+    <h1>CS Advisors</h1>
+    <div class="row">
+      <table width="100%">
+        <tr style="border:0px">
+          <td style="border:0px">
+            <div>
+              <table id="advisors" width="90%">
+                <th>Name</th>
+                <th>Location</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <tr>
+                  <td>Courtney Cabansag</td>
+                  <td>IRB 1154</td>
+                  <td></td>
+                  <td>cabansag@umd.edu</td>
+                </tr>
+                <tr>
+                  <td>Bryson Daniels</td>
+                  <td></td>
+                  <td></td>
+                  <td>bdaniel7@umd.edu</td>
+                </tr>
+                <tr>
+                  <td>Christine Denis</td>
+                  <td>IRB 1152</td>
+                  <td>301-405-6778</td>
+                  <td>cdenis@umd.edu</td>
+                </tr>
+                <tr>
+                  <td>Erik Johanson</td>
+                  <td>IRB 1140</td>
+                  <td>301-405-2681</td>
+                  <td>ejonanso@umd.edu</td>
+                </tr>
+                <tr>
+                  <td>Brittany Johnson</td>
+                  <td>IRB 1144</td>
+                  <td>301-405-2692</td>
+                  <td>jonsobr@umd.edu</td>
+                </tr>
+                <tr>
+                  <td>Natalie Lightfoot-Solomon</td>
+                  <td>IRB 1148</td>
+                  <td></td>
+                  <td>nlightfo@umd.edu</td>
+                </tr>
+                <tr>
+                  <td>Maggie Loughlin</td>
+                  <td></td>
+                  <td></td>
+                  <td>mloughli@umd.edu</td>
+                </tr>
+                <tr>
+                  <td>Ashley Lyles</td>
+                  <td></td>
+                  <td></td>
+                  <td>alyles2@umd.edu</td>
+                </tr>
+
+                <tr>
+                  <td>Larry Petruccy</td>
+                  <td>IRB 1146</td>
+                  <td>301-405-2691</td>
+                  <td>lpetruc1@umd.edu</td>
+                </tr>
+                <tr>
+                  <td>Brennan Rudy</td>
+                  <td></td>
+                  <td></td>
+                  <td>brudy9@umd.edu</td>
+                </tr>
+                <tr>
+                  <td>Shreya Singh</td>
+                  <td></td>
+                  <td></td>
+                  <td>ssingh30@umd.edu</td>
+                </tr>
+              </table>
+            </div>
+          </td>
+          <td style="border:0px; text-align:center; vertical-align:top">
+            <div>
+              <h2>Useful Links </h2>
+              <button class="back" onclick="location.href = 'ContactAdvisor.html';"><span>Contact an
+                  Advisor</span></button><br>
+              <button class="back" onclick="location.href = 'ScheduleAppt.html';"><span>Schedule an
+                  Appointment</span></button>
+            </div>
+          </td>
+        </tr>
+      </table>
     </div>
+    <div style="text-align:center">
+      <button class="back" onclick="history.back()"><span>Go Back</span></button>
+    </div>
+  </div>
 </body>
 
 </html>

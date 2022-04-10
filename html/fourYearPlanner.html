@@ -2,61 +2,92 @@
 <html lang="en">
 
 <head>
-    <script>
+  <script>
     function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-      }
-    
-    function myFunction2() {
-        document.getElementById("myDropdown2").classList.toggle("show");
+      document.getElementById("myDropdown").classList.toggle("show");
     }
-      
-      // Close the dropdown menu if the user clicks outside of it
-      window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-          var dropdowns = document.getElementsByClassName("dropdown-content");
-          var i;
-          for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-              openDropdown.classList.remove('show');
-            }
+
+    function myFunction2() {
+      document.getElementById("myDropdown2").classList.toggle("show");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function (event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
           }
         }
       }
-    </script>
-    <meta charset="utf-8" />
-    <title>Four Year Planner</title>
-    <link rel="icon" type="image/x-icon" href="../logo.ico">
-    <link rel="stylesheet" href="../css/fourYearPlanner.css" type="text/css" />
+    }
+
+    isOpened = false;
+    function swap(x) {
+      x.classList.toggle("change");
+      if (isOpened) {
+        document.getElementById("sidebar").style.width = "0";
+        document.getElementById("mainContainer").style.marginLeft = "0";
+        isOpened = false;
+      } else {
+        document.getElementById("sidebar").style.width = "260px";
+        document.getElementById("mainContainer").style.marginLeft = "260px";
+        isOpened = true;
+      }
+    }
+  </script>
+  <meta charset="utf-8" />
+  <title>Four Year Planner</title>
+  <link rel="icon" type="image/x-icon" href="../logo.ico">
+  <link rel="stylesheet" href="../css/fourYearPlanner.css" type="text/css" />
 
 </head>
 
 <body>
-    <div style="text-align:center">
-        <p id="imgs">
-            <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
-        </p>
-        <h1>Four Year Planner</h1>
-        
-        <div class="dropdown">
-          <button onclick="myFunction();" class="dropbtn">New...</button>
-          <div id="myDropdown" class="dropdown-content">
-            <a href="#">CS General Track</a>
-            <a href="#">Cybersecurity</a>
-            <a href="#">Data Science</a>
-            <a href="#">Machine Learning</a>
-            <a href="#">Quantum Information</a>
-          </div>
-        </div>
-        <br>
-        <div class="dropdown">
-          <button onclick="myFunction2();" class="dropbtn">Load...</button>
-          <div id="myDropdown2" class="dropdown-content">
-            <a href="#">My General Track</a>
-            <a href="#">My Cybersecurity Track</a>
-          </div>
-        </div>
+  <div id="sidebar" class="sidebar">
+    <h1>Directory</h1>
+    <button onclick="location.href = 'index.html';">Index Page</button>
+    <button onclick="location.href = 'CSMajorHomepage.html';">CMSC Home Page</button>
+    <button onclick="location.href = 'fourYearPlanner.html';">Create/Edit 4-year Plan</button>
+    <button onclick="location.href = 'graduationRequirements.html';">Check Graduation Requirements</button>
+    <button onclick="location.href = 'CSAdvisors.html';">Contact an Advisor</button>
+    <h1>Additional Information</h1>
+    <button onclick="location.href = 'graduationRequirementList.html';">Detailed Graduation Information</button>
+    <button onclick="location.href = 'ULC.html';">Upper Level Concentration</button>
+    <button onclick="location.href = 'index.html';">Index Page</button>
+  </div>
+  <div id="mainContainer" style="text-align:center">
+    <div class="container" onclick="swap(this)">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
+    <p id="imgs">
+      <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
+    </p>
+    <h1>Four Year Planner</h1>
+
+    <div class="dropdown">
+      <button onclick="myFunction();" class="dropbtn">New...</button>
+      <div id="myDropdown" class="dropdown-content">
+        <a href="#">CS General Track</a>
+        <a href="#">Cybersecurity</a>
+        <a href="#">Data Science</a>
+        <a href="#">Machine Learning</a>
+        <a href="#">Quantum Information</a>
+      </div>
+    </div>
+    <br>
+    <div class="dropdown">
+      <button onclick="myFunction2();" class="dropbtn">Load...</button>
+      <div id="myDropdown2" class="dropdown-content">
+        <a href="#">My General Track</a>
+        <a href="#">My Cybersecurity Track</a>
+      </div>
+    </div>
 </body>
 
 </html>

@@ -61,3 +61,15 @@ h1,
 h2 {
   text-align: center;
 }
+
+#csdept {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 50%;
+  padding: 10px;
+}
+
+#container {
+  margin: 20px;
+}

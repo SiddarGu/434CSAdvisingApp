@@ -18,6 +18,7 @@ html {
   padding: 20px;
 }
 
+
 #csdept {
   margin-left: auto;
   margin-right: auto;
@@ -144,4 +145,37 @@ h2 {
 
 hr {
   width: 250px;
+}
+
+/* The sidebar menu */
+.keyboard {
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  background-color: rgb(181, 19, 41);
+  /* overflow-y: hidden; */
+  transition: 0.5s;
+  text-align: center;
+  background-color: antiquewhite;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#keyboardSvg {
+  height: 0;
+  transition: 0.5s;
+  margin-top: 20px;
+}
+
+
+
+#keyboardButton {
+  right: 120px;
+  border: none;
+  background-color: antiquewhite;
+  transition: 0.5s;
+  bottom: 0px;
+  position: absolute;
+  font-size: 30px;
 }

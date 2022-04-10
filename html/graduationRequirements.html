@@ -8,6 +8,13 @@
   <link rel="stylesheet" href="../css/graduationRequirements.css" type="text/css" />
   <script>
     isOpened = false;
+    window.onload = main;
+
+    if (localStorage) {
+      console.log("Local Storage is supported");
+    } else {
+      console.log("Local Storage is not supported");
+    }
 
     function swap(x) {
       x.classList.toggle("change");
@@ -21,6 +28,27 @@
         isOpened = true;
       }
     }
+
+    function fsawChange() {
+      item = localStorage.getItem("fsaw");
+      if (item == "true") {
+        localStorage.setItem("fsaw", "false");
+        document.getElementById("fsaw").checked = false;
+      } else {
+        localStorage.setItem("fsaw", "true");
+        document.getElementById("fsaw").checked = true;
+      }
+    }
+
+    function main() {
+      item = localStorage.getItem("fsaw");
+      if (item == "true") {
+        document.getElementById("fsaw").checked = true;
+      } else {
+        document.getElementById("fsaw").checked = false;
+      }
+    }
+
   </script>
 </head>
 
@@ -73,7 +101,7 @@
           <td class="left">Academic Writing (before 30 credits)</td>
           <td></td>
           <td class="credit">3</td>
-          <td class="checkbox"><input type="checkbox" name="FSAW"></td>
+          <td class="checkbox"><input id="fsaw" type="checkbox" name="FSAW" onchange="fsawChange()"></td>
         </tr>
         <tr>
           <td class="left">FSPW</td>
@@ -240,7 +268,7 @@
       <br>
       <table>
         <tr>
-          <th colspan="3">Upper Level Concentration</th>
+          <th colspan="3"><a href="./ULC.html">Upper Level Concentration</a></th>
         </tr>
         <tr>
           <td colspan="3" class="left">Students must complete a minimum of 12 credit hours of 300 - 400 level courses in

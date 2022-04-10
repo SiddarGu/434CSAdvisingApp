@@ -79,6 +79,7 @@
     function switchKeyboard(x) {
       x.classList.toggle("change");
       if (showKeyboard) {
+        document.getElementById("keyboard").style.height = "0";
         document.getElementById("keyboardSvg").style.height = "0";
         document.getElementById("mainContainer").style.marginBottom = "0";
         document.getElementById("keyboardButton").style.marginBottom = "0";

@@ -39,6 +39,14 @@ td {
   text-align: center;
 }
 
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
 /* Style the tab */
 .tab {
   overflow: hidden;

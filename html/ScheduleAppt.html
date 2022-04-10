@@ -18,7 +18,7 @@
         <p id="imgs">
             <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
         </p>
-        <h1>Schedule Appointment</h1>
+        <h1>Schedule an appointment with an advisor</h1>
         <div>
             <label>Select an advisor: </label>
             <select name = "advisors" id = "advisors">
@@ -61,11 +61,13 @@
                 <option>4:00</option>
                 <option>4:30</option>
             </select><br>
-            <label>Name and University ID(First Last, UID):</label>
+            <label>Name(First Last):</label>
             <input type="text" size = "30" id="name" name="name"><br>
-            <label>University Email:</label>
+            <label>University Email(@umd.edu or @terpmail.umd.edu):</label>
+            <input type="email" size = "30" id="name" name="name"><br>
+            <label>University ID:</label>
             <input type="text" size = "30" id="name" name="name"><br>
-            <button onclick="submit();" >Submit</button><br>
+            <button onclick="submit();" >Schedule Appointment</button><br>
             <label id = "submitted"></label>
 
         </div>

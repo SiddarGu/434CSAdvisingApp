@@ -68,14 +68,14 @@ h1,
 h2 {
     text-align: center;
 }
-td, th {
-    border: 1px solid #ec8787;
+td:not(#ayo), th:not(#ayo) {
+    border: 1px solid #efa1a1;
     text-align: left;
     padding: 8px;
 }
   
-tr:nth-child(even) {
-    background-color: #ec8787;
+tr:nth-child(even):not(#ayo) {
+    background-color: #efa1a1;
 }
 
 .column {
@@ -87,7 +87,7 @@ tr:nth-child(even) {
     width: 50%;
   }
   
-  .right {
+.right {
     text-align: center;
     width: 50%;
-  }
+}

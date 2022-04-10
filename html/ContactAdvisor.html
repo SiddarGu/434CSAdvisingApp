@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/ContactAdvisor.css" type="text/css" />
     <script>
         function submit() {
-            document.getElementById("submitted").innerHTML = "Submitted! Expect an email from an advisor in the next 3-5 business days.";
+            document.getElementById("submitted").innerHTML = "Submitted! Expect an email from the advisor in the next 3-5 business days.";
         }
     </script>
 </head>
@@ -40,21 +40,29 @@
             </select>
         </div>
         <div>
-            <label>Name and University ID(First Last, UID):</label>
-            <input type="text" size = "30" id="name" name="name"><br>
-            <label>University Email:</label>
-            <input type="text" size = "30" id="name" name="name"><br>
+        <form action=#>
+            <label>Name(First Last):</label>
+            <input type="text" onkeydown="return /[a-z]/i.test(event.key);" size = "30" minlength="4" required><br>
+            <label>University ID:</label>
+            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" minlength="9" maxlength="9" required/><br>
+            <label>University Email(@umd.edu or @terpmail.umd.edu):</label>
+            <input type="text" size = "30"><br>
             <label>Subject: </label>
-            <input type="text" size = "40" id="subject" name="subject"><br>
+            <input type="text" size = "40"><br>
             <label>Body</label><br>
-            <textarea rows="4" cols="50"  id="body" name="body"></textarea><br>
-            <button onclick="submit();" >Submit</button><br>
+            <textarea rows="4" cols="50"></textarea><br>
+            <button type="submit" type ="button" onclick="submit();" value="Send email">Send email</button>
             <label id = "submitted"></label>
             <div id="buttons">
             
             <button class="back" onclick="history.back()"><span>Go Back</span></button>
         </div>
+    </form>
     </div>
+    <form action="#">
+        Input with minlength: <input type="text" minlength="2" required name="i1">
+        <input type="submit" onclick="submit();" value="Submit"><input type="button" onclick="submit();">
+      </form>
 </body>
 
 </html>

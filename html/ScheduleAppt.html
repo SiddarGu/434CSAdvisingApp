@@ -3,12 +3,13 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Schedule Appointment</title>
+  <title>Schedule an Advising Appointment</title>
   <link rel="icon" type="image/x-icon" href="../logo.ico">
   <link rel="stylesheet" href="../css/ScheduleAppt.css" type="text/css" />
   <script>
     function submit() {
-      document.getElementById("submitted").innerHTML = "You have successfully scheduled an appointment. Please arrive to the advisors room on time.";
+      document.getElementById("submitted").innerHTML = 
+      "You have successfully scheduled an appointment with the advisor. Please join the Zoom room at go.umd.edu/csadvising on time.";
     }
     isOpened = false;
 
@@ -49,9 +50,10 @@
     <p id="imgs">
       <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
     </p>
-    <h1>Schedule an appointment with an advisor</h1>
+    <h1>Schedule an Appointment with an Advisor</h1>
     <div>
-      <label>Select an advisor: </label>
+      <p>All appointments will take place on Zoom at <a href="./zoom.html">go.umd.edu/csadvising</a>.</p>
+      <label>Select an Advisor: </label>
       <select name="advisors" id="advisors">
         <optgroup label="Senior Advisors">
           <option>Courtney Cabansag</option>
@@ -69,9 +71,9 @@
           <option>Shreya Singh</option>
         </optgroup>
       </select><br>
-      <label>Select date:</label>
+      <label>Select a Date:</label>
       <input type="date"><br>
-      <label>Time: </label>
+      <label>Select a Time: </label>
       <select name="time" id="time">
         <option>8:00</option>
         <option>8:30</option>
@@ -92,12 +94,12 @@
         <option>4:00</option>
         <option>4:30</option>
       </select><br>
-      <label>Name(First Last):</label>
+      <label>Name (First Last):</label>
       <input type="text" size = "30" id="name" name="name"><br>
-      <label>University Email(@umd.edu or @terpmail.umd.edu):</label>
+      <label>UID:</label>
+      <input type="text" size = "30" id="name" name="name"><br>
+      <label>University Email (@umd.edu or @terpmail.umd.edu):</label>
       <input type="email" size = "30" id="name" name="name"><br>
-      <label>University ID:</label>
-      <input type="text" size = "30" id="name" name="name"><br>
       <button onclick="submit();" >Schedule Appointment</button><br>
       <label id = "submitted"></label>
 

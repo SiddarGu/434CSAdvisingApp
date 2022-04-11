@@ -105,7 +105,6 @@ h2 {
 .sidebar button {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
-  font-size: 15px;
   color: white;
   transition: 0.3s;
   background: none;
@@ -178,4 +177,13 @@ hr {
   bottom: 0px;
   position: absolute;
   font-size: 30px;
+}
+
+.submenu {
+  font-size: 15px;
+}
+
+.menu {
+  font-size: 15px;
+  font-weight: bold;
 }

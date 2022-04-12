@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <script>
+	window.onload = function() {
+		//Hide table and buttons on load-in
+		document.getElementById("plannerYear1").classList.toggle("hidden");
+		document.getElementById("plannerYear2").classList.toggle("hidden");
+		document.getElementById("plannerYear3").classList.toggle("hidden");
+		document.getElementById("plannerYear4").classList.toggle("hidden");
+
+		document.getElementById("saveExit").classList.toggle("hidden");
+		//Doesn't hide?????
+		document.getElementbyId("saveCheck").classList.toggle("hidden");
+		
+		<!-- var saveExit = document.getElementById("saveExit"); -->
+		<!-- var saveCheck = document.getElementbyId("saveCheck"); -->
+
+		<!-- saveExit.hidden = true; -->
+		<!-- saveCheck.hidden = true; -->
+		
+	}
+
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+    
+    function myFunction2() {
+        document.getElementById("myDropdown2").classList.toggle("show");
+    }
+	
+	//Start with planner hidden
+      
+      // Close the dropdown menu if the user clicks outside of it
+      /*
+	  window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+              openDropdown.classList.remove('show');
+            }
+          }
+        }
+      }
+	  */
+	 
+	  
+	//Regardless of which option the user picks in new, create empty plan for them to interact with
+	//Afterwards, check requirements
+	var whichTrackToCheck = "";
+	 
+	function opClicked(whichTrack) {
+	
+	  //Close dropdown menu
+	  var dropdowns = document.getElementsByClassName("dropdown-content");
+	  var i;
+	  for (i = 0; i < dropdowns.length; i++) {
+		var openDropdown = dropdowns[i];
+		if (openDropdown.classList.contains('show')) {
+		  openDropdown.classList.remove('show');
+		}
+	  }
+	  
+
+		
+	  //None of this is working
+
+	  //Hide buttons
+	  document.getElementById("button1").classList.toggle("hidden");
+	  document.getElementById("button2").classList.toggle("hidden");
+	  document.getElementById("goBack").classList.toggle("hidden");
+
+	  <!-- var b1 = document.getElementById("button1"); -->
+	  <!-- b1.hidden = true; -->
+	  <!-- var b2 = document.getElementById("button2"); -->
+	  <!-- b2.hidden = true; -->
+	  
+	  <!-- var b3 = document.getElementById("goBack"); -->
+      <!-- b3.hidden = true; -->
+
+      //Open planner
+	  document.getElementById("plannerYear1").classList.toggle("hidden");
+	  document.getElementById("plannerYear2").classList.toggle("hidden");
+	  document.getElementById("plannerYear3").classList.toggle("hidden");
+	  document.getElementById("plannerYear4").classList.toggle("hidden");
+
+     //Show new buttons
+	  document.getElementById("saveExit").classList.toggle("hidden");
+	  document.getElementbyId("saveCheck").classList.toggle("hidden");
+
+	  
+	  <!-- var saveExit = document.getElementById("saveExit"); -->
+	  <!-- var saveCheck = document.getElementbyId("saveCheck"); -->
+
+	  <!-- saveExit.hidden = false; -->
+	  <!-- saveCheck.hidden = false; -->
+
+	  
+	  //Open planner
+	  <!-- var tableYear1 = document.getElementById("plannerYear1"); -->
+		<!-- var tableYear2 = document.getElementById("plannerYear2"); -->
+		<!-- var tableYear3 = document.getElementById("plannerYear3"); -->
+		<!-- var tableYear4 = document.getElementById("plannerYear4"); -->
+		<!-- tableYear1.hidden = false; -->
+		<!-- tableYear2.hidden = false; -->
+		<!-- tableYear3.hidden = false; -->
+		<!-- tableYear4.hidden = false; -->
+	  
+
+	//Afterwards, check requirements based on which track they selected (whichTrack tells you)
+	whichTrackToCheck = whichTrack;
+	}
+	
+	function saveExit() {
+	}
+	
+	function saveCheck() {
+	}
+	
+
+	isOpened = false;
+    function swap(x) {
+      x.classList.toggle("change");
+      if (isOpened) {
+        document.getElementById("sidebar").style.width = "0";
+        document.getElementById("mainContainer").style.marginLeft = "0";
+        isOpened = false;
+      } else {
+        document.getElementById("sidebar").style.width = "300px";
+        document.getElementById("mainContainer").style.marginLeft = "300px";
+        isOpened = true;
+      }
+    }	  
+	  
+    </script>
+    <meta charset="utf-8" />
+    <title>Four Year Planner</title>
+    <link rel="icon" type="image/x-icon" href="../logo.ico">
+    <link rel="stylesheet" href="../css/fourYearPlannerInProg.css" type="text/css" />
+
+</head>
+
+<body>
+	<div id="sidebar" class="sidebar">
+    <h1>Menu</h1>
+    <button onclick="location.href = 'CSMajorHomepage.html';" class="menu">Home</button>
+    <button onclick="location.href = 'fourYearPlanner.html';" class="menu">Create/Edit Your 4-year Plan</button>
+    <button onclick="location.href = 'graduationRequirements.html';" class="menu">Check Graduation Requirements</button>
+    <button onclick="location.href = 'ULC.html';" class="submenu">&nbsp;&nbsp;&#x2022; Upper Level Concentration</button>
+
+    <button onclick="location.href = 'CSAdvisors.html';" class="menu">Contact a CS Advisor</button>
+    <button onclick="location.href = 'ContactAdvisor.html';" class="submenu">&nbsp;&nbsp;&#x2022; Contact an Advisor</button>
+
+    </div>
+
+    <div id="mainContainer" style="text-align:center">
+		<div class="container" onclick="swap(this)">
+		  <div class="bar1"></div>
+		  <div class="bar2"></div>
+		  <div class="bar3"></div>
+		</div>
+		<p id="imgs">
+		  <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
+		</p>
+		<h1>Four Year Planner</h1>
+        
+        <div class="dropdown">
+          <button id="newPlan" onclick="myFunction();" class="dropbtn">Create New Plan</button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="#" onclick = "opClicked('gentrack');">CS General Track</a>
+            <a href="#" onclick = "opClicked('cybsec');">Cybersecurity</a>
+            <a href="#" onclick = "opClicked('datsci');">Data Science</a>
+            <a href="#" onclick = "opClicked('maclearn');">Machine Learning</a>
+            <a href="#" onclick = "opClicked('quant');">Quantum Information</a>
+          </div>
+        </div>
+        <br>
+        <div class="dropdown">
+          <button id="editPlan" onclick="myFunction2();" class="dropbtn">Edit Existing Plan</button>
+          <div id="myDropdown2" class="dropdown-content">
+            <a href="#" id="myGen">My General Track</a>
+            <a href="#" id="myCyb">My Cybersecurity Track</a>
+			<a href="#" id="myDat">My Data Science Track</a>
+			<a href="#" id="myMac">My Machine Learning Track</a>
+			<a href="#" id="myQua">My Quantum Information Track</a>
+          </div>
+        </div>
+		
+		
+		<div id="fullPlanner">
+		<table style="margin-bottom: 30px;" id="plannerYear1" border="1">
+		  <tr>
+			<th colspan="12">Year 1</th>
+		  </tr>
+		  <tr>
+			<th colspan="3"> Spring </th>
+			<th colspan="3"> Winter </th>
+			<th colspan="3"> Fall </th>
+			<th colspan="3"> Summer </th>
+		  </tr>
+		  <tr>
+			<td> Course </td>
+			<td> Credits </td>
+			<td> Grade </td>
+			<td> Course </td>
+			<td> Credits </td>
+			<td> Grade </td>
+			<td> Course </td>
+			<td> Credits </td>
+			<td> Grade </td>
+			<td> Course </td>
+			<td> Credits </td>
+			<td> Grade </td>
+		  </tr>
+			  
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		</table>
+		
+		<table style="margin-bottom: 30px;" id="plannerYear2" border="1">
+		  <tr>
+			<th colspan="12">Year 2</th>
+		  </tr>
+		  <tr>
+			<th colspan="3"> Spring </th>
+			<th colspan="3"> Winter </th>
+			<th colspan="3"> Fall </th>
+			<th colspan="3"> Summer </th>
+		  </tr>
+		  <tr>
+			<td> Course </td>
+			<td> Credits </td>
+			<td> Grade </td>
+			<td> Course </td>
+			<td> Credits </td>
+			<td> Grade </td>
+			<td> Course </td>
+			<td> Credits </td>
+			<td> Grade </td>
+			<td> Course </td>
+			<td> Credits </td>
+			<td> Grade </td>
+		  </tr>
+			  
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		</table>
+		
+		
+		<table style="margin-bottom: 30px;" id="plannerYear3" border="1">
+		  <tr>
+			<th colspan="12">Year 3</th>
+		  </tr>
+		  <tr>
+			<th colspan="3"> Spring </th>
+			<th colspan="3"> Winter </th>
+			<th colspan="3"> Fall </th>
+			<th colspan="3"> Summer </th>
+		  </tr>
+		  <tr>
+			<td> Course </td>
+			<td> Credits </td>
+			<td> Grade </td>
+			<td> Course </td>
+			<td> Credits </td>
+			<td> Grade </td>
+			<td> Course </td>
+			<td> Credits </td>
+			<td> Grade </td>
+			<td> Course </td>
+			<td> Credits </td>
+			<td> Grade </td>
+		  </tr>
+			  
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		</table>
+		
+		
+		<table id="plannerYear4" border="1">
+		  <tr>
+			<th colspan="12">Year 4</th>
+		  </tr>
+		  <tr>
+			<th colspan="3"> Spring </th>
+			<th colspan="3"> Winter </th>
+			<th colspan="3"> Fall </th>
+			<th colspan="3"> Summer </th>
+		  </tr>
+		  <tr>
+			<td> Course </td>
+			<td> Credits </td>
+			<td> Grade </td>
+			<td> Course </td>
+			<td> Credits </td>
+			<td> Grade </td>
+			<td> Course </td>
+			<td> Credits </td>
+			<td> Grade </td>
+			<td> Course </td>
+			<td> Credits </td>
+			<td> Grade </td>
+		  </tr>
+			  
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		  <tr>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+			<td contenteditable> </td>
+		  </tr>
+		</table>
+		</div>
+
+		<div style="text-align:center">
+			<button id="goBack" class="back" onclick="history.back();"><span>Go Back</span></button>
+			<button id="saveExit" class="back" onclick="saveExit();"><span> Save & Exit</span></button>
+			<button id="saveCheck" class="back" onclick="saveCheck();"><span> Save & Check Requirements</span></button>
+			
+		</div>
+    
+		
+</div>	  
+</body>
+
+</html>

@@ -4,23 +4,50 @@
 <head>
     <script>
 	window.onload = function() {
-		var tableYear1 = document.getElementById("plannerYear1");
-		var tableYear2 = document.getElementById("plannerYear2");
-		var tableYear3 = document.getElementById("plannerYear3");
-		var tableYear4 = document.getElementById("plannerYear4");
-		tableYear1.hidden = true;
-		tableYear2.hidden = true;
-		tableYear3.hidden = true;
-		tableYear4.hidden = true;
-		
-		<!-- var saveExit = document.getElementById("saveExit"); -->
-		<!-- var saveCheck = document.getElementbyId("saveCheck"); -->
+		//Hide table and buttons on load-in
+		document.getElementById("plannerYear1").classList.toggle("hidden");
+		document.getElementById("plannerYear2").classList.toggle("hidden");
+		document.getElementById("plannerYear3").classList.toggle("hidden");
+		document.getElementById("plannerYear4").classList.toggle("hidden");
 
-		<!-- saveExit.hidden = true; -->
-		<!-- saveCheck.hidden = true; -->
+		document.getElementById("saveExit").classList.toggle("hidden");
+		document.getElementById("saveCheck").classList.toggle("hidden");
+		
+		console.log(plannerEmpty());
+		
 		
 	}
-
+	
+	function plannerEmpty() {
+		var plannerYear1 = document.getElementById("plannerYear1");
+		var plannerYear2 = document.getElementById("plannerYear2");
+		var plannerYear3 = document.getElementById("plannerYear3");
+		var plannerYear4 = document.getElementById("plannerYear4");
+		
+		const planner = [plannerYear1, plannerYear2, plannerYear3, plannerYear4];
+		var plannerText = "";
+		
+		for (var i = 0; i < planner.length; i++) {
+			for (var j = 0; j < planner[i].rows.length; j++) {
+				for (const cell of planner[i].rows[j].cells) {
+					//Ignore first three rows, table header
+					if (j > 2) {
+						plannerText += cell.innerText;
+					}
+				}
+			}
+		}
+		
+		//Remove whitespace
+		plannerText = plannerText.trim();
+		
+		if (plannerText == "") {
+		   return true;
+		} 
+		
+		return false;
+	}
+	
     function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
     }
@@ -63,44 +90,47 @@
 		  openDropdown.classList.remove('show');
 		}
 	  }
-	  
+
 	  //Hide buttons
-	  var b1 = document.getElementById("button1");
-	  b1.hidden = true;
-	  var b2 = document.getElementById("button2");
-	  b2.hidden = true;
-	  
-	  <!-- var b3 = document.getElementById("goBack"); -->
-      <!-- b3.hidden = true; -->
-		
-      <!-- //Show new buttons -->
-	  <!-- var saveExit = document.getElementById("saveExit"); -->
-	  <!-- var saveCheck = document.getElementbyId("saveCheck"); -->
+	  document.getElementById("newPlan").classList.toggle("hidden");
+	  document.getElementById("editPlan").classList.toggle("hidden");
+	  document.getElementById("goBack").classList.toggle("hidden");
 
-	  <!-- saveExit.hidden = false; -->
-	  <!-- saveCheck.hidden = false; -->
+      //Open planner
+	  document.getElementById("plannerYear1").classList.toggle("hidden");
+	  document.getElementById("plannerYear2").classList.toggle("hidden");
+	  document.getElementById("plannerYear3").classList.toggle("hidden");
+	  document.getElementById("plannerYear4").classList.toggle("hidden");
 
-	  
-	  //Open planner
-	  var tableYear1 = document.getElementById("plannerYear1");
-		var tableYear2 = document.getElementById("plannerYear2");
-		var tableYear3 = document.getElementById("plannerYear3");
-		var tableYear4 = document.getElementById("plannerYear4");
-		tableYear1.hidden = false;
-		tableYear2.hidden = false;
-		tableYear3.hidden = false;
-		tableYear4.hidden = false;
+     //Show new buttons
+	  document.getElementById("saveExit").classList.toggle("hidden");
+	  document.getElementById("saveCheck").classList.toggle("hidden");
 	  
 
 	//Afterwards, check requirements based on which track they selected (whichTrack tells you)
 	whichTrackToCheck = whichTrack;
 	}
 	
-	<!-- function saveExit() { -->
-	<!-- } -->
+	function saveExit() {
+	  //Close planner
+	  document.getElementById("plannerYear1").classList.toggle("hidden");
+	  document.getElementById("plannerYear2").classList.toggle("hidden");
+	  document.getElementById("plannerYear3").classList.toggle("hidden");
+	  document.getElementById("plannerYear4").classList.toggle("hidden");
+	  
+	  //hide buttons
+	  document.getElementById("saveExit").classList.toggle("hidden");
+	  document.getElementById("saveCheck").classList.toggle("hidden");
+	  
+	  //show old buttons
+	  document.getElementById("newPlan").classList.toggle("hidden");
+	  document.getElementById("editPlan").classList.toggle("hidden");
+	  document.getElementById("goBack").classList.toggle("hidden");
+
+	}
 	
-	<!-- function saveCheck() { -->
-	<!-- } -->
+	function saveCheck() {
+	}
 	
 
 	isOpened = false;
@@ -150,29 +180,29 @@
 		<h1>Four Year Planner</h1>
         
         <div class="dropdown">
-          <button id="button1" onclick="myFunction();" class="dropbtn">Create New Plan</button>
+          <button id="newPlan" onclick="myFunction();" class="dropbtn">Create New Plan</button>
           <div id="myDropdown" class="dropdown-content">
-            <a href="#" onclick = "opClicked('gentrack');">CS General Track</a>
-            <a href="#" onclick = "opClicked('cybsec');">Cybersecurity</a>
-            <a href="#" onclick = "opClicked('datsci');">Data Science</a>
-            <a href="#" onclick = "opClicked('maclearn');">Machine Learning</a>
-            <a href="#" onclick = "opClicked('quant');">Quantum Information</a>
+            <a href="#" onclick = "plannerEmpty(); opClicked('gentrack');">CS General Track</a>
+            <a href="#" onclick = "plannerEmpty(); opClicked('cybsec');">Cybersecurity</a>
+            <a href="#" onclick = "plannerEmpty(); opClicked('datsci');">Data Science</a>
+            <a href="#" onclick = "plannerEmpty(); opClicked('maclearn');">Machine Learning</a>
+            <a href="#" onclick = "plannerEmpty(); opClicked('quant');">Quantum Information</a>
           </div>
         </div>
         <br>
         <div class="dropdown">
-          <button id="button2" onclick="myFunction2();" class="dropbtn">Edit Existing Plan</button>
+          <button id="editPlan" onclick="myFunction2();" class="dropbtn">Edit Existing Plan</button>
           <div id="myDropdown2" class="dropdown-content">
-            <a href="#" id="myGen">My General Track</a>
-            <a href="#" id="myCyb">My Cybersecurity Track</a>
-			<a href="#" id="myDat">My Data Science Track</a>
-			<a href="#" id="myMac">My Machine Learning Track</a>
-			<a href="#" id="myQua">My Quantum Information Track</a>
+            <a href="#" onclick = "opClicked('gentrack');">My General Track</a>
+            <a href="#" onclick = "opClicked('cybsec');">My Cybersecurity Track</a>
+			<a href="#" onclick = "opClicked('datsci');">My Data Science Track</a>
+			<a href="#" onclick = "opClicked('maclearn');">My Machine Learning Track</a>
+			<a href="#" onclick = "opClicked('quant');">My Quantum Information Track</a>
           </div>
         </div>
 		
 		
-		
+		<div id="fullPlanner">
 		<table style="margin-bottom: 30px;" id="plannerYear1" border="1">
 		  <tr>
 			<th colspan="12">Year 1</th>
@@ -678,13 +708,14 @@
 			<td contenteditable> </td>
 		  </tr>
 		</table>
+		</div>
 
-		<!-- <div style="text-align:center"> -->
-			<!-- <button id="goBack" class="back" onclick="history.back();"><span>Go Back</span></button> -->
-			<!-- <button id="saveExit" class="back" onclick="saveExit();"><span> Save & Exit</span></button> -->
-			<!-- <button id="saveCheck" class="back" onclick="saveCheck();"><span> Save & Check Requirements</span></button> -->
+		<div style="text-align:center">
+			<button id="goBack" class="back" onclick="history.back();"><span>Go Back</span></button>
+			<button id="saveExit" class="back" onclick="saveExit();"><span> Save & Exit</span></button>
+			<button id="saveCheck" class="back" onclick="saveCheck();"><span> Save & Check Requirements</span></button>
 			
-		<!-- </div> -->
+		</div>
     
 		
 </div>	  

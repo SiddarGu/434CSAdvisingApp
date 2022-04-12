@@ -4,6 +4,23 @@ html {
   background-color: antiquewhite;
 }
 
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 95%;
+  text-align: center;
+  table-layout : fixed;
+}
+
+#miniTable {
+  border-collapse: collapse;
+  border-style: hidden;
+}
+
+
 #imgs {
   display: flex;
   align-items: center;
@@ -24,6 +41,53 @@ html {
   transition: all 0.5s;
   cursor: pointer;
   margin: 15px 5px 5px 5px;
+}
+
+#buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.back {
+  width: 280px;
+  white-space: nowrap;
+  border-radius: 10px;
+  background-color: #e03a3e;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 15px 5px 5px 5px;
+}
+
+
+.back span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.back span:after {
+  content: "\00ab";
+  position: fixed;
+  opacity: 0;
+  top: 0;
+  left: -20px;
+  transition: 0.5s;
+}
+
+.back:hover span {
+  padding-left: 25px;
+}
+
+.back:hover span:after {
+  opacity: 1;
+  left: 0;
 }
 
 /* Dropdown button on hover & focus */

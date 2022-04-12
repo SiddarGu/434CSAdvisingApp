@@ -6,52 +6,7 @@
   <title>Graduation Requirements</title>
   <link rel="icon" type="image/x-icon" href="../logo.ico">
   <link rel="stylesheet" href="../css/graduationRequirements.css" type="text/css" />
-
-  <!-- Script to save the user's choices for the checkboxes -->
-  <script>
-    isOpened = false;
-    window.onload = main;
-
-    if (localStorage) {
-      console.log("Local Storage IS supported");
-    } else {
-      console.log("Local Storage is NOT supported");
-    }
-
-    function swap(x) {
-      x.classList.toggle("change");
-      if (isOpened) {
-        document.getElementById("sidebar").style.width = "0";
-        document.getElementById("mainContainer").style.marginLeft = "0";
-        isOpened = false;
-      } else {
-        document.getElementById("sidebar").style.width = "300px";
-        document.getElementById("mainContainer").style.marginLeft = "300px";
-        isOpened = true;
-      }
-    }
-
-    function fsawChange() {
-      item = localStorage.getItem("fsaw");
-      if (item == "true") {
-        localStorage.setItem("fsaw", "false");
-        document.getElementById("fsaw").checked = false;
-      } else {
-        localStorage.setItem("fsaw", "true");
-        document.getElementById("fsaw").checked = true;
-      }
-    }
-
-    function main() {
-      item = localStorage.getItem("fsaw");
-      if (item == "true") {
-        document.getElementById("fsaw").checked = true;
-      } else {
-        document.getElementById("fsaw").checked = false;
-      }
-    }
-
-  </script>
+  <script src="../js/gradReqs.js" defer></script>
 </head>
 
 <body>
@@ -95,7 +50,8 @@
         <td class="left">Calculus I</td>
         <td>MATH 140</td>
         <td class="credit">4</td>
-        <td class="checkbox"><input type="checkbox" name="MATH 140"></td>
+        <td class="checkbox"><input type="checkbox" name="MATH 140" onchange="checkboxChange(name)"></td>
+        <!-- <td class="checkbox"><input type="checkbox" name="MATH 140"></td> -->
       </tr>
       <tr>
         <td class="left">Object-Oriented Programming I or
@@ -144,8 +100,8 @@
           <td class="left">Academic Writing (before 30 credits)</td>
           <td></td>
           <td class="credit">3</td>
+          <!-- <td class="checkbox"><input type="checkbox" name="FSAW" onchange="checkboxChange(name)"></td> -->
           <td class="checkbox"><input id="fsaw" type="checkbox" name="FSAW" onchange="fsawChange()"></td>
-          <!-- <td class="checkbox"><input id="fsaw" type="checkbox" name="FSAW" onchange="fsawChange()"></td> -->
         </tr>
         <tr>
           <td class="left">FSPW</td>
@@ -390,6 +346,7 @@
           <td class="checkbox"><input type="checkbox" name="Non-CMSC Elective 4"></td>
         </tr>
       </table>
+      <br>
     </div>
 
     <!-- Right column (DYNAMIC; UNFINISHED) -->
@@ -1933,27 +1890,9 @@
           </tr>
         </table>
       </div>
+
+      <br>
     </div>
-
-    <!-- Script for opening track-specific tabs -->
-    <script>
-      function openTrack(event, trackName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(trackName).style.display = "block";
-        event.currentTarget.className += " active";
-      }
-
-      // Get the element with id="defaultOpen" and click on it
-      document.getElementById("defaultOpen").click();
-    </script>
   </div>
 </body>
 

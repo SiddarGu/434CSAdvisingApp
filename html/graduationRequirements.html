@@ -6,14 +6,16 @@
   <title>Graduation Requirements</title>
   <link rel="icon" type="image/x-icon" href="../logo.ico">
   <link rel="stylesheet" href="../css/graduationRequirements.css" type="text/css" />
+
+  <!-- Script to save the user's choices for the checkboxes -->
   <script>
     isOpened = false;
     window.onload = main;
 
     if (localStorage) {
-      console.log("Local Storage is supported");
+      console.log("Local Storage IS supported");
     } else {
-      console.log("Local Storage is not supported");
+      console.log("Local Storage is NOT supported");
     }
 
     function swap(x) {
@@ -59,10 +61,8 @@
     <button onclick="location.href = 'fourYearPlanner.html';" class="menu">Create/Edit Your 4-year Plan</button>
     <button onclick="location.href = 'graduationRequirements.html';" class="menu">Check Graduation Requirements</button>
     <button onclick="location.href = 'ULC.html';" class="submenu">&nbsp;&nbsp;&#x2022 Upper Level Concentration</button>
-
     <button onclick="location.href = 'CSAdvisors.html';" class="menu">Contact a CS Advisor</button>
     <button onclick="location.href = 'ContactAdvisor.html';" class="submenu">&nbsp;&nbsp;&#x2022 Contact an Advisor</button>
-
   </div>
   <div id="mainContainer">
     <div class="container" onclick="swap(this)">
@@ -74,6 +74,50 @@
       <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
     </p>
     <h1>Graduation Requirements</h1>
+
+    <!-- LEP Requirements -->
+    <label>Check here if you are not yet a Computer Science major and intend to become one:</label>
+    <input type="checkbox" name="LEP">
+    <br>
+    <br>
+    <table>
+      <tr>
+        <th colspan="4">Computer Science Limited Enrollment Program (LEP) Requirements (Must pass with a grade of C- or
+          higher)</th>
+      </tr>
+      <tr>
+        <td class="left"><em>Title</em></td>
+        <td><em>Course</em></td>
+        <td><em>Credits</em></td>
+        <td><em>Completed?</em></td>
+      </tr>
+      <tr>
+        <td class="left">Calculus I</td>
+        <td>MATH 140</td>
+        <td class="credit">4</td>
+        <td class="checkbox"><input type="checkbox" name="MATH 140"></td>
+      </tr>
+      <tr>
+        <td class="left">Object-Oriented Programming I or
+          <br>Object-Oriented Programming I Beyond Fundamentals
+        </td>
+        <td>CMSC 131 or
+          <br>CMSC 133
+        </td>
+        <td class="credit">4 or
+          <br>2
+        </td>
+        <td class="checkbox"><input type="checkbox" name="CMSC 131/133"></td>
+      </tr>
+      <tr>
+        <td class="left">Object-Oriented Programming II</td>
+        <td>CMSC 132</td>
+        <td class="credit">4</td>
+        <td class="checkbox"><input type="checkbox" name="CMSC 132"></td>
+      </tr>
+    </table>
+    <br>
+    <br>
 
     <!-- Left column (STATIC; FINISHED) -->
     <div class="column">
@@ -101,6 +145,7 @@
           <td></td>
           <td class="credit">3</td>
           <td class="checkbox"><input id="fsaw" type="checkbox" name="FSAW" onchange="fsawChange()"></td>
+          <!-- <td class="checkbox"><input id="fsaw" type="checkbox" name="FSAW" onchange="fsawChange()"></td> -->
         </tr>
         <tr>
           <td class="left">FSPW</td>
@@ -345,7 +390,6 @@
           <td class="checkbox"><input type="checkbox" name="Non-CMSC Elective 4"></td>
         </tr>
       </table>
-      <br>
     </div>
 
     <!-- Right column (DYNAMIC; UNFINISHED) -->

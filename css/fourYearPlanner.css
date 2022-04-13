@@ -42,6 +42,21 @@ td {
   margin: 15px 5px 5px 5px;
 }
 
+/* Dropdown Button */
+.dropbtn1 {
+  width: 280px;
+  white-space: nowrap;
+  border-radius: 10px;
+  background-color: #e03a3e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 20px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 15px 5px 5px 5px;
+}
+
 #buttons {
   display: flex;
   flex-direction: column;

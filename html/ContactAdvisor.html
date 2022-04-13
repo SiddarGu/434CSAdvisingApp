@@ -7,10 +7,6 @@
   <link rel="icon" type="image/x-icon" href="../logo.ico">
   <link rel="stylesheet" href="../css/ContactAdvisor.css" type="text/css" />
   <script>
-    function submit() {
-      document.getElementById("submitted").innerHTML = 
-      "You have successfully sent an email to the advisor. Expect an email back from them in the next 3-5 business days.";
-    }
     isOpened = false;
     function swap(x) {
       x.classList.toggle("change");
@@ -70,25 +66,20 @@
             </select>
         </div>
         <div>
-        <form action=#>
-            <label>Name (First Last):</label>
-            <input type="text" onkeydown="return /[a-z]/i.test(event.key);" size = "30" minlength="4" required><br>
-            <label>UID:</label>
-            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" minlength="9" maxlength="9" required/><br>
-            <label>University Email (@umd.edu or @terpmail.umd.edu):</label>
-            <input type="text" size = "30"><br>
-            <label>Subject: </label>
-            <input type="text" size = "40"><br>
-            <label>Body:</label><br>
-            <textarea rows="4" cols="50"></textarea><br>
-            <button type="submit" type ="button" onclick="submit();" value="Send Email">Send Email</button>
-            <label id = "submitted"></label>
-            <div id="buttons">
-            
-            <button class="back" onclick="history.back()"><span>Go Back</span></button>
+        <form class="form" method="post" onSubmit= "alert('You have successfully sent an email to the advisor. Expect an email back from them in the next 3-5 business days.')">
+            <label>Name (First Last): </label><input type="text" size = "30" pattern = "[a-zA-Z]+" required><br>
+            <label>UID: </label><input type="text" pattern = "[0-9]{9}" required><br>
+            <label>University Email (@umd.edu or @terpmail.umd.edu): </label><input type="text" size = "30" minlength = 1 required><br>
+            <label>Subject: </label><input type="text" size = "40" minlength = 1 required><br>
+            <label>Body: </label><br><textarea rows="4" cols="50" minlength = 1 required></textarea><br>
+            <button type="submit" >Send Email</button>
+        </form>
+      <label id = "submitted">"You have successfully sent an email to the advisor. Expect an email back from them in the next 3-5 business days."</label>
         </div>
-    </form>
-    </div>
+      <div id="buttons">
+      <button class="back" onclick="history.back()"><span>Go Back</span></button>
+      </div>
+  </div>
 </body>
 
 </html>

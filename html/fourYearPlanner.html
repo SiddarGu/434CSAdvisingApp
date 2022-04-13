@@ -31,12 +31,6 @@
 		}
 	}
 	
-	//Clear data on refresh
-	window.onunload = function () {
-		for (let i = 0; i < 336; i++) {
-			localStorage.removeItem("val"+i);
-		}
-	}
 	
 	function plannerEmpty() {
 	
@@ -79,6 +73,119 @@
 				console.log(document.getElementById("val"+0).value);
 				loadPlan(whichTrack)
 			}
+		}
+	}
+	
+	/*from w3schools*/
+	var csCourseList = ["CMSC100", "CMSC106", "CMSC122", "CMSC125", "CMSC131", "CMSC132", "CMSC198",
+	"CMSC216", "CMSC250", "CMSC298", "CMSC320", "CMSC330", "CMSC351", "CMSC388", "CMSC389", "CMSC390",
+	"CMSC395", "CMSC396", "CMSC402", "CMSC411", "CMSC412", "CMSC414", "CMSC416", "CMSC417", "CMSC420",
+	"CMSC421", "CMSC422", "CMSC423", "CMSC424", "CMSC425", "CMSC426", "CMSC427", "CMSC430", "CMSC433",
+	"CMSC434", "CMSC435", "CMSC436", "CMSC451", "CMSC452", "CMSC454", "CMSC456", "CMSC457", "CMSC460",
+	"CMSC466", "CMSC470", "CMSC472", "CMSC473", "CMSC474", "CMSC475", "CMSC476", "CMSC477", "CMSC488",
+	"CMSC499"]
+    function autocomplete(inp) {
+	  /*the autocomplete function takes two arguments,
+	  the text field element and an csCourseListay of possible autocompleted values:*/
+	  var currentFocus;
+	  /*execute a function when someone writes in the text field:*/
+	  inp.addEventListener("input", function(e) {
+		  var a, b, i, val = this.value;
+		  /*close any already open lists of autocompleted values*/
+		  closeAllLists();
+		  if (!val) { return false;}
+		  currentFocus = -1;
+		  /*create a DIV element that will contain the items (values):*/
+		  a = document.createElement("DIV");
+		  a.setAttribute("id", this.id + "autocomplete-list");
+		  a.setAttribute("class", "autocomplete-items");
+		  /*append the DIV element as a child of the autocomplete container:*/
+		  this.parentNode.appendChild(a);
+		  /*for each item in the array...*/
+		  for (i = 0; i < csCourseList.length; i++) {
+			/*check if the item starts with the same letters as the text field value:*/
+			if (csCourseList[i].substr(0, val.length).toUpperCase() == val.toUpperCase() && val.length >= 4)  {
+			  /*create a DIV element for each matching element:*/
+			  b = document.createElement("DIV");
+			  /*make the matching letters bold:*/
+			  b.innerHTML = "<strong>" + csCourseList[i].substr(0, val.length) + "</strong>";
+			  b.innerHTML += csCourseList[i].substr(val.length);
+			  /*insert a input field that will hold the current array item's value:*/
+			  b.innerHTML += "<input type='hidden' value='" + csCourseList[i] + "'>";
+			  /*execute a function when someone clicks on the item value (DIV element):*/
+				  b.addEventListener("click", function(e) {
+				  /*insert the value for the autocomplete text field:*/
+				  inp.value = this.getElementsByTagName("input")[0].value;
+				  /*close the list of autocompleted values,
+				  (or any other open lists of autocompleted values:*/
+				  closeAllLists();
+			  });
+			  a.appendChild(b);
+			}
+		  }
+	  });
+	  /*execute a function presses a key on the keyboard:*/
+	  inp.addEventListener("keydown", function(e) {
+		  var x = document.getElementById(this.id + "autocomplete-list");
+		  if (x) x = x.getElementsByTagName("div");
+		  if (e.keyCode == 40) {
+			/*If the arrow DOWN key is pressed,
+			increase the currentFocus variable:*/
+			currentFocus++;
+			/*and and make the current item more visible:*/
+			addActive(x);
+		  } else if (e.keyCode == 38) { //up
+			/*If the arrow UP key is pressed,
+			decrease the currentFocus variable:*/
+			currentFocus--;
+			/*and and make the current item more visible:*/
+			addActive(x);
+		  } else if (e.keyCode == 13) {
+			/*If the ENTER key is pressed, prevent the form from being submitted,*/
+			e.preventDefault();
+			if (currentFocus > -1) {
+			  /*and simulate a click on the "active" item:*/
+			  if (x) x[currentFocus].click();
+			}
+		  }
+	  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+      x[i].parentNode.removeChild(x[i]);
+    }
+  }
+	}
+	
+	/*execute a function when someone clicks in the document:*/
+	document.addEventListener("click", function (e) {
+    closeAllLists(e.target);
+	});
+	}
+	
+	
+	function autocompleteAll() {
+		for (let i = 0; i < 336; i++) {
+			autocomplete(document.getElementById("val"+i))
 		}
 	}
 	 
@@ -227,15 +334,16 @@
         </div>
 		
 		
-		<form id = "plannerForm">
+		<form id = "plannerForm" autocomplete="off">
+		<div class="autocomplete">
 		<table style="margin-bottom: 30px;" id="plannerYear1" border="1">
 		  <tr>
 			<th colspan="12">Year 1</th>
 		  </tr>
 		  <tr>
-			<th colspan="3"> Spring </th>
-			<th colspan="3"> Winter </th>
 			<th colspan="3"> Fall </th>
+			<th colspan="3"> Winter </th>
+			<th colspan="3"> Spring </th>
 			<th colspan="3"> Summer </th>
 		  </tr>
 		  <tr>
@@ -375,9 +483,9 @@
 			<th colspan="12">Year 2</th>
 		  </tr>
 		  <tr>
-			<th colspan="3"> Spring </th>
-			<th colspan="3"> Winter </th>
 			<th colspan="3"> Fall </th>
+			<th colspan="3"> Winter </th>
+			<th colspan="3"> Spring </th>
 			<th colspan="3"> Summer </th>
 		  </tr>
 		  <tr>
@@ -504,9 +612,9 @@
 			<th colspan="12">Year 3</th>
 		  </tr>
 		  <tr>
-			<th colspan="3"> Spring </th>
-			<th colspan="3"> Winter </th>
 			<th colspan="3"> Fall </th>
+			<th colspan="3"> Winter </th>
+			<th colspan="3"> Spring </th>
 			<th colspan="3"> Summer </th>
 		  </tr>
 		  <tr>
@@ -633,9 +741,9 @@
 			<th colspan="12">Year 4</th>
 		  </tr>
 		  <tr>
-			<th colspan="3"> Spring </th>
-			<th colspan="3"> Winter </th>
 			<th colspan="3"> Fall </th>
+			<th colspan="3"> Winter </th>
+			<th colspan="3"> Spring </th>
 			<th colspan="3"> Summer </th>
 		  </tr>
 		  <tr>
@@ -755,6 +863,7 @@
 	      document.write("</tr>")
 		  </script>
 		</table>
+		</div>
 		</form>
 		
 
@@ -766,7 +875,11 @@
 		</div>
     
 		
-</div>	  
+</div>
+	<script>
+	//autocomplete function
+	autocompleteAll();
+	</script>
 </body>
 
 </html>

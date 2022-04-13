@@ -1,6 +1,8 @@
 window.onsubmit=validateData;
 
 function validateData() {
+	
+	
     var track = localStorage.getItem("whichTrack")
     console.log(track);
     classes = [];
@@ -5926,9 +5928,12 @@ function completedGeneralTrack(classes) {
   }
 
   for (i = 0; i < sortedClasses.length; i++) {
-    if (getCourseArea(sortedClasses[i].course_id) != 0) {
+	 
+    if (typeof sortedClasses[i].course_id !== 'undefined'){
+	   if (getCourseArea(sortedClasses[i].course_id) != 0) {
       nonZeroAreas++;
     }
+	}
   }
 
   for (i = 0; i < electiveList.length; i++) {

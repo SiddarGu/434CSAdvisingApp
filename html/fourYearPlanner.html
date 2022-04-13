@@ -3,6 +3,7 @@
 <html lang="en">
 
 <head>
+	<script src="../js/planner.js" defer></script>
     <script>
 	
 
@@ -76,8 +77,12 @@
 	//Regardless of which option the user picks in new, create empty plan for them to interact with
 	//Afterwards, check requirements
 	var whichTrackToCheck = "";
+
+	
 	
 	function newPlan(whichTrack) {
+		localStorage.setItem('whichTrack', whichTrack);
+		console.log(whichTrack);
 		if (plannerEmpty()) {
 			loadPlan(whichTrack);
 		}
@@ -128,6 +133,7 @@
 
 	 //Afterwards, check requirements based on which track they selected (whichTrack tells you)
 	 whichTrackToCheck = whichTrack;
+	 localStorage.setItem("whichTrack", whichTrack);
 	}
 	
 	function saveExit() {
@@ -771,6 +777,10 @@
 	      document.write("</tr>")
 		  </script>
 		</table>
+		<fieldset>
+			<input type="reset" class="back" value="Clear Form" />
+			<input type="submit" class="back" value="Submit Information" />
+		</fieldset>
 		</form>
 		
 
@@ -778,6 +788,8 @@
 			<button id="goBack" class="back" onclick="history.back();"><span>Go Back</span></button>
 			<button id="saveExit" class="back" onclick="saveExit();"><span> Save & Exit</span></button>
 			<button id="saveCheck" class="back" onclick="saveCheck();"><span> Save & Check Requirements</span></button>
+			
+				
 			
 		</div>
     

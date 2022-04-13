@@ -5599,19 +5599,19 @@ function completedLowerMath(classes, isDataScience) {
   }
 
   if (!m140) {
-    msg += "You must take MATH140. <br>";
+    msg += "You must take MATH140. \n";
   }
   if (!m141) {
-    msg += "You must take MATH141. <br>";
+    msg += "You must take MATH141. \n";
   }
   if (isDataScience && !m240) {
-    msg += "You must take MATH240. <br>";
+    msg += "You must take MATH240. \n";
   }
   if (!s4xx) {
-    msg += "You must take STAT 4XX. <br>";
+    msg += "You must take STAT 4XX. \n";
   }
   if (!ms4xx) {
-    msg += "You must take STAT/MATH 4XX. <br>";
+    msg += "You must take STAT/MATH 4XX. \n";
   }
 
   /* if (isDataScience) {
@@ -5668,22 +5668,22 @@ function completedLowerCS(classes, e131, e132, e216, e250) {
   }
 
   if (!c131 && !c133) {
-    msg += "You must take CMSC131 or CMSC133. <br>";
+    msg += "You must take CMSC131 or CMSC133. \n";
   }
   if (!c132) {
-    msg += "You must take CMSC132. <br>";
+    msg += "You must take CMSC132. \n";
   }
   if (!c216) {
-    msg += "You must take CMSC216. <br>";
+    msg += "You must take CMSC216. \n";
   }
   if (!c250) {
-    msg += "You must take CMSC250. <br>";
+    msg += "You must take CMSC250. \n";
   }
   if (!c330) {
-    msg += "You must take CMSC330. <br>";
+    msg += "You must take CMSC330. \n";
   }
   if (!c351) {
-    msg += "You must take CMSC351. <br>";
+    msg += "You must take CMSC351. \n";
   }
 
   /* if ((c131 || c133) && c132 && c216 && c250 && c330 && c351) {
@@ -5723,16 +5723,16 @@ function completed45LEPBenchmark(classes, gpa) {
   }
 
   if (!c131) {
-    msg += "You must take CMSC131. <br>";
+    msg += "You must take CMSC131. \n";
   }
   if (!c132) {
-    msg += "You must take CMSC132. <br>";
+    msg += "You must take CMSC132. \n";
   }
   if (!m140) {
-    msg += "You must take MATH140. <br>";
+    msg += "You must take MATH140. \n";
   }
   if (gpa < 2.0) {
-    msg += "You must have a GPA of 2.0 or higher. <br>";
+    msg += "You must have a GPA of 2.0 or higher. \n";
   }
 
   /* if (c131 && c132 && m140 && gpa >= 2.0) {
@@ -5791,16 +5791,16 @@ function completed75LEPBenchmark(classes, gpa) {
   }
 
   if (!c330) {
-    msg += "You must take CMSC330. <br>";
+    msg += "You must take CMSC330. \n";
   }
   if (!c351) {
-    msg += "You must take CMSC351. <br>";
+    msg += "You must take CMSC351. \n";
   }
   if (!s4xx || !mas) {
-    msg += "You must take STAT 4XX or MATH/STAT/AMSC 4XX with prerequisite of MATH141. <br>";
+    msg += "You must take STAT 4XX or MATH/STAT/AMSC 4XX with prerequisite of MATH141. \n";
   }
   if (gpa < 2.0) {
-    msg += "You must have a GPA of 2.0 or higher. <br>";
+    msg += "You must have a GPA of 2.0 or higher. \n";
   }
 
   /* if (c330 && c351 && (s4xx || mas) && gpa >= 2.0) {
@@ -5952,16 +5952,16 @@ function completedGeneralTrack(classes) {
   }
 
   if (a1 + a2 + a3 + a4 + a5 + electives <= 4) {
-    msg += "You must take at least 5 courses in the general track. <br>";
+    msg += "You must take at least 5 courses in the general track. \n";
   }
   if (nonZeroAreas <= 2) {
-    msg += "You must take courses from at least 3 areas in the general track. <br>";
+    msg += "You must take courses from at least 3 areas in the general track. \n";
   }
   if (electives <= 1) {
-    msg += "You must take at least 2 electives in the general track. <br>";
+    msg += "You must take at least 2 electives in the general track. \n";
   }
   if (electiveCredits <= 5) {
-    msg += "You must have at least 5 elective credits in the general track. <br>";
+    msg += "You must have at least 5 elective credits in the general track. \n";
   }
   return msg;
 
@@ -6005,16 +6005,16 @@ function completedCybersecurity(classes) {
   }
 
   if (!c414) {
-    msg += "You must take CMSC414 in the cybersecurity track. <br>";
+    msg += "You must take CMSC414 in the cybersecurity track. \n";
   }
   if (!c456) {
-    msg += "You must take CMSC456 in the cybersecurity track. <br>";
+    msg += "You must take CMSC456 in the cybersecurity track. \n";
   }
   if (count <= 3) {
-    msg += "You must take at least 4 courses from the given list in the cybersecurity track. <br>";
+    msg += "You must take at least 4 courses from the given list in the cybersecurity track. \n";
   }
   if (electives < 3) {
-    msg += "You must have at least 3 elective credits in the cybersecurity track. <br>";
+    msg += "You must have at least 3 elective credits in the cybersecurity track. \n";
   }
   return msg;
   
@@ -6059,22 +6059,22 @@ function completedDataScience(classes) {
   }
 
   if (!c320) {
-    msg += "You must take CMSC320 in the data science track. <br>";
+    msg += "You must take CMSC320 in the data science track. \n";
   }
   if (!c422) {
-    msg += "You must take CMSC422 in the data science track. <br>";
+    msg += "You must take CMSC422 in the data science track. \n";
   }
   if (!c424) {
-    msg += "You must take CMSC424 in the data science track. <br>";
+    msg += "You must take CMSC424 in the data science track. \n";
   }
   if (category1 < 1) {
-    msg += "You must take at least 1 course from the first list in the data science track. <br>";
+    msg += "You must take at least 1 course from the first list in the data science track. \n";
   }
   if (category2 < 1) {
-    msg += "You must take at least 1 course from the second list in the data science track. <br>";
+    msg += "You must take at least 1 course from the second list in the data science track. \n";
   }
   if (category3 < 2) {
-    msg += "You must take at least 2 courses from the third list in the data science track. <br>";
+    msg += "You must take at least 2 courses from the third list in the data science track. \n";
   }
   return msg;
 
@@ -6120,19 +6120,19 @@ function completedQuantumInformation(classes) {
   }
 
   if (!c457) {
-    msg += "You must take CMSC457 in the quantum information track. <br>";
+    msg += "You must take CMSC457 in the quantum information track. \n";
   }
   if (!p467) {
-    msg += "You must take PHYC467 in the quantum information track. <br>";
+    msg += "You must take PHYC467 in the quantum information track. \n";
   }
   if (a4 < 2) {
-    msg += "You must take at least 2 courses outside area 4 in the quantum information track. <br>";
+    msg += "You must take at least 2 courses outside area 4 in the quantum information track. \n";
   }
   if (a4 + otherArea < 4) {
-    msg += "You must take at least 4 courses from the distributive areas in the quantum information track. <br>";
+    msg += "You must take at least 4 courses from the distributive areas in the quantum information track. \n";
   }
   if (electives < 3) {
-    msg += "You must have at least 3 elective credits in the quantum information track. <br>";
+    msg += "You must have at least 3 elective credits in the quantum information track. \n";
   }
   return msg;
 
@@ -6174,19 +6174,19 @@ function completedMachineLearning(classes) {
   }
 
   if (!c320) {
-    msg += "You must take CMSC320 in the machine learning track. <br>";
+    msg += "You must take CMSC320 in the machine learning track. \n";
   }
   if (!c421) {
-    msg += "You must take CMSC421 in the machine learning track. <br>";
+    msg += "You must take CMSC421 in the machine learning track. \n";
   }
   if (!c422) {
-    msg += "You must take CMSC422 in the machine learning track. <br>";
+    msg += "You must take CMSC422 in the machine learning track. \n";
   }
   if (category1 < 2) {
-    msg += "You must take at least 2 courses from the given list in the machine learning track. <br>";
+    msg += "You must take at least 2 courses from the given list in the machine learning track. \n";
   }
   if (electives < 6) {
-    msg += "You must have at least 6 elective credits in the machine learning track. <br>";
+    msg += "You must have at least 6 elective credits in the machine learning track. \n";
   }
   return msg;
 

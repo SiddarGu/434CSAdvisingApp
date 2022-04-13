@@ -49,6 +49,11 @@ td {
   align-items: center;
 }
 
+button:disabled,
+button[disabled]{
+  background-color: #808080
+}
+
 .back {
   width: 280px;
   white-space: nowrap;

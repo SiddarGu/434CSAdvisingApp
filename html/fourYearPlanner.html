@@ -1,8 +1,18 @@
+
 <!doctype html>
 <html lang="en">
 
 <head>
     <script>
+	
+	if (localStorage) {
+      console.log("Local Storage is supported");
+	  
+    } else {
+      console.log("Local Storage is not supported");
+    }
+	
+	
 	window.onload = function() {
 		//Hide table and buttons on load-in
 		document.getElementById("plannerYear1").classList.toggle("hidden");
@@ -13,39 +23,30 @@
 		document.getElementById("saveExit").classList.toggle("hidden");
 		document.getElementById("saveCheck").classList.toggle("hidden");
 		
-		console.log(plannerEmpty());
-		
-		
+		if (plannerEmpty()) {
+			document.getElementById("editPlan").setAttribute("disabled", " ");
+		}
+		else {
+			document.getElementById("editPlan").removeAttribute("disabled");
+		}
+	}
+	
+	//Clear data on refresh
+	window.onunload = function () {
+		for (let i = 0; i < 336; i++) {
+			localStorage.removeItem("val"+i);
+		}
 	}
 	
 	function plannerEmpty() {
-		var plannerYear1 = document.getElementById("plannerYear1");
-		var plannerYear2 = document.getElementById("plannerYear2");
-		var plannerYear3 = document.getElementById("plannerYear3");
-		var plannerYear4 = document.getElementById("plannerYear4");
-		
-		const planner = [plannerYear1, plannerYear2, plannerYear3, plannerYear4];
-		var plannerText = "";
-		
-		for (var i = 0; i < planner.length; i++) {
-			for (var j = 0; j < planner[i].rows.length; j++) {
-				for (const cell of planner[i].rows[j].cells) {
-					//Ignore first three rows, table header
-					if (j > 2) {
-						plannerText += cell.innerText;
-					}
-				}
+	
+		for (let i = 0; i < 336; i++) {
+			if (localStorage.getItem("val"+i) != null) {
+				return false;
 			}
 		}
 		
-		//Remove whitespace
-		plannerText = plannerText.trim();
-		
-		if (plannerText == "") {
-		   return true;
-		} 
-		
-		return false;
+		return true;
 	}
 	
     function myFunction() {
@@ -54,32 +55,34 @@
     
     function myFunction2() {
         document.getElementById("myDropdown2").classList.toggle("show");
-    }
-	
-	//Start with planner hidden
-      
-      // Close the dropdown menu if the user clicks outside of it
-      /*
-	  window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-          var dropdowns = document.getElementsByClassName("dropdown-content");
-          var i;
-          for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-              openDropdown.classList.remove('show');
-            }
-          }
-        }
-      }
-	  */
-	 
+    } 
 	  
 	//Regardless of which option the user picks in new, create empty plan for them to interact with
 	//Afterwards, check requirements
 	var whichTrackToCheck = "";
+	
+	function newPlan(whichTrack) {
+		if (plannerEmpty()) {
+			loadPlan(whichTrack);
+		}
+		else {
+		//Alert user that they are deleting old plan
+			if (confirm('You already have an existing plan created. Are you sure you want to delete it and make a new plan?')){
+				console.log(document.getElementById("val"+0).value);
+				for (let i = 0; i < 336; i++) {
+					localStorage.removeItem("val"+i);
+					if (document.getElementById("val"+i) != null) {
+						document.getElementById("val"+i).value = "";
+					}
+				}
+				
+				console.log(document.getElementById("val"+0).value);
+				loadPlan(whichTrack)
+			}
+		}
+	}
 	 
-	function opClicked(whichTrack) {
+	function loadPlan(whichTrack) {
 	
 	  //Close dropdown menu
 	  var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -107,11 +110,24 @@
 	  document.getElementById("saveCheck").classList.toggle("hidden");
 	  
 
-	//Afterwards, check requirements based on which track they selected (whichTrack tells you)
-	whichTrackToCheck = whichTrack;
+	 //Afterwards, check requirements based on which track they selected (whichTrack tells you)
+	 whichTrackToCheck = whichTrack;
 	}
 	
 	function saveExit() {
+	
+	  
+	  for (let i = 0; i < 336; i++) {
+		if (document.getElementById("val"+i) != null) {
+			var currVal = document.getElementById("val"+i).value;
+			localStorage.setItem("val"+i, currVal);
+		}
+	  }
+	  
+	  if (!plannerEmpty()) {
+		  document.getElementById("editPlan").removeAttribute("disabled");
+	  }
+	  
 	  //Close planner
 	  document.getElementById("plannerYear1").classList.toggle("hidden");
 	  document.getElementById("plannerYear2").classList.toggle("hidden");
@@ -130,6 +146,15 @@
 	}
 	
 	function saveCheck() {
+	  
+	  for (let i = 0; i < 336; i++) {
+		var currVal = document.getElementById("val"+i).value;
+		localStorage.setItem("val"+i, currVal);
+	  }
+	  
+	  //Check Requirements Here - whichTrackToCheck has the track type
+	  console.log(whichTrackToCheck);
+	  
 	}
 	
 
@@ -182,27 +207,27 @@
         <div class="dropdown">
           <button id="newPlan" onclick="myFunction();" class="dropbtn">Create New Plan</button>
           <div id="myDropdown" class="dropdown-content">
-            <a href="#" onclick = "plannerEmpty(); opClicked('gentrack');">CS General Track</a>
-            <a href="#" onclick = "plannerEmpty(); opClicked('cybsec');">Cybersecurity</a>
-            <a href="#" onclick = "plannerEmpty(); opClicked('datsci');">Data Science</a>
-            <a href="#" onclick = "plannerEmpty(); opClicked('maclearn');">Machine Learning</a>
-            <a href="#" onclick = "plannerEmpty(); opClicked('quant');">Quantum Information</a>
+            <a href="#" onclick = "newPlan('gentrack');">CS General Track</a>
+            <a href="#" onclick = "newPlan('cybsec');">Cybersecurity</a>
+            <a href="#" onclick = "newPlan('datsci');">Data Science</a>
+            <a href="#" onclick = "newPlan('maclearn');">Machine Learning</a>
+            <a href="#" onclick = "newPlan('quant');">Quantum Information</a>
           </div>
         </div>
         <br>
         <div class="dropdown">
           <button id="editPlan" onclick="myFunction2();" class="dropbtn">Edit Existing Plan</button>
           <div id="myDropdown2" class="dropdown-content">
-            <a href="#" onclick = "opClicked('gentrack');">My General Track</a>
-            <a href="#" onclick = "opClicked('cybsec');">My Cybersecurity Track</a>
-			<a href="#" onclick = "opClicked('datsci');">My Data Science Track</a>
-			<a href="#" onclick = "opClicked('maclearn');">My Machine Learning Track</a>
-			<a href="#" onclick = "opClicked('quant');">My Quantum Information Track</a>
+            <a href="#" onclick = "loadPlan('gentrack');">My General Track</a>
+            <a href="#" onclick = "loadPlan('cybsec');">My Cybersecurity Track</a>
+			<a href="#" onclick = "loadPlan('datsci');">My Data Science Track</a>
+			<a href="#" onclick = "loadPlan('maclearn');">My Machine Learning Track</a>
+			<a href="#" onclick = "loadPlan('quant');">My Quantum Information Track</a>
           </div>
         </div>
 		
 		
-		<div id="fullPlanner">
+		<form id = "plannerForm">
 		<table style="margin-bottom: 30px;" id="plannerYear1" border="1">
 		  <tr>
 			<th colspan="12">Year 1</th>
@@ -227,106 +252,122 @@
 			<td> Credits </td>
 			<td> Grade </td>
 		  </tr>
-			  
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
+		  <!--  -->
+			
+			<!-- for ($i = 0; $i < 12; $i++) { -->
+				<!-- if isset($_SESSION["val".$currentIndex]) { -->
+					<!-- echo "<td><input type=\"text\" name=\"val".$currentIndex."\" value=\"".$_SESSION["val".$currentIndex]."\"><\td>"; -->
+				<!-- } -->
+				<!-- else { -->
+					<!-- echo "<td><input type=\"text\" name=\"val".$currentIndex."\"><\td>"; -->
+				<!-- } -->
+				<!-- $currIndex += 1; -->
+			<!-- } -->
+			
+			<!--  -->
+		  <!-- Script for saving in localStorage -->
+		  <script>
+		  var currIndex = 0;
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if ((localStorage.getItem("val"+currIndex) != null)) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
 		  
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if ((localStorage.getItem("val"+currIndex) != null)) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if ((localStorage.getItem("val"+currIndex) != null)) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if ((localStorage.getItem("val"+currIndex) != null)) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if ((localStorage.getItem("val"+currIndex) != null)) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if ((localStorage.getItem("val"+currIndex) != null)) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if ((localStorage.getItem("val"+currIndex) != null)) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  </script>
 		</table>
 		
 		<table style="margin-bottom: 30px;" id="plannerYear2" border="1">
@@ -354,105 +395,107 @@
 			<td> Grade </td>
 		  </tr>
 			  
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
+		  <script>
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
 		  
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  </script>
 		</table>
 		
 		
@@ -481,105 +524,107 @@
 			<td> Grade </td>
 		  </tr>
 			  
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
+		  <script>
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
 		  
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  </script>
 		</table>
 		
 		
@@ -608,107 +653,110 @@
 			<td> Grade </td>
 		  </tr>
 			  
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
+		  <script>
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
 		  
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
-		  <tr>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-			<td contenteditable> </td>
-		  </tr>
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  document.write("<tr>")
+		    
+			
+			for (let i = 0; i < 12; i++) {
+				if (localStorage.getItem("val"+currIndex) != null) {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
+					currIndex += 1;
+				}
+				else {
+					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
+					currIndex += 1;
+				}
+			}
+	      document.write("</tr>")
+		  </script>
 		</table>
-		</div>
+		</form>
+		
 
 		<div style="text-align:center">
 			<button id="goBack" class="back" onclick="history.back();"><span>Go Back</span></button>

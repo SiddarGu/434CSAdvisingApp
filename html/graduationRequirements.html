@@ -31,49 +31,50 @@
     <h1>Graduation Requirements</h1>
 
     <!-- LEP Requirements -->
-    <label>Check here if you are not yet a Computer Science major and intend to become one:</label>
-    <input type="checkbox" name="LEP">
-    <br>
-    <br>
-    <table>
-      <tr>
-        <th colspan="4">Computer Science Limited Enrollment Program (LEP) Requirements (Must pass with a grade of C- or
-          higher)</th>
-      </tr>
-      <tr>
-        <td class="left"><em>Title</em></td>
-        <td><em>Course</em></td>
-        <td><em>Credits</em></td>
-        <td><em>Completed?</em></td>
-      </tr>
-      <tr>
-        <td class="left">Calculus I</td>
-        <td>MATH 140</td>
-        <td class="credit">4</td>
-        <td class="checkbox"><input type="checkbox" name="MATH 140" onchange="checkboxChange(name)"></td>
-        <!-- <td class="checkbox"><input type="checkbox" name="MATH 140"></td> -->
-      </tr>
-      <tr>
-        <td class="left">Object-Oriented Programming I or
-          <br>Object-Oriented Programming I Beyond Fundamentals
-        </td>
-        <td>CMSC 131 or
-          <br>CMSC 133
-        </td>
-        <td class="credit">4 or
-          <br>2
-        </td>
-        <td class="checkbox"><input type="checkbox" name="CMSC 131/133"></td>
-      </tr>
-      <tr>
-        <td class="left">Object-Oriented Programming II</td>
-        <td>CMSC 132</td>
-        <td class="credit">4</td>
-        <td class="checkbox"><input type="checkbox" name="CMSC 132"></td>
-      </tr>
-    </table>
-    <br>
-    <br>
+    <div id="lep">
+      <label>Check here if you are not yet a Computer Science major and intend to become one:</label>
+      <input class="checkbox" type="checkbox" name="LEP" onchange="changeAll(name)">
+      <br>
+      <br>
+      <table>
+        <tr>
+          <th colspan="4">Computer Science Limited Enrollment Program (LEP) Requirements (Must pass with a grade of C- or
+            higher)</th>
+        </tr>
+        <tr>
+          <td class="left"><em>Title</em></td>
+          <td><em>Course</em></td>
+          <td><em>Credits</em></td>
+          <td><em>Completed?</em></td>
+        </tr>
+        <tr>
+          <td class="left">Calculus I</td>
+          <td>MATH 140</td>
+          <td class="credit">4</td>
+          <td><input class="checkbox" type="checkbox" name="MATH 140" onchange="changeAll(name)" onchange="changeAll(name)"></td>
+        </tr>
+        <tr>
+          <td class="left">Object-Oriented Programming I or
+            <br>Object-Oriented Programming I Beyond Fundamentals
+          </td>
+          <td>CMSC 131 or
+            <br>CMSC 133
+          </td>
+          <td class="credit">4 or
+            <br>2
+          </td>
+          <td><input class="checkbox" type="checkbox" name="CMSC 131/133" onchange="changeAll(name)"></td>
+        </tr>
+        <tr>
+          <td class="left">Object-Oriented Programming II</td>
+          <td>CMSC 132</td>
+          <td class="credit">4</td>
+          <td><input class="checkbox" type="checkbox" name="CMSC 132" onchange="changeAll(name)"></td>
+        </tr>
+      </table>
+      <br>
+      <br>
+    </div>
 
     <!-- Left column (STATIC; FINISHED) -->
     <div class="column">
@@ -85,267 +86,279 @@
         </tr>
 
         <!-- Fundamental Studies (FS) -->
-        <tr>
-          <th colspan="5">Fundamental Studies (FS)</th>
-        </tr>
-        <tr>
-          <td class="left"></td>
-          <td class="left"><em>Requirement</em></td>
-          <td><em>Course</em></td>
-          <td><em>Credits</em></td>
-          <td><em>Completed?</em></td>
-        </tr>
-        <tr>
-          <td class="left">FSAW</td>
-          <td class="left">Academic Writing (before 30 credits)</td>
-          <td></td>
-          <td class="credit">3</td>
-          <!-- <td class="checkbox"><input type="checkbox" name="FSAW" onchange="checkboxChange(name)"></td> -->
-          <td class="checkbox"><input id="fsaw" type="checkbox" name="FSAW" onchange="fsawChange()"></td>
-        </tr>
-        <tr>
-          <td class="left">FSPW</td>
-          <td class="left">Professional Writing (after 60 credits)</td>
-          <td></td>
-          <td class="credit">3</td>
-          <td class="checkbox"><input type="checkbox" name="FSPW"></td>
-        </tr>
-        <tr>
-          <td class="left">FSOC</td>
-          <td class="left">Oral Communication</td>
-          <td></td>
-          <td class="credit">3</td>
-          <td class="checkbox"><input type="checkbox" name="FSOC"></td>
-        </tr>
-        <tr>
-          <td class="left">FSMA</td>
-          <td class="left">Math (satisfied in the major)</td>
-          <td></td>
-          <td></td>
-          <td class="checkbox"><input type="checkbox" name="FSMA"></td>
-        </tr>
-        <tr>
-          <td class="left">FSAR</td>
-          <td class="left">Analytic Reasoning (satisfied in the major)</td>
-          <td></td>
-          <td></td>
-          <td class="checkbox"><input type="checkbox" name="FSAR"></td>
-        </tr>
+        <div id="fs">
+          <tr>
+            <th colspan="5">Fundamental Studies (FS)</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="left"><em>Requirement</em></td>
+            <td><em>Course</em></td>
+            <td><em>Credits</em></td>
+            <td><em>Completed?</em></td>
+          </tr>
+          <tr>
+            <td class="left">FSAW</td>
+            <td class="left">Academic Writing (before 30 credits)</td>
+            <td></td>
+            <td class="credit">3</td>
+            <td><input class="checkbox" type="checkbox" name="FSAW" onchange="changeAll(name)" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left">FSPW</td>
+            <td class="left">Professional Writing (after 60 credits)</td>
+            <td></td>
+            <td class="credit">3</td>
+            <td><input class="checkbox" type="checkbox" name="FSPW" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left">FSOC</td>
+            <td class="left">Oral Communication</td>
+            <td></td>
+            <td class="credit">3</td>
+            <td><input class="checkbox" type="checkbox" name="FSOC" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left">FSMA</td>
+            <td class="left">Math (satisfied in the major)</td>
+            <td></td>
+            <td></td>
+            <td><input class="checkbox" type="checkbox" name="FSMA" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left">FSAR</td>
+            <td class="left">Analytic Reasoning (satisfied in the major)</td>
+            <td></td>
+            <td></td>
+            <td><input class="checkbox" type="checkbox" name="FSAR" onchange="changeAll(name)"></td>
+          </tr>
+        </div>
 
         <!-- Distributive Studies (DS) -->
-        <tr>
-          <th colspan="5">Distributive Studies (DS)</th>
-        </tr>
-        <tr>
-          <td class="left"></td>
-          <td class="left"><em>Requirement</em></td>
-          <td><em>Course</em></td>
-          <td><em>Credits</em></td>
-          <td><em>Completed?</em></td>
-        </tr>
-        <tr>
-          <td class="left">DSNL</td>
-          <td class="left">Natural Science with Lab</td>
-          <td></td>
-          <td class="credit">4</td>
-          <td class="checkbox"><input type="checkbox" name="DSNL"></td>
-        </tr>
-        <tr>
-          <td class="left">DSNS</td>
-          <td class="left">Natural Science</td>
-          <td></td>
-          <td class="credit">3 or 4</td>
-          <td class="checkbox"><input type="checkbox" name="DSNS"></td>
-        </tr>
-        <tr>
-          <td class="left">DSHS</td>
-          <td class="left">History and Social Sciences</td>
-          <td></td>
-          <td class="credit">3</td>
-          <td class="checkbox"><input type="checkbox" name="DSHS-1"></td>
-        </tr>
-        <tr>
-          <td class="left">DSHS</td>
-          <td class="left">History and Social Sciences</td>
-          <td></td>
-          <td class="credit">3</td>
-          <td class="checkbox"><input type="checkbox" name="DSHS-2"></td>
-        </tr>
-        <tr>
-          <td class="left">DSHU</td>
-          <td class="left">Humanities</td>
-          <td></td>
-          <td class="credit">3</td>
-          <td class="checkbox"><input type="checkbox" name="DSHU-1"></td>
-        </tr>
-        <tr>
-          <td class="left">DSHU</td>
-          <td class="left">Humanities</td>
-          <td></td>
-          <td class="credit">3</td>
-          <td class="checkbox"><input type="checkbox" name="DSHU-2"></td>
-        </tr>
-        <tr>
-          <td class="left">DSSP</td>
-          <td class="left">Scholarship in Practice (non-major)</td>
-          <td></td>
-          <td class="credit">3</td>
-          <td class="checkbox"><input type="checkbox" name="DSSP-1"></td>
-        </tr>
-        <tr>
-          <td class="left">DSSP</td>
-          <td class="left">Scholarship in Practice (non-major)</td>
-          <td></td>
-          <td class="credit">3</td>
-          <td class="checkbox"><input type="checkbox" name="DSSP-2"></td>
-        </tr>
+        <div id="ds">
+          <tr>
+            <th colspan="5">Distributive Studies (DS)</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="left"><em>Requirement</em></td>
+            <td><em>Course</em></td>
+            <td><em>Credits</em></td>
+            <td><em>Completed?</em></td>
+          </tr>
+          <tr>
+            <td class="left">DSNL</td>
+            <td class="left">Natural Science with Lab</td>
+            <td></td>
+            <td class="credit">4</td>
+            <td><input class="checkbox" type="checkbox" name="DSNL" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left">DSNS</td>
+            <td class="left">Natural Science</td>
+            <td></td>
+            <td class="credit">3 or 4</td>
+            <td><input class="checkbox" type="checkbox" name="DSNS" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left">DSHS</td>
+            <td class="left">History and Social Sciences</td>
+            <td></td>
+            <td class="credit">3</td>
+            <td><input class="checkbox" type="checkbox" name="DSHS-1" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left">DSHS</td>
+            <td class="left">History and Social Sciences</td>
+            <td></td>
+            <td class="credit">3</td>
+            <td><input class="checkbox" type="checkbox" name="DSHS-2" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left">DSHU</td>
+            <td class="left">Humanities</td>
+            <td></td>
+            <td class="credit">3</td>
+            <td><input class="checkbox" type="checkbox" name="DSHU-1" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left">DSHU</td>
+            <td class="left">Humanities</td>
+            <td></td>
+            <td class="credit">3</td>
+            <td><input class="checkbox" type="checkbox" name="DSHU-2" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left">DSSP</td>
+            <td class="left">Scholarship in Practice (non-major)</td>
+            <td></td>
+            <td class="credit">3</td>
+            <td><input class="checkbox" type="checkbox" name="DSSP-1" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left">DSSP</td>
+            <td class="left">Scholarship in Practice (non-major)</td>
+            <td></td>
+            <td class="credit">3</td>
+            <td><input class="checkbox" type="checkbox" name="DSSP-2" onchange="changeAll(name)"></td>
+          </tr>
+        </div>
 
         <!-- I-Series (SCIS) -->
-        <tr>
-          <th colspan="5">I-Series (SCIS)
-            <br><span style="font-weight: normal"><em>Overlap with Distributive Studies and/or
-                I-Series</span></em>
-          </th>
-        </tr>
-        <tr>
-          <td class="left"></td>
-          <td class="left"><em>Requirement</em></td>
-          <td><em>Course</em></td>
-          <td><em>Credits</em></td>
-          <td><em>Completed?</em></td>
-        </tr>
-        <tr>
-          <td class="left">SCIS</td>
-          <td class="left">I-Series</td>
-          <td></td>
-          <td></td>
-          <td class="checkbox"><input type="checkbox" name="SCIS-1"></td>
-        </tr>
-        <tr>
-          <td class="left">SCIS</td>
-          <td class="left">I-Series</td>
-          <td></td>
-          <td></td>
-          <td class="checkbox"><input type="checkbox" name="SCIS-2"></td>
-        </tr>
+        <div id="is">
+          <tr>
+            <th colspan="5">I-Series (SCIS)
+              <br><span style="font-weight: normal"><em>Overlap with Distributive Studies and/or
+                  I-Series</span></em>
+            </th>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="left"><em>Requirement</em></td>
+            <td><em>Course</em></td>
+            <td><em>Credits</em></td>
+            <td><em>Completed?</em></td>
+          </tr>
+          <tr>
+            <td class="left">SCIS</td>
+            <td class="left">I-Series</td>
+            <td></td>
+            <td></td>
+            <td><input class="checkbox" type="checkbox" name="SCIS-1" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left">SCIS</td>
+            <td class="left">I-Series</td>
+            <td></td>
+            <td></td>
+            <td><input class="checkbox" type="checkbox" name="SCIS-2" onchange="changeAll(name)"></td>
+          </tr>
+        </div>
 
         <!-- Diversity (DV) -->
-        <tr>
-          <th colspan="5">Diversity (DV)
-            <br><span style="font-weight: normal"><em>Can overlap with Distributive Studies or
-                I-Series</span></em>
-          </th>
-        </tr>
-        <tr>
-          <td class="left"></td>
-          <td class="left"><em>Requirement</em></td>
-          <td><em>Course</em></td>
-          <td><em>Credits</em></td>
-          <td><em>Completed?</em></td>
-        </tr>
-        <tr>
-          <td class="left">DVUP</td>
-          <td class="left">Understanding Plural Societies</td>
-          <td></td>
-          <td></td>
-          <td class="checkbox"><input type="checkbox" name="DVUP"></td>
-        </tr>
-        <tr>
-          <td class="left">DVUP or
-            <br>DVCC
-          </td>
-          <td class="left">Understanding Plural Societies or
-            <br>Cultural Competence
-          </td>
-          <td></td>
-          <td></td>
-          <td class="checkbox"><input type="checkbox" name="DVUP/DVCC"></td>
-        </tr>
+        <div id="dv">
+          <tr>
+            <th colspan="5">Diversity (DV)
+              <br><span style="font-weight: normal"><em>Can overlap with Distributive Studies or
+                  I-Series</span></em>
+            </th>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="left"><em>Requirement</em></td>
+            <td><em>Course</em></td>
+            <td><em>Credits</em></td>
+            <td><em>Completed?</em></td>
+          </tr>
+          <tr>
+            <td class="left">DVUP</td>
+            <td class="left">Understanding Plural Societies</td>
+            <td></td>
+            <td></td>
+            <td><input class="checkbox" type="checkbox" name="DVUP" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left">DVUP or
+              <br>DVCC
+            </td>
+            <td class="left">Understanding Plural Societies or
+              <br>Cultural Competence
+            </td>
+            <td></td>
+            <td></td>
+            <td><input class="checkbox" type="checkbox" name="DVUP/DVCC" onchange="changeAll(name)"></td>
+          </tr>
+        </div>
       </table>
 
       <!-- Upper Level Concentration -->
-      <br>
-      <br>
-      <table>
-        <tr>
-          <th colspan="3"><a href="./ULC.html">Upper Level Concentration</a></th>
-        </tr>
-        <tr>
-          <td colspan="3" class="left">Students must complete a minimum of 12 credit hours of 300 - 400 level courses in
-            one discipline
-            outside of Computer Science. No course that is in, or cross-listed as, CMSC may be counted in
-            this
-            requirement. Only 1 independent study or experiential learning course may be used. Students who
-            are pursuing a minor or a second major can use those credits in this area. Consult with your
-            academic advisor to ensure each course you plan to take will satisfy this area.</td>
-        </tr>
-        <tr>
-          <td class="left"><em>Course</em></td>
-          <td><em>Credits</em></td>
-          <td><em>Completed?</em></td>
-        </tr>
-        <tr>
-          <td class="left"><br /></td>
-          <td></td>
-          <td class="checkbox"><input type="checkbox" name="ULC-1"></td>
-        </tr>
-        <tr>
-          <td class="left"><br /></td>
-          <td></td>
-          <td class="checkbox"><input type="checkbox" name="ULC-2"></td>
-        </tr>
-        <tr>
-          <td class="left"><br /></td>
-          <td></td>
-          <td class="checkbox"><input type="checkbox" name="ULC-3"></td>
-        </tr>
-        <tr>
-          <td class="left"><br /></td>
-          <td></td>
-          <td class="checkbox"><input type="checkbox" name="ULC-4"></td>
-        </tr>
-      </table>
+      <div id="ulc">
+        <br>
+        <br>
+        <table>
+          <tr>
+            <th colspan="3"><a href="./ULC.html">Upper Level Concentration</a></th>
+          </tr>
+          <tr>
+            <td colspan="3" class="left">Students must complete a minimum of 12 credit hours of 300 - 400 level courses in
+              one discipline
+              outside of Computer Science. No course that is in, or cross-listed as, CMSC may be counted in
+              this
+              requirement. Only 1 independent study or experiential learning course may be used. Students who
+              are pursuing a minor or a second major can use those credits in this area. Consult with your
+              academic advisor to ensure each course you plan to take will satisfy this area.</td>
+          </tr>
+          <tr>
+            <td class="left"><em>Course</em></td>
+            <td><em>Credits</em></td>
+            <td><em>Completed?</em></td>
+          </tr>
+          <tr>
+            <td class="left"><br /></td>
+            <td></td>
+            <td><input class="checkbox" type="checkbox" name="ULC-1" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left"><br /></td>
+            <td></td>
+            <td><input class="checkbox" type="checkbox" name="ULC-2" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left"><br /></td>
+            <td></td>
+            <td><input class="checkbox" type="checkbox" name="ULC-3" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left"><br /></td>
+            <td></td>
+            <td><input class="checkbox" type="checkbox" name="ULC-4" onchange="changeAll(name)"></td>
+          </tr>
+        </table>
+      </div>
 
-      <br>
-      <br>
-      <table>
-        <tr>
-          <th colspan="3">Elective Credits</th>
-        </tr>
-        <tr>
-          <td colspan="3" class="left">Students must take enough elective courses in any discipline(s) they choose to
-            reach
-            the total
-            number of 120 credits required for graduation. Students who are pursuing a minor or a second
-            major can use
-            those credits in this area.</td>
-        </tr>
-        <tr>
-          <td class="left"><em>Course</em></td>
-          <td><em>Credits</em></td>
-          <td><em>Completed?</em></td>
-        </tr>
-        <tr>
-          <td class="left"><br /></td>
-          <td></td>
-          <td class="checkbox"><input type="checkbox" name="Non-CMSC Elective 1"></td>
-        </tr>
-        <tr>
-          <td class="left"><br /></td>
-          <td></td>
-          <td class="checkbox"><input type="checkbox" name="Non-CMSC Elective 2"></td>
-        </tr>
-        <tr>
-          <td class="left"><br /></td>
-          <td></td>
-          <td class="checkbox"><input type="checkbox" name="Non-CMSC Elective 3"></td>
-        </tr>
-        <tr>
-          <td class="left"><br /></td>
-          <td></td>
-          <td class="checkbox"><input type="checkbox" name="Non-CMSC Elective 4"></td>
-        </tr>
-      </table>
+      <!-- Non-CMSC Electives -->
+      <div id="nonCMSCElectives">
+        <br>
+        <br>
+        <table>
+          <tr>
+            <th colspan="3">Elective Credits</th>
+          </tr>
+          <tr>
+            <td colspan="3" class="left">Students must take enough elective courses in any discipline(s) they choose to
+              reach
+              the total
+              number of 120 credits required for graduation. Students who are pursuing a minor or a second
+              major can use
+              those credits in this area.</td>
+          </tr>
+          <tr>
+            <td class="left"><em>Course</em></td>
+            <td><em>Credits</em></td>
+            <td><em>Completed?</em></td>
+          </tr>
+          <tr>
+            <td class="left"><br /></td>
+            <td></td>
+            <td><input class="checkbox" type="checkbox" name="Non-CMSC Elective 1" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left"><br /></td>
+            <td></td>
+            <td><input class="checkbox" type="checkbox" name="Non-CMSC Elective 2" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left"><br /></td>
+            <td></td>
+            <td><input class="checkbox" type="checkbox" name="Non-CMSC Elective 3" onchange="changeAll(name)"></td>
+          </tr>
+          <tr>
+            <td class="left"><br /></td>
+            <td></td>
+            <td><input class="checkbox" type="checkbox" name="Non-CMSC Elective 4" onchange="changeAll(name)"></td>
+          </tr>
+        </table>
+      </div>
       <br>
     </div>
 
@@ -393,13 +406,13 @@
             <td class="left">Calculus I</td>
             <td>MATH 140</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="MATH 140"></td>
+            <td><input class="checkbox" type="checkbox" name="MATH 140" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Calculus II</td>
             <td>MATH 141</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="MATH 141"></td>
+            <td><input class="checkbox" type="checkbox" name="MATH 141" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Object-Oriented Programming I or
@@ -411,37 +424,37 @@
             <td class="credit">4 or
               <br>2
             </td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 131/133"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 131/133" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Object-Oriented Programming II</td>
             <td>CMSC 132</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 132"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 132" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Computer Systems</td>
             <td>CMSC 216</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 216"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 216" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Discrete Structures</td>
             <td>CMSC 250</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 250"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 250" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Organization of Programming Languages</td>
             <td>CMSC 330</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 330"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 330" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Algorithms</td>
             <td>CMSC 351</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 351"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 351" onchange="changeAll(name)"></td>
           </tr>
 
           <!-- Courses that are DIFFERENT based on track -->
@@ -449,13 +462,13 @@
             <td class="left">STAT 4xx with MATH 141 prerequisite</td>
             <td>STAT 4xx</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="STAT 4xx"></td>
+            <td><input class="checkbox" type="checkbox" name="STAT 4xx" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">MATH/AMSC/STAT xxx with MATH 141 prerequisite</td>
             <td></td>
             <td class="credit">3 or 4</td>
-            <td class="checkbox"><input type="checkbox" name="MATH/AMSC/STAT xxx"></td>
+            <td><input class="checkbox" type="checkbox" name="MATH/AMSC/STAT xxx" onchange="changeAll(name)"></td>
           </tr>
         </table>
 
@@ -481,31 +494,31 @@
             <td class="left">Computer Systems Architecture</td>
             <td>CMSC 411</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 411"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 411" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Operating Systems *</td>
             <td>CMSC 412</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 412"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 412" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Computer and Network Security</td>
             <td>CMSC 414</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 414"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 414" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Parallel Computing</td>
             <td>CMSC 416</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 416"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 416" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Computer Networks</td>
             <td>CMSC 417</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 417"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 417" onchange="changeAll(name)"></td>
           </tr>
         </table>
 
@@ -522,55 +535,55 @@
             <td class="left">Data Structures</td>
             <td>CMSC 420</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 420"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 420" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Artificial Intelligence</td>
             <td>CMSC 421</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 421"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 421" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Machine Learning *</td>
             <td>CMSC 422</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 422"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 422" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Bioinformatic Algorithms, Databases and Tools *</td>
             <td>CMSC 423</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 423"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 423" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Database Design</td>
             <td>CMSC 424</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 424"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 424" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Computer Vision *</td>
             <td>CMSC 426</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 426"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 426" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Computer Graphics *</td>
             <td>CMSC 427</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 427"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 427" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Natural Language Processing *</td>
             <td>CMSC 470</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 470"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 470" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Data Visualization (Area 2 OR Area 3)</td>
             <td>CMSC 471</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 471-Area 2"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 471" onchange="changeAll(name)"></td>
           </tr>
         </table>
 
@@ -587,37 +600,37 @@
             <td class="left">Introduction to Compilers</td>
             <td>CMSC 430</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 430"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 430" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Programming Language Technologies and Paradigms</td>
             <td>CMSC 433</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 433"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 433" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Human-Computer Interaction</td>
             <td>CMSC 434</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 434"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 434" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Software Engineering *</td>
             <td>CMSC 435</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 435"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 435" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Programming Handheld Systems</td>
             <td>CMSC 436</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 436"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 436" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Data Visualization (Area 2 OR Area 3)</td>
             <td>CMSC 471</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 471-Area 3"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 471" onchange="changeAll(name)"></td>
           </tr>
         </table>
 
@@ -634,37 +647,37 @@
             <td class="left">Design and Analysis of Computer Algorithms</td>
             <td>CMSC 451</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 451"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 451" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Elementary Theory of Computation</td>
             <td>CMSC 452</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 452"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 452" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Algorithms for Data Science</td>
             <td>CMSC 454</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 454"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 454" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Cryptology</td>
             <td>CMSC 456</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 456"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 456" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Quantum Computing *</td>
             <td>CMSC 457</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 457"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 457" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Computational Game Theory</td>
             <td>CMSC 474</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 474"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 474" onchange="changeAll(name)"></td>
           </tr>
         </table>
 
@@ -683,7 +696,7 @@
               <br>CMSC 466
             </td>
             <td rowspan="2" class="credit">3</td>
-            <td rowspan="2" class="checkbox"><input type="checkbox" name="CMSC 460/466"></td>
+            <td rowspan="2" class="checkbox"><input type="checkbox" name="CMSC 460/466" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Numerical Analysis *</td>
@@ -713,7 +726,7 @@
             </td>
             <td>CMSC 3xx/4xx</td>
             <td>3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC Elective 1"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC Elective 1" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">CMSC 3xx/4xx
@@ -721,7 +734,7 @@
             </td>
             <td>CMSC 3xx/4xx</td>
             <td>3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC Elective 2"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC Elective 2" onchange="changeAll(name)"></td>
           </tr>
         </table>
       </div>
@@ -749,13 +762,13 @@
             <td class="left">Calculus I</td>
             <td>MATH 140</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="MATH 140"></td>
+            <td><input class="checkbox" type="checkbox" name="MATH 140" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Calculus II</td>
             <td>MATH 141</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="MATH 141"></td>
+            <td><input class="checkbox" type="checkbox" name="MATH 141" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Object-Oriented Programming I or
@@ -767,37 +780,37 @@
             <td class="credit">4 or
               <br>2
             </td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 131/133"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 131/133" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Object-Oriented Programming II</td>
             <td>CMSC 132</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 132"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 132" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Computer Systems</td>
             <td>CMSC 216</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 216"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 216" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Discrete Structures</td>
             <td>CMSC 250</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 250"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 250" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Organization of Programming Languages</td>
             <td>CMSC 330</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 330"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 330" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Algorithms</td>
             <td>CMSC 351</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 351"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 351" onchange="changeAll(name)"></td>
           </tr>
 
           <!-- Courses that are DIFFERENT based on track -->
@@ -805,13 +818,13 @@
             <td class="left">STAT 4xx with MATH 141 prerequisite</td>
             <td>STAT 4xx</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="STAT 4xx"></td>
+            <td><input class="checkbox" type="checkbox" name="STAT 4xx" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">MATH/AMSC/STAT xxx with MATH 141 prerequisite</td>
             <td></td>
             <td class="credit">3 or 4</td>
-            <td class="checkbox"><input type="checkbox" name="MATH/AMSC/STAT xxx"></td>
+            <td><input class="checkbox" type="checkbox" name="MATH/AMSC/STAT xxx" onchange="changeAll(name)"></td>
           </tr>
         </table>
 
@@ -841,7 +854,7 @@
             <td class="left">Computer and Network Security</td>
             <td>CMSC 414</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 414"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 414" onchange="changeAll(name)"></td>
           </tr>
           <!-- Area 4 -->
           <tr>
@@ -854,7 +867,7 @@
             <td class="left">Cryptology</td>
             <td>CMSC 456</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 456"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 456" onchange="changeAll(name)"></td>
           </tr>
         </table>
 
@@ -876,19 +889,19 @@
             <td class="left">Computer Systems Architecture</td>
             <td>CMSC 411</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 411"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 411" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Operating Systems *</td>
             <td>CMSC 412</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 412"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 412" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Computer Networks</td>
             <td>CMSC 417</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 417"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 417" onchange="changeAll(name)"></td>
           </tr>
 
           <!-- Area 3 -->
@@ -902,13 +915,13 @@
             <td class="left">Introduction to Compilers</td>
             <td>CMSC 430</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 430"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 430" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Programming Language Technologies and Paradigms</td>
             <td>CMSC 433</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 433"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 433" onchange="changeAll(name)"></td>
           </tr>
 
           <!-- Area 4 -->
@@ -922,7 +935,7 @@
             <td class="left">Design and Analysis of Computer Algorithms</td>
             <td>CMSC 451</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 451"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 451" onchange="changeAll(name)"></td>
           </tr>
         </table>
 
@@ -949,7 +962,7 @@
             </td>
             <td>CMSC 3xx/4xx</td>
             <td>3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC Elective 1"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC Elective 1" onchange="changeAll(name)"></td>
           </tr>
         </table>
       </div>
@@ -977,13 +990,13 @@
             <td class="left">Calculus I</td>
             <td>MATH 140</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="MATH 140"></td>
+            <td><input class="checkbox" type="checkbox" name="MATH 140" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Calculus II</td>
             <td>MATH 141</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="MATH 141"></td>
+            <td><input class="checkbox" type="checkbox" name="MATH 141" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Object-Oriented Programming I or
@@ -995,37 +1008,37 @@
             <td class="credit">4 or
               <br>2
             </td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 131/133"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 131/133" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Object-Oriented Programming II</td>
             <td>CMSC 132</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 132"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 132" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Computer Systems</td>
             <td>CMSC 216</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 216"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 216" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Discrete Structures</td>
             <td>CMSC 250</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 250"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 250" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Organization of Programming Languages</td>
             <td>CMSC 330</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 330"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 330" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Algorithms</td>
             <td>CMSC 351</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 351"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 351" onchange="changeAll(name)"></td>
           </tr>
 
           <!-- Courses that are DIFFERENT based on track -->
@@ -1033,13 +1046,13 @@
             <td class="left">Applied Probability and Statistics I</td>
             <td>STAT 400</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="STAT 400"></td>
+            <td><input class="checkbox" type="checkbox" name="STAT 400" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Linear Algebra</td>
             <td>MATH 240</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="MATH 240"></td>
+            <td><input class="checkbox" type="checkbox" name="MATH 240" onchange="changeAll(name)"></td>
           </tr>
         </table>
 
@@ -1069,7 +1082,7 @@
             <td class="left">Introduction to Data Science</td>
             <td>CMSC 320</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 320"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 320" onchange="changeAll(name)"></td>
           </tr>
           <!-- Area 2 -->
           <tr>
@@ -1082,13 +1095,13 @@
             <td class="left">Introduction to Machine Learning *</td>
             <td>CMSC 422</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 422"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 422" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Database Design</td>
             <td>CMSC 424</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 424"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 424" onchange="changeAll(name)"></td>
           </tr>
         </table>
 
@@ -1109,49 +1122,49 @@
             <td class="left">Bioinformatic Algorithms & Methods for Functional Genomics and Proteomics</td>
             <td>CMSC 402</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 402"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 402" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Data Structures</td>
             <td>CMSC 420</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 420"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 420" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Artificial Intelligence</td>
             <td>CMSC 421</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 421"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 421" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Bioinformatic Algorithms, Databases and Tools *</td>
             <td>CMSC 423</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 423"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 423" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Game Programming *</td>
             <td>CMSC 425</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 425"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 425" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Computer Vision *</td>
             <td>CMSC 426</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 426"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 426" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Computer Graphics *</td>
             <td>CMSC 427</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 427"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 427" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Natural Language Processing *</td>
             <td>CMSC 470</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 470"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 470" onchange="changeAll(name)"></td>
           </tr>
         </table>
 
@@ -1172,13 +1185,13 @@
             <td class="left">Design and Analysis of Computer Algorithms</td>
             <td>CMSC 451</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 451"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 451" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Algorithms for Data Science</td>
             <td>CMSC 454</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 454"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 454" onchange="changeAll(name)"></td>
           </tr>
           <!-- Area 5 -->
           <tr>
@@ -1191,7 +1204,7 @@
             <td class="left">Computational Methods *</td>
             <td>CMSC 460</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 460"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 460" onchange="changeAll(name)"></td>
           </tr>
         </table>
 
@@ -1212,25 +1225,25 @@
             <td class="left">Computer Systems Architecture</td>
             <td>CMSC 411</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 411"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 411" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Operating Systems *</td>
             <td>CMSC 412</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 412"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 412" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Computer and Network Security</td>
             <td>CMSC 414</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 414"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 414" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Computer Networks</td>
             <td>CMSC 417</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 417"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 417" onchange="changeAll(name)"></td>
           </tr>
 
           <!-- Area 3 -->
@@ -1244,25 +1257,25 @@
             <td class="left">Introduction to Compilers</td>
             <td>CMSC 430</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 430"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 430" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Programming Language Technologies and Paradigms</td>
             <td>CMSC 433</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 433"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 433" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Human-Computer Interaction</td>
             <td>CMSC 434</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 434"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 434" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Software Engineering *</td>
             <td>CMSC 435</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 435"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 435" onchange="changeAll(name)"></td>
           </tr>
         </table>
 
@@ -1292,13 +1305,13 @@
             <td class="left">Calculus I</td>
             <td>MATH 140</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="MATH 140"></td>
+            <td><input class="checkbox" type="checkbox" name="MATH 140" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Calculus II</td>
             <td>MATH 141</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="MATH 141"></td>
+            <td><input class="checkbox" type="checkbox" name="MATH 141" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Object-Oriented Programming I or
@@ -1310,37 +1323,37 @@
             <td class="credit">4 or
               <br>2
             </td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 131/133"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 131/133" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Object-Oriented Programming II</td>
             <td>CMSC 132</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 132"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 132" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Computer Systems</td>
             <td>CMSC 216</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 216"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 216" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Discrete Structures</td>
             <td>CMSC 250</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 250"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 250" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Organization of Programming Languages</td>
             <td>CMSC 330</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 330"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 330" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Algorithms</td>
             <td>CMSC 351</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 351"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 351" onchange="changeAll(name)"></td>
           </tr>
 
           <!-- Courses that are DIFFERENT based on track -->
@@ -1348,13 +1361,13 @@
             <td class="left">STAT 4xx with MATH 141 prerequisite</td>
             <td>STAT 4xx</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="STAT 4xx"></td>
+            <td><input class="checkbox" type="checkbox" name="STAT 4xx" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Linear Algebra</td>
             <td>MATH 240</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="MATH 240"></td>
+            <td><input class="checkbox" type="checkbox" name="MATH 240" onchange="changeAll(name)"></td>
           </tr>
         </table>
 
@@ -1384,7 +1397,7 @@
             <td class="left">Introduction to Data Science</td>
             <td>CMSC 320</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 320"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 320" onchange="changeAll(name)"></td>
           </tr>
           <!-- Area 2 -->
           <tr>
@@ -1397,13 +1410,13 @@
             <td class="left">Introduction to Artificial Intelligence</td>
             <td>CMSC 421</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 421"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 421" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Machine Learning *</td>
             <td>CMSC 422</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 422"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 422" onchange="changeAll(name)"></td>
           </tr>
         </table>
 
@@ -1424,13 +1437,13 @@
             <td class="left">Computer Vision *</td>
             <td>CMSC 426</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 426"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 426" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Natural Language Processing *</td>
             <td>CMSC 470</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 470"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 470" onchange="changeAll(name)"></td>
           </tr>
           <!-- Area 5 -->
           <tr>
@@ -1446,7 +1459,7 @@
               <br>MATH 401
             </td>
             <td rowspan="3" class="credit">3</td>
-            <td rowspan="3" class="checkbox"><input type="checkbox" name="CMSC/MATH 460/466/401"></td>
+            <td rowspan="3" class="checkbox"><input type="checkbox" name="CMSC/MATH 460/466/401" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Numerical Analysis *</td>
@@ -1465,25 +1478,25 @@
             <td class="left">Introduction to Deep Learning *</td>
             <td>CMSC 472</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 472"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 472" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Capstone in Machine Learning *</td>
             <td>CMSC 473</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 473"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 473" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Computational Game Theory</td>
             <td>CMSC 474</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 474"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 474" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Robotics with Perception *</td>
             <td>CMSC 476</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 476"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 476" onchange="changeAll(name)"></td>
           </tr>
         </table>
 
@@ -1510,7 +1523,7 @@
             </td>
             <td>CMSC 3xx/4xx</td>
             <td>3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC Elective 1"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC Elective 1" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">CMSC 3xx/4xx
@@ -1518,7 +1531,7 @@
             </td>
             <td>CMSC 3xx/4xx</td>
             <td>3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC Elective 2"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC Elective 2" onchange="changeAll(name)"></td>
           </tr>
         </table>
       </div>
@@ -1546,13 +1559,13 @@
             <td class="left">Calculus I</td>
             <td>MATH 140</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="MATH 140"></td>
+            <td><input class="checkbox" type="checkbox" name="MATH 140" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Calculus II</td>
             <td>MATH 141</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="MATH 141"></td>
+            <td><input class="checkbox" type="checkbox" name="MATH 141" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Object-Oriented Programming I or
@@ -1564,37 +1577,37 @@
             <td class="credit">4 or
               <br>2
             </td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 131/133"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 131/133" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Object-Oriented Programming II</td>
             <td>CMSC 132</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 132"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 132" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Computer Systems</td>
             <td>CMSC 216</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 216"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 216" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Discrete Structures</td>
             <td>CMSC 250</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 250"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 250" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Organization of Programming Languages</td>
             <td>CMSC 330</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 330"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 330" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Algorithms</td>
             <td>CMSC 351</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 351"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 351" onchange="changeAll(name)"></td>
           </tr>
 
           <!-- Courses that are DIFFERENT based on track -->
@@ -1602,13 +1615,13 @@
             <td class="left">STAT 4xx with MATH 141 prerequisite</td>
             <td>STAT 4xx</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="STAT 4xx"></td>
+            <td><input class="checkbox" type="checkbox" name="STAT 4xx" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Linear Algebra</td>
             <td>MATH 240</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="MATH 240"></td>
+            <td><input class="checkbox" type="checkbox" name="MATH 240" onchange="changeAll(name)"></td>
           </tr>
         </table>
 
@@ -1638,13 +1651,13 @@
             <td class="left">Introduction to Quantum Computing *</td>
             <td>CMSC 457</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 457"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 457" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Quantum Technology *</td>
             <td>PHYS 467</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="PHYS 467"></td>
+            <td><input class="checkbox" type="checkbox" name="PHYS 467" onchange="changeAll(name)"></td>
           </tr>
         </table>
 
@@ -1666,31 +1679,31 @@
             <td class="left">Computer Systems Architecture</td>
             <td>CMSC 411</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 411"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 411" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Operating Systems *</td>
             <td>CMSC 412</td>
             <td class="credit">4</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 412"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 412" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Computer and Network Security</td>
             <td>CMSC 414</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 414"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 414" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Parallel Computing</td>
             <td>CMSC 416</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 416"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 416" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Computer Networks</td>
             <td>CMSC 417</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 417"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 417" onchange="changeAll(name)"></td>
           </tr>
 
           <!-- Area 2 -->
@@ -1704,61 +1717,61 @@
             <td class="left">Bioinformatic Algorithms & Methods for Functional Genomics and Proteomics</td>
             <td>CMSC 402</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 402"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 402" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Data Structures</td>
             <td>CMSC 420</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 420"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 420" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Artificial Intelligence</td>
             <td>CMSC 421</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 421"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 421" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Machine Learning *</td>
             <td>CMSC 422</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 422"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 422" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Bioinformatic Algorithms, Databases and Tools *</td>
             <td>CMSC 423</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 423"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 423" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Database Design</td>
             <td>CMSC 424</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 424"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 424" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Computer Vision *</td>
             <td>CMSC 426</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 426"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 426" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Computer Graphics *</td>
             <td>CMSC 427</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 427"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 427" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Natural Language Processing *</td>
             <td>CMSC 470</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 470"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 470" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Data Visualization (Area 2 OR Area 3)</td>
             <td>CMSC 471</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 471-Area 2"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 471" onchange="changeAll(name)"></td>
           </tr>
 
           <!-- Area 3 -->
@@ -1772,37 +1785,37 @@
             <td class="left">Introduction to Compilers</td>
             <td>CMSC 430</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 430"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 430" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Programming Language Technologies and Paradigms</td>
             <td>CMSC 433</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 433"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 433" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Human-Computer Interaction</td>
             <td>CMSC 434</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 434"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 434" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Software Engineering *</td>
             <td>CMSC 435</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 435"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 435" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Programming Handheld Systems</td>
             <td>CMSC 436</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 436"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 436" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Data Visualization (Area 2 OR Area 3)</td>
             <td>CMSC 471</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 471-Area 3"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 471" onchange="changeAll(name)"></td>
           </tr>
 
           <!-- Area 4 -->
@@ -1816,31 +1829,31 @@
             <td class="left">Design and Analysis of Computer Algorithms</td>
             <td>CMSC 451</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 451"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 451" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Elementary Theory of Computation</td>
             <td>CMSC 452</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 452"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 452" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Algorithms for Data Science</td>
             <td>CMSC 454</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 454"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 454" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Cryptology</td>
             <td>CMSC 456</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 456"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 456" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Computational Game Theory</td>
             <td>CMSC 474</td>
             <td class="credit">3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC 474"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC 474" onchange="changeAll(name)"></td>
           </tr>
 
           <!-- Area 5 -->
@@ -1856,7 +1869,7 @@
               <br>CMSC 466
             </td>
             <td rowspan="2" class="credit">3</td>
-            <td rowspan="2" class="checkbox"><input type="checkbox" name="CMSC 460/466"></td>
+            <td rowspan="2" class="checkbox"><input type="checkbox" name="CMSC 460/466" onchange="changeAll(name)"></td>
           </tr>
           <tr>
             <td class="left">Introduction to Numerical Analysis *</td>
@@ -1886,7 +1899,7 @@
             </td>
             <td>CMSC 3xx/4xx</td>
             <td>3</td>
-            <td class="checkbox"><input type="checkbox" name="CMSC Elective 2"></td>
+            <td><input class="checkbox" type="checkbox" name="CMSC Elective 2" onchange="changeAll(name)"></td>
           </tr>
         </table>
       </div>

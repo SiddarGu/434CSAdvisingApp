@@ -9,7 +9,6 @@ html {
   background-color: antiquewhite;
 }
 
-
 table,
 th,
 td {
@@ -34,7 +33,7 @@ td {
   width: 280px;
   white-space: nowrap;
   border-radius: 10px;
-  background-color: #e03a3e;
+  background-color: rgb(181, 19, 41);
   border: none;
   color: #FFFFFF;
   text-align: center;
@@ -49,7 +48,7 @@ td {
   width: 280px;
   white-space: nowrap;
   border-radius: 10px;
-  background-color: #e03a3e;
+  background-color: rgb(181, 19, 41);
   border: none;
   color: #FFFFFF;
   text-align: center;
@@ -71,20 +70,66 @@ button[disabled]{
   background-color: #808080
 }
 
-.back {
+.button {
   width: 280px;
   white-space: nowrap;
   border-radius: 10px;
-  background-color: #e03a3e;
+  background-color: rgb(181, 19, 41);
   border: none;
   color: #ffffff;
   text-align: center;
   padding: 20px;
   transition: all 0.5s;
   cursor: pointer;
-  margin: 15px 5px 5px 5px;
+  margin-top: 10px;
 }
 
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.back {
+  margin-top: 30px;
+  width: 280px;
+  white-space: nowrap;
+  border-radius: 10px;
+  background-color: rgb(181, 19, 41);
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+#csdept {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 50%;
+  padding: 10px;
+}
 
 .back span {
   cursor: pointer;
@@ -95,7 +140,7 @@ button[disabled]{
 
 .back span:after {
   content: "\00ab";
-  position: fixed;
+  position: absolute;
   opacity: 0;
   top: 0;
   left: -20px;
@@ -131,7 +176,7 @@ button[disabled]{
   width: 280px;
   white-space: nowrap;
   border-radius: 10px;
-  background-color: #e03a3e;
+  background-color: rgb(181, 19, 41);
   min-width: 160px;
   z-index: 1;
   text-align: center;
@@ -278,3 +323,4 @@ input[type="text"] {
   position: absolute;
   font-size: 30px;
 }
+

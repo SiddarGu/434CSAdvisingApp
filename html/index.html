@@ -3,60 +3,9 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>CS Advising App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS Major Homepage</title>
   <link rel="icon" type="image/x-icon" href="../logo.ico">
   <link rel="stylesheet" href="../css/index.css" type="text/css" />
-
-  
-</head>
-
-<body>
-  <div id="sidebar" class="sidebar">
-    <h1>Directory</h1>
-    <button onclick="location.href = 'index.html';">Index Page</button>
-    <button onclick="location.href = 'CSMajorHomepage.html';">CMSC Home Page</button>
-    <button onclick="location.href = 'fourYearPlanner.html';">Create/Edit 4-year Plan</button>
-    <button onclick="location.href = 'graduationRequirements.html';">Check Graduation Requirements</button>
-    <button onclick="location.href = 'CSAdvisors.html';">Contact an Advisor</button>
-    <h1>Additional Information</h1>
-    <button onclick="location.href = 'graduationRequirementList.html';">Detailed Graduation Information</button>
-    <button onclick="location.href = 'ULC.html';">Upper Level Concentration</button>
-    <button onclick="location.href = 'index.html';">Index Page</button>
-  </div>
-
-  <div id="mainContainer">
-    <div class="container" onclick="swap(this)">
-      <div class="bar1"></div>
-      <div class="bar2"></div>
-      <div class="bar3"></div>
-    </div>
-
-    <p id="imgs">
-
-      <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
-    </p>
-    <h1>Welcome to the CS Advising App!</h1>
-    <div id="buttons">
-
-      <button class="button" onclick="location.href = 'CSMajorHomepage.html';"><span>I am a CS
-          major</span></button>
-      <hr>
-      <button class="button" onclick="location.href = 'graduationRequirementList.html';"><span>Detailed Graduation
-          Information</span></button>
-      <button class="button" onclick="location.href = 'ULC.html';"><span>Upper Level Concentration</span></button>
-
-    </div>
-
-
-    <div id="keyboard" class="keyboard">
-      <button id="keyboardButton" onclick="switchKeyboard(this)">
-        Keyboard &#8743
-      </button>
-      <img id="keyboardSvg" src="../keyboard.svg" alt="Keyboard" />
-    </div>
-  </div>
-
   <script>
     isOpened = false;
     function swap(x) {
@@ -66,14 +15,56 @@
         document.getElementById("mainContainer").style.marginLeft = "0";
         isOpened = false;
       } else {
-        document.getElementById("sidebar").style.width = "260px";
-        document.getElementById("mainContainer").style.marginLeft = "260px";
-        if (showKeyboard) {
-          switchKeyboard(document.getElementById("keyboardButton"));
-        }
+        document.getElementById("sidebar").style.width = "300px";
+        document.getElementById("mainContainer").style.marginLeft = "300px";
         isOpened = true;
       }
     }
+  </script>
+</head>
+
+<body>
+  <div id="sidebar" class="sidebar">
+    <h1>Menu</h1>
+    <button onclick="location.href = 'index.html';" class="menu">Home</button>
+    <button onclick="location.href = 'fourYearPlanner.html';" class="menu">Create/Edit Your 4-year Plan</button>
+    <button onclick="location.href = 'graduationRequirements.html';" class="menu">Check Graduation Requirements</button>
+    <button onclick="location.href = 'ULC.html';" class="submenu">&nbsp;&nbsp;&#x2022 Upper Level Concentration</button>
+
+    <button onclick="location.href = 'CSAdvisors.html';" class="menu">Contact a CS Advisor</button>
+    <button onclick="location.href = 'ContactAdvisor.html';" class="submenu">&nbsp;&nbsp;&#x2022 Contact an Advisor</button>
+
+  </div>
+  <div id="mainContainer">
+    <div class="container" onclick="swap(this)">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
+    <p id="imgs">
+      <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
+    </p>
+    <h1>Welcome to the CS Advising App!</h1>
+    <div id="buttons">
+
+      <button class="button" onclick="location.href = 'fourYearPlanner.html';"><span>Create/Edit Your 4-Year
+          Plan</span></button>
+      <button class="button" onclick="location.href = 'graduationRequirements.html';"><span>Check Graduation
+          Requirements</span></button>
+      <button class="button" onclick="location.href = 'CSAdvisors.html';"><span>Contact an Advisor</span></button>
+      <hr>
+      <button class="back" onclick="history.back()"><span>Go Back</span></button>
+
+    </div>
+    <div id="keyboard" class="keyboard">
+      <button id="keyboardButton" onclick="switchKeyboard(this)">
+        Keyboard &#8743
+      </button>
+      <img id="keyboardSvg" src="../keyboard.svg" alt="Keyboard" />
+    </div>
+    
+  </div>
+  <script>
 
     showKeyboard = false;
     function switchKeyboard(x) {

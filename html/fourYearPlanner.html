@@ -1,223 +1,222 @@
-
 <!doctype html>
 <html lang="en">
 
 <head>
-	<script src="../js/planner.js" defer></script>
-    <script>
-	
-	if (localStorage) {
+  <script src="../js/planner.js" defer></script>
+  <script>
+
+    if (localStorage) {
       console.log("Local Storage is supported");
-	  
+
     } else {
       console.log("Local Storage is not supported");
     }
-	
-	
-	window.onload = function() {
-		//Hide table and buttons on load-in
-		document.getElementById("saveExit").classList.toggle("hidden");
-		document.getElementById("plannerForm").classList.toggle("hidden");
-		document.getElementById("willSaveCheck").classList.toggle("hidden");
-		
-		if (plannerEmpty()) {
-			document.getElementById("editPlan").setAttribute("disabled", " ");
-		}
-		else {
-			document.getElementById("editPlan").removeAttribute("disabled");
-		}
-		
-		/*dropdown list for planner*/
-		const csCourseList = ["CMSC100", "CMSC106", "CMSC122", "CMSC125", "CMSC131", "CMSC132", "CMSC198",
-		"CMSC216", "CMSC250", "CMSC298", "CMSC320", "CMSC330", "CMSC351", "CMSC388", "CMSC389", "CMSC390",
-		"CMSC395", "CMSC396", "CMSC402", "CMSC411", "CMSC412", "CMSC414", "CMSC416", "CMSC417", "CMSC420",
-		"CMSC421", "CMSC422", "CMSC423", "CMSC424", "CMSC425", "CMSC426", "CMSC427", "CMSC430", "CMSC433",
-		"CMSC434", "CMSC435", "CMSC436", "CMSC451", "CMSC452", "CMSC454", "CMSC456", "CMSC457", "CMSC460",
-		"CMSC466", "CMSC470", "CMSC472", "CMSC473", "CMSC474", "CMSC475", "CMSC476", "CMSC477", "CMSC488",
-		"CMSC499"];
-		
-		var options = '';
-		
-		for (var i = 0; i < csCourseList.length; i++) {
-			options += '<option value="' + csCourseList[i] + '"/>';
-		}
-		
-		document.getElementById('csCourseList').innerHTML = options;
-	}
-	
-	
-	function plannerEmpty() {
-	
-		for (let i = 0; i < 336; i++) {
-			if (localStorage.getItem("val"+i) != null) {
-				return false;
-			}
-		}
-		
-		return true;
-	}
-	
-    function dropdownFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
+
+
+    window.onload = function () {
+      //Hide table and buttons on load-in
+      document.getElementById("saveExit").classList.toggle("hidden");
+      document.getElementById("plannerForm").classList.toggle("hidden");
+      document.getElementById("willSaveCheck").classList.toggle("hidden");
+
+      if (plannerEmpty()) {
+        document.getElementById("editPlan").setAttribute("disabled", " ");
+      }
+      else {
+        document.getElementById("editPlan").removeAttribute("disabled");
+      }
+
+      /*dropdown list for planner*/
+      const csCourseList = ["CMSC100", "CMSC106", "CMSC122", "CMSC125", "CMSC131", "CMSC132", "CMSC198",
+        "CMSC216", "CMSC250", "CMSC298", "CMSC320", "CMSC330", "CMSC351", "CMSC388", "CMSC389", "CMSC390",
+        "CMSC395", "CMSC396", "CMSC402", "CMSC411", "CMSC412", "CMSC414", "CMSC416", "CMSC417", "CMSC420",
+        "CMSC421", "CMSC422", "CMSC423", "CMSC424", "CMSC425", "CMSC426", "CMSC427", "CMSC430", "CMSC433",
+        "CMSC434", "CMSC435", "CMSC436", "CMSC451", "CMSC452", "CMSC454", "CMSC456", "CMSC457", "CMSC460",
+        "CMSC466", "CMSC470", "CMSC472", "CMSC473", "CMSC474", "CMSC475", "CMSC476", "CMSC477", "CMSC488",
+        "CMSC499"];
+
+      var options = '';
+
+      for (var i = 0; i < csCourseList.length; i++) {
+        options += '<option value="' + csCourseList[i] + '"/>';
+      }
+
+      document.getElementById('csCourseList').innerHTML = options;
     }
-    
-	//Regardless of which option the user picks in new, create empty plan for them to interact with
-	//Afterwards, check requirements
-	
-	function newPlan() {
-		if (plannerEmpty()) {
-			editPlan();
-		}
-		else {
-		//Alert user that they are deleting old plan
-			if (confirm('You already have an existing plan created. Are you sure you want to delete it and make a new plan?')){
-				for (let i = 0; i < 336; i++) {
-					localStorage.removeItem("val"+i);
-					if (document.getElementById("val"+i) != null) {
-						document.getElementById("val"+i).value = "";
-					}
-				}
-				
-				editPlan()
-			}
-		}
-	}
-	 
-	function editPlan() {
 
-	  //Hide buttons
-	  document.getElementById("newPlan").classList.toggle("hidden");
-	  document.getElementById("editPlan").classList.toggle("hidden");
-	  document.getElementById("samplePlan").classList.toggle("hidden");
-	  document.getElementById("goBack").classList.toggle("hidden");
 
-     //Show new buttons
-	  document.getElementById("plannerForm").classList.toggle("hidden");
-	  document.getElementById("saveExit").classList.toggle("hidden");
-	  document.getElementById("willSaveCheck").classList.toggle("hidden");
-	  
-	}
-	
-	function samplePlan() {
-		newPlan();
-		
-		for (let i = 0; i < 336; i++) {
-			document.getElementById("val0").value = "CMSC131";
-			document.getElementById("val12").value = "CMSC100";
-			document.getElementById("val24").value = "MATH140";
-			document.getElementById("val36").value = "COMM107";
-			document.getElementById("val48").value = "ENGL101";
-			
-			document.getElementById("val1").value = "4";
-			document.getElementById("val13").value = "1";
-			document.getElementById("val25").value = "4";
-			document.getElementById("val37").value = "3";
-			document.getElementById("val49").value = "3";
-			
-			document.getElementById("val6").value = "CMSC132";
-			document.getElementById("val18").value = "MATH141";
-			
-			document.getElementById("val7").value = "4";
-			document.getElementById("val19").value = "4";
-			
-			document.getElementById("val84").value = "CMSC216";
-			document.getElementById("val96").value = "CMSC250";
-			document.getElementById("val108").value = "MATH2XX";
-			
-			document.getElementById("val85").value = "4";
-			document.getElementById("val97").value = "4";
-			document.getElementById("val109").value = "4";
-			
-			document.getElementById("val90").value = "CMSC330";
-			document.getElementById("val102").value = "CMSC351";
-			document.getElementById("val114").value = "STAT4XX";
-			
-			document.getElementById("val91").value = "3";
-			document.getElementById("val103").value = "3";
-			document.getElementById("val115").value = "3";
-			
-			document.getElementById("val168").value = "CMSC4XX";
-			document.getElementById("val180").value = "CMSC4XX";
-			
-			document.getElementById("val169").value = "3";
-			document.getElementById("val181").value = "3";
-			
-			document.getElementById("val174").value = "CMSC4XX";
-			document.getElementById("val186").value = "CMSC4XX";
-			document.getElementById("val198").value = "ENGL393";
-			
-			document.getElementById("val175").value = "3";
-			document.getElementById("val187").value = "3";
-			document.getElementById("val199").value = "3";
-			
-			document.getElementById("val252").value = "CMSC4XX";
-			document.getElementById("val264").value = "CMSC4XX";
-			
-			document.getElementById("val253").value = "3";
-			document.getElementById("val265").value = "3";
-			
-			document.getElementById("val258").value = "CMSC4XX";
-			document.getElementById("val259").value = "3";
-			
-			
-		}
-	
-	}
-	
-	function saveExit() {
-	
-	  
-	  for (let i = 0; i < 336; i++) {
-		if (document.getElementById("val"+i) != null) {
-			var currVal = document.getElementById("val"+i).value;
-			localStorage.setItem("val"+i, currVal);
-		}
-	  }
-	  
-	  if (!plannerEmpty()) {
-		  document.getElementById("editPlan").removeAttribute("disabled");
-	  }
-	  
-	  //hide buttons
-	  document.getElementById("plannerForm").classList.toggle("hidden");
-	  document.getElementById("saveExit").classList.toggle("hidden");
-	  document.getElementById("willSaveCheck").classList.toggle("hidden");
-	  
-	  //show old buttons
-	  document.getElementById("newPlan").classList.toggle("hidden");
-	  document.getElementById("editPlan").classList.toggle("hidden");
-	  document.getElementById("samplePlan").classList.toggle("hidden");
-	  document.getElementById("goBack").classList.toggle("hidden");
+    function plannerEmpty() {
 
-	}
-	
-	function saveCheck(whichTrack) {
-	
-	
-	//Close dropdown menu
-	  var dropdowns = document.getElementsByClassName("dropdown-content");
-	  var i;
-	  for (i = 0; i < dropdowns.length; i++) {
-		var openDropdown = dropdowns[i];
-		if (openDropdown.classList.contains('show')) {
-		  openDropdown.classList.remove('show');
-		}
-	  }
-	  
-	  for (let i = 0; i < 336; i++) {
-		var currVal = document.getElementById("val"+i).value;
-		localStorage.setItem("val"+i, currVal);
-	  }
-	  
-	  //Check Requirements Here - whichTrackToCheck has the track type
-	  
-	localStorage.setItem("whichTrack", whichTrack);
-	document.getElementById("plannerForm").dispatchEvent(new Event('submit'));
-	  
-	}
-	
+      for (let i = 0; i < 336; i++) {
+        if (localStorage.getItem("val" + i) != null) {
+          return false;
+        }
+      }
 
-	isOpened = false;
+      return true;
+    }
+
+    function dropdownFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    //Regardless of which option the user picks in new, create empty plan for them to interact with
+    //Afterwards, check requirements
+
+    function newPlan() {
+      if (plannerEmpty()) {
+        editPlan();
+      }
+      else {
+        //Alert user that they are deleting old plan
+        if (confirm('You already have an existing plan created. Are you sure you want to delete it and make a new plan?')) {
+          for (let i = 0; i < 336; i++) {
+            localStorage.removeItem("val" + i);
+            if (document.getElementById("val" + i) != null) {
+              document.getElementById("val" + i).value = "";
+            }
+          }
+
+          editPlan()
+        }
+      }
+    }
+
+    function editPlan() {
+
+      //Hide buttons
+      document.getElementById("newPlan").classList.toggle("hidden");
+      document.getElementById("editPlan").classList.toggle("hidden");
+      document.getElementById("samplePlan").classList.toggle("hidden");
+      document.getElementById("goBack").classList.toggle("hidden");
+
+      //Show new buttons
+      document.getElementById("plannerForm").classList.toggle("hidden");
+      document.getElementById("saveExit").classList.toggle("hidden");
+      document.getElementById("willSaveCheck").classList.toggle("hidden");
+
+    }
+
+    function samplePlan() {
+      newPlan();
+
+      for (let i = 0; i < 336; i++) {
+        document.getElementById("val0").value = "CMSC131";
+        document.getElementById("val12").value = "CMSC100";
+        document.getElementById("val24").value = "MATH140";
+        document.getElementById("val36").value = "COMM107";
+        document.getElementById("val48").value = "ENGL101";
+
+        document.getElementById("val1").value = "4";
+        document.getElementById("val13").value = "1";
+        document.getElementById("val25").value = "4";
+        document.getElementById("val37").value = "3";
+        document.getElementById("val49").value = "3";
+
+        document.getElementById("val6").value = "CMSC132";
+        document.getElementById("val18").value = "MATH141";
+
+        document.getElementById("val7").value = "4";
+        document.getElementById("val19").value = "4";
+
+        document.getElementById("val84").value = "CMSC216";
+        document.getElementById("val96").value = "CMSC250";
+        document.getElementById("val108").value = "MATH2XX";
+
+        document.getElementById("val85").value = "4";
+        document.getElementById("val97").value = "4";
+        document.getElementById("val109").value = "4";
+
+        document.getElementById("val90").value = "CMSC330";
+        document.getElementById("val102").value = "CMSC351";
+        document.getElementById("val114").value = "STAT4XX";
+
+        document.getElementById("val91").value = "3";
+        document.getElementById("val103").value = "3";
+        document.getElementById("val115").value = "3";
+
+        document.getElementById("val168").value = "CMSC4XX";
+        document.getElementById("val180").value = "CMSC4XX";
+
+        document.getElementById("val169").value = "3";
+        document.getElementById("val181").value = "3";
+
+        document.getElementById("val174").value = "CMSC4XX";
+        document.getElementById("val186").value = "CMSC4XX";
+        document.getElementById("val198").value = "ENGL393";
+
+        document.getElementById("val175").value = "3";
+        document.getElementById("val187").value = "3";
+        document.getElementById("val199").value = "3";
+
+        document.getElementById("val252").value = "CMSC4XX";
+        document.getElementById("val264").value = "CMSC4XX";
+
+        document.getElementById("val253").value = "3";
+        document.getElementById("val265").value = "3";
+
+        document.getElementById("val258").value = "CMSC4XX";
+        document.getElementById("val259").value = "3";
+
+
+      }
+
+    }
+
+    function saveExit() {
+
+
+      for (let i = 0; i < 336; i++) {
+        if (document.getElementById("val" + i) != null) {
+          var currVal = document.getElementById("val" + i).value;
+          localStorage.setItem("val" + i, currVal);
+        }
+      }
+
+      if (!plannerEmpty()) {
+        document.getElementById("editPlan").removeAttribute("disabled");
+      }
+
+      //hide buttons
+      document.getElementById("plannerForm").classList.toggle("hidden");
+      document.getElementById("saveExit").classList.toggle("hidden");
+      document.getElementById("willSaveCheck").classList.toggle("hidden");
+
+      //show old buttons
+      document.getElementById("newPlan").classList.toggle("hidden");
+      document.getElementById("editPlan").classList.toggle("hidden");
+      document.getElementById("samplePlan").classList.toggle("hidden");
+      document.getElementById("goBack").classList.toggle("hidden");
+
+    }
+
+    function saveCheck(whichTrack) {
+
+
+      //Close dropdown menu
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+
+      for (let i = 0; i < 336; i++) {
+        var currVal = document.getElementById("val" + i).value;
+        localStorage.setItem("val" + i, currVal);
+      }
+
+      //Check Requirements Here - whichTrackToCheck has the track type
+
+      localStorage.setItem("whichTrack", whichTrack);
+      document.getElementById("plannerForm").dispatchEvent(new Event('submit'));
+
+    }
+
+
+    isOpened = false;
     function swap(x) {
       x.classList.toggle("change");
       if (isOpened) {
@@ -229,1061 +228,1064 @@
         document.getElementById("mainContainer").style.marginLeft = "300px";
         isOpened = true;
       }
-    }	  
-	  
-    </script>
-    <meta charset="utf-8" />
-    <title>Four Year Planner</title>
-    <link rel="icon" type="image/x-icon" href="../logo.ico">
-    <link rel="stylesheet" href="../css/fourYearPlanner.css" type="text/css" />
+    }
+
+  </script>
+  <meta charset="utf-8" />
+  <title>Four Year Planner</title>
+  <link rel="icon" type="image/x-icon" href="../logo.ico">
+  <link rel="stylesheet" href="../css/fourYearPlanner.css" type="text/css" />
 
 </head>
 
 <body>
-	<div id="sidebar" class="sidebar">
+  <div id="sidebar" class="sidebar">
     <h1>Menu</h1>
-    <button onclick="location.href = 'CSMajorHomepage.html';" class="menu">Home</button>
+    <button onclick="location.href = 'index.html';" class="menu">Home</button>
     <button onclick="location.href = 'fourYearPlanner.html';" class="menu">Create/Edit Your 4-year Plan</button>
     <button onclick="location.href = 'graduationRequirements.html';" class="menu">Check Graduation Requirements</button>
-    <button onclick="location.href = 'ULC.html';" class="submenu">&nbsp;&nbsp;&#x2022; Upper Level Concentration</button>
+    <button onclick="location.href = 'ULC.html';" class="submenu">&nbsp;&nbsp;&#x2022; Upper Level
+      Concentration</button>
 
     <button onclick="location.href = 'CSAdvisors.html';" class="menu">Contact a CS Advisor</button>
-    <button onclick="location.href = 'ContactAdvisor.html';" class="submenu">&nbsp;&nbsp;&#x2022; Contact an Advisor</button>
+    <button onclick="location.href = 'ContactAdvisor.html';" class="submenu">&nbsp;&nbsp;&#x2022; Contact an
+      Advisor</button>
+
+  </div>
+
+  <div id="mainContainer" style="text-align:center">
+    <div class="container" onclick="swap(this)">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
+    <p id="imgs">
+      <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
+    </p>
+    <h1>Four Year Planner</h1>
+    <div id="buttons">
+    <button id="newPlan" onclick="newPlan();" class="button"><span>Create New Plan</span></button>
+
+    <br>
+    <button id="editPlan" onclick="editPlan();" class="button"><span>Edit Existing Plan</span></button>
+
+    <br>
+
+    <button id="samplePlan" onclick="samplePlan();" class="button"><span>Load Sample Plan</span></button>
+  </div>
+
+    <form id="plannerForm" onsubmit="validateData()" autocomplete="off">
+      <div class="autocomplete">
+        <table style="margin-bottom: 30px;" id="plannerYear1" border="1">
+          <tr>
+            <th colspan="12">Year 1</th>
+          </tr>
+          <tr>
+            <th colspan="3"> Fall </th>
+            <th colspan="3"> Winter </th>
+            <th colspan="3"> Spring </th>
+            <th colspan="3"> Summer </th>
+          </tr>
+          <tr>
+            <td> Course </td>
+            <td> Credits </td>
+            <td> Grade </td>
+            <td> Course </td>
+            <td> Credits </td>
+            <td> Grade </td>
+            <td> Course </td>
+            <td> Credits </td>
+            <td> Grade </td>
+            <td> Course </td>
+            <td> Credits </td>
+            <td> Grade </td>
+          </tr>
+          <!--  -->
+
+          <!-- for ($i = 0; $i < 12; $i++) { -->
+          <!-- if isset($_SESSION["val".$currentIndex]) { -->
+          <!-- echo "<td><input type=\"text\" name=\"val".$currentIndex."\" value=\"".$_SESSION["val".$currentIndex]."\"><\td>"; -->
+          <!-- } -->
+          <!-- else { -->
+          <!-- echo "<td><input type=\"text\" name=\"val".$currentIndex."\"><\td>"; -->
+          <!-- } -->
+          <!-- $currIndex += 1; -->
+          <!-- } -->
+
+          <!--  -->
+          <!-- Script for saving in localStorage -->
+          <script>
+            var currIndex = 0;
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if ((localStorage.getItem("val" + currIndex) != null)) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if ((localStorage.getItem("val" + currIndex) != null)) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if ((localStorage.getItem("val" + currIndex) != null)) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if ((localStorage.getItem("val" + currIndex) != null)) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if ((localStorage.getItem("val" + currIndex) != null)) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if ((localStorage.getItem("val" + currIndex) != null)) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if ((localStorage.getItem("val" + currIndex) != null)) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+          </script>
+        </table>
+
+        <table style="margin-bottom: 30px;" id="plannerYear2" border="1">
+          <tr>
+            <th colspan="12">Year 2</th>
+          </tr>
+          <tr>
+            <th colspan="3"> Fall </th>
+            <th colspan="3"> Winter </th>
+            <th colspan="3"> Spring </th>
+            <th colspan="3"> Summer </th>
+          </tr>
+          <tr>
+            <td> Course </td>
+            <td> Credits </td>
+            <td> Grade </td>
+            <td> Course </td>
+            <td> Credits </td>
+            <td> Grade </td>
+            <td> Course </td>
+            <td> Credits </td>
+            <td> Grade </td>
+            <td> Course </td>
+            <td> Credits </td>
+            <td> Grade </td>
+          </tr>
+
+          <script>
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+          </script>
+        </table>
+
+
+        <table style="margin-bottom: 30px;" id="plannerYear3" border="1">
+          <tr>
+            <th colspan="12">Year 3</th>
+          </tr>
+          <tr>
+            <th colspan="3"> Fall </th>
+            <th colspan="3"> Winter </th>
+            <th colspan="3"> Spring </th>
+            <th colspan="3"> Summer </th>
+          </tr>
+          <tr>
+            <td> Course </td>
+            <td> Credits </td>
+            <td> Grade </td>
+            <td> Course </td>
+            <td> Credits </td>
+            <td> Grade </td>
+            <td> Course </td>
+            <td> Credits </td>
+            <td> Grade </td>
+            <td> Course </td>
+            <td> Credits </td>
+            <td> Grade </td>
+          </tr>
+
+          <script>
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+          </script>
+        </table>
+
+
+        <table id="plannerYear4" border="1">
+          <tr>
+            <th colspan="12">Year 4</th>
+          </tr>
+          <tr>
+            <th colspan="3"> Fall </th>
+            <th colspan="3"> Winter </th>
+            <th colspan="3"> Spring </th>
+            <th colspan="3"> Summer </th>
+          </tr>
+          <tr>
+            <td> Course </td>
+            <td> Credits </td>
+            <td> Grade </td>
+            <td> Course </td>
+            <td> Credits </td>
+            <td> Grade </td>
+            <td> Course </td>
+            <td> Credits </td>
+            <td> Grade </td>
+            <td> Course </td>
+            <td> Credits </td>
+            <td> Grade </td>
+          </tr>
+
+
+          <script>
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+            document.write("<tr>")
+
+
+            for (let i = 0; i < 12; i++) {
+              if (localStorage.getItem("val" + currIndex) != null) {
+                if (i % 3 == 0) {
+                  document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                else {
+                  document.write("<td><input type=\"text\" id=\"val" + currIndex + "\" value=\"" + localStorage.getItem("val" + currIndex) + "\"></td>");
+                }
+                currIndex += 1;
+              }
+              else if (i % 3 == 0) {
+                document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+              else {
+                document.write("<td><input type=\"text\" id=\"val" + currIndex + "\"></td>");
+                currIndex += 1;
+              }
+            }
+            document.write("</tr>")
+          </script>
+
+          <!-- Check for credits & courses -->
+          <script>
+            for (let i = 0; i < 336; i++) {
+              if ((i - 1) % 3 == 0) {
+                document.getElementById('val' + i).setAttribute("oninput", "this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');");
+              }
+            }
+
+            elementsArray1 = []
+            elementsArray2 = []
+            elementsArray3 = []
+            elementsArray4 = []
+            elementsArray5 = []
+            elementsArray6 = []
+            elementsArray7 = []
+            elementsArray8 = []
+            elementsArray9 = []
+            elementsArray10 = []
+            elementsArray11 = []
+            elementsArray12 = []
+            elementsArray13 = []
+            elementsArray14 = []
+            elementsArray15 = []
+            elementsArray16 = []
+            elementsArray17 = []
+            elementsArray18 = []
+            elementsArray19 = []
+            elementsArray20 = []
+            elementsArray21 = []
+            elementsArray22 = []
+            elementsArray23 = []
+            elementsArray24 = []
+            elementsArray25 = []
+            elementsArray26 = []
+            elementsArray27 = []
+            elementsArray28 = []
+            elementsArray29 = []
+            elementsArray30 = []
+            elementsArray31 = []
+            elementsArray32 = []
+
+            for (let i = 0; i < 336; i++) {
+              if (i % 12 == 0 && i < 84) {
+                elementsArray1.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 1 && i < 84) {
+                elementsArray2.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 3 && i < 84) {
+                elementsArray3.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 4 && i < 84) {
+                elementsArray4.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 6 && i < 84) {
+                elementsArray5.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 7 && i < 84) {
+                elementsArray6.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 9 && i < 84) {
+                elementsArray7.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 10 && i < 84) {
+                elementsArray8.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 0 && i > 84 && i < 128) {
+                elementsArray9.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 1 && i > 84 && i < 128) {
+                elementsArray10.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 3 && i > 84 && i < 128) {
+                elementsArray11.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 4 && i > 84 && i < 128) {
+                elementsArray12.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 6 && i > 84 && i < 128) {
+                elementsArray13.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 7 && i > 84 && i < 128) {
+                elementsArray14.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 9 && i > 84 && i < 128) {
+                elementsArray15.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 10 && i > 84 && i < 128) {
+                elementsArray16.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 0 && i > 128 && i < 252) {
+                elementsArray17.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 1 && i > 128 && i < 252) {
+                elementsArray18.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 3 && i > 128 && i < 252) {
+                elementsArray19.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 4 && i > 128 && i < 252) {
+                elementsArray20.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 6 && i > 128 && i < 252) {
+                elementsArray21.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 7 && i > 128 && i < 252) {
+                elementsArray22.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 9 && i > 128 && i < 252) {
+                elementsArray23.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 10 && i > 128 && i < 252) {
+                elementsArray24.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 0 && i > 252 && i < 336) {
+                elementsArray25.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 1 && i > 252 && i < 336) {
+                elementsArray26.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 3 && i > 252 && i < 336) {
+                elementsArray27.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 4 && i > 252 && i < 336) {
+                elementsArray28.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 6 && i > 252 && i < 336) {
+                elementsArray29.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 7 && i > 252 && i < 336) {
+                elementsArray30.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 9 && i > 252 && i < 336) {
+                elementsArray31.push(document.getElementById("val" + i));
+              }
+              if (i % 12 == 10 && i > 252 && i < 336) {
+                elementsArray32.push(document.getElementById("val" + i));
+              }
+
+            }
+
+            const csCourseList = ["CMSC100", "CMSC106", "CMSC122", "CMSC125", "CMSC131", "CMSC132", "CMSC198",
+              "CMSC216", "CMSC250", "CMSC298", "CMSC320", "CMSC330", "CMSC351", "CMSC388", "CMSC389", "CMSC390",
+              "CMSC395", "CMSC396", "CMSC402", "CMSC411", "CMSC412", "CMSC414", "CMSC416", "CMSC417", "CMSC420",
+              "CMSC421", "CMSC422", "CMSC423", "CMSC424", "CMSC425", "CMSC426", "CMSC427", "CMSC430", "CMSC433",
+              "CMSC434", "CMSC435", "CMSC436", "CMSC451", "CMSC452", "CMSC454", "CMSC456", "CMSC457", "CMSC460",
+              "CMSC466", "CMSC470", "CMSC472", "CMSC473", "CMSC474", "CMSC475", "CMSC476", "CMSC477", "CMSC488",
+              "CMSC499"];
+
+            courses = [elementsArray1, elementsArray3, elementsArray5, elementsArray7,
+              elementsArray9, elementsArray11, elementsArray13, elementsArray15, elementsArray17, elementsArray19,
+              elementsArray21, elementsArray23, elementsArray25, elementsArray27, elementsArray29, elementsArray31]
+
+
+            credits = [elementsArray2, elementsArray4, elementsArray6, elementsArray8,
+              elementsArray10, elementsArray12, elementsArray14, elementsArray16, elementsArray18, elementsArray20,
+              elementsArray22, elementsArray24, elementsArray26, elementsArray28, elementsArray30, elementsArray32]
+
+            for (let i = 0; i < courses.length; i++) {
+              for (let j = 0; j < courses[i].length; j++) {
+                courses[i][j].addEventListener("input", function () {
+                  csClassCounter = 0
+                  for (let k = 0; k < courses[i].length; k++) {
+                    if (csCourseList.includes(courses[i][k].value)) {
+                      csClassCounter++;
+                    }
+                  }
+
+                  if (csClassCounter >= 3) {
+                    alert("You are advised not to take more than 2 CS classes in one semester.");
+                  }
+                });
+              }
+            }
+
+
+            for (let i = 0; i < credits.length; i++) {
+              for (let j = 0; j < credits[i].length; j++) {
+                credits[i][j].addEventListener("input", function () {
+                  creditsCounter = 0;
+                  for (let k = 0; k < credits[i].length; k++) {
+                    if (credits[i][k].value != null) {
+                      creditsCounter += Number(credits[i][k].value);
+                    }
+                  }
+
+                  console.log(creditsCounter);
+                  if (creditsCounter > 15) {
+                    alert("You are advised not to take more than 15 credits in one semester.");
+                  }
+                });
+              }
+            }
+
+
+
+          </script>
+
+        </table>
+        <div class="dropdown">
+          <button id="willSaveCheck" type="button" class="dropbtn" onclick="dropdownFunction();"><span> Save & Check
+              Requirements</span></button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="#" onclick="saveCheck('gentrack');">CS General Track</a>
+            <a href="#" onclick="saveCheck('cybsec');">Cybersecurity</a>
+            <a href="#" onclick="saveCheck('datsci');">Data Science</a>
+            <a href="#" onclick="saveCheck('maclearn');">Machine Learning</a>
+            <a href="#" onclick="saveCheck('quant');">Quantum Information</a>
+          </div>
+        </div>
+
+        <datalist id="csCourseList"></datalist>
+      </div>
+    </form>
+
+
+    <div id="buttons" style="text-align:center">
+      <button id="goBack" class="back" onclick="history.back();"><span>Go Back</span></button>
+      <button id="saveExit" class="back" onclick="saveExit();"><span> Save & Exit</span></button>
 
     </div>
-
-    <div id="mainContainer" style="text-align:center">
-		<div class="container" onclick="swap(this)">
-		  <div class="bar1"></div>
-		  <div class="bar2"></div>
-		  <div class="bar3"></div>
-		</div>
-		<p id="imgs">
-		  <img id="csdept" src="../deptcs.png" alt="DeptCS Image" />
-		</p>
-		<h1>Four Year Planner</h1>
-        
-          <button id="newPlan" onclick="newPlan();" class="back">Create New Plan</button>
-        
-        <br>
-          <button id="editPlan" onclick="editPlan();" class="back">Edit Existing Plan</button>
-		  
-		<br>
-		
-		 <button id="samplePlan" onclick="samplePlan();" class="back">Load Sample Plan</button>
-		
-		
-		<form id = "plannerForm" onsubmit="validateData()" autocomplete="off">
-		<div class="autocomplete">
-		<table style="margin-bottom: 30px;" id="plannerYear1" border="1">
-		  <tr>
-			<th colspan="12">Year 1</th>
-		  </tr>
-		  <tr>
-			<th colspan="3"> Fall </th>
-			<th colspan="3"> Winter </th>
-			<th colspan="3"> Spring </th>
-			<th colspan="3"> Summer </th>
-		  </tr>
-		  <tr>
-			<td> Course </td>
-			<td> Credits </td>
-			<td> Grade </td>
-			<td> Course </td>
-			<td> Credits </td>
-			<td> Grade </td>
-			<td> Course </td>
-			<td> Credits </td>
-			<td> Grade </td>
-			<td> Course </td>
-			<td> Credits </td>
-			<td> Grade </td>
-		  </tr>
-		  <!--  -->
-			
-			<!-- for ($i = 0; $i < 12; $i++) { -->
-				<!-- if isset($_SESSION["val".$currentIndex]) { -->
-					<!-- echo "<td><input type=\"text\" name=\"val".$currentIndex."\" value=\"".$_SESSION["val".$currentIndex]."\"><\td>"; -->
-				<!-- } -->
-				<!-- else { -->
-					<!-- echo "<td><input type=\"text\" name=\"val".$currentIndex."\"><\td>"; -->
-				<!-- } -->
-				<!-- $currIndex += 1; -->
-			<!-- } -->
-			
-			<!--  -->
-		  <!-- Script for saving in localStorage -->
-		  <script>
-		  var currIndex = 0;
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if ((localStorage.getItem("val"+currIndex) != null)) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if ((localStorage.getItem("val"+currIndex) != null)) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if ((localStorage.getItem("val"+currIndex) != null)) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if ((localStorage.getItem("val"+currIndex) != null)) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if ((localStorage.getItem("val"+currIndex) != null)) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if ((localStorage.getItem("val"+currIndex) != null)) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if ((localStorage.getItem("val"+currIndex) != null)) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  </script>
-		</table>
-		
-		<table style="margin-bottom: 30px;" id="plannerYear2" border="1">
-		  <tr>
-			<th colspan="12">Year 2</th>
-		  </tr>
-		  <tr>
-			<th colspan="3"> Fall </th>
-			<th colspan="3"> Winter </th>
-			<th colspan="3"> Spring </th>
-			<th colspan="3"> Summer </th>
-		  </tr>
-		  <tr>
-			<td> Course </td>
-			<td> Credits </td>
-			<td> Grade </td>
-			<td> Course </td>
-			<td> Credits </td>
-			<td> Grade </td>
-			<td> Course </td>
-			<td> Credits </td>
-			<td> Grade </td>
-			<td> Course </td>
-			<td> Credits </td>
-			<td> Grade </td>
-		  </tr>
-			  
-		  <script>
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  </script>
-		</table>
-		
-		
-		<table style="margin-bottom: 30px;" id="plannerYear3" border="1">
-		  <tr>
-			<th colspan="12">Year 3</th>
-		  </tr>
-		  <tr>
-			<th colspan="3"> Fall </th>
-			<th colspan="3"> Winter </th>
-			<th colspan="3"> Spring </th>
-			<th colspan="3"> Summer </th>
-		  </tr>
-		  <tr>
-			<td> Course </td>
-			<td> Credits </td>
-			<td> Grade </td>
-			<td> Course </td>
-			<td> Credits </td>
-			<td> Grade </td>
-			<td> Course </td>
-			<td> Credits </td>
-			<td> Grade </td>
-			<td> Course </td>
-			<td> Credits </td>
-			<td> Grade </td>
-		  </tr>
-			  
-		  <script>
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  </script>
-		</table>
-		
-		
-		<table id="plannerYear4" border="1">
-		  <tr>
-			<th colspan="12">Year 4</th>
-		  </tr>
-		  <tr>
-			<th colspan="3"> Fall </th>
-			<th colspan="3"> Winter </th>
-			<th colspan="3"> Spring </th>
-			<th colspan="3"> Summer </th>
-		  </tr>
-		  <tr>
-			<td> Course </td>
-			<td> Credits </td>
-			<td> Grade </td>
-			<td> Course </td>
-			<td> Credits </td>
-			<td> Grade </td>
-			<td> Course </td>
-			<td> Credits </td>
-			<td> Grade </td>
-			<td> Course </td>
-			<td> Credits </td>
-			<td> Grade </td>
-		  </tr>
-		
-		  
-		  <script>
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  document.write("<tr>")
-		    
-			
-			for (let i = 0; i < 12; i++) {
-				if (localStorage.getItem("val"+currIndex) != null) {
-					if (i % 3 == 0) {
-						document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					else {
-						document.write("<td><input type=\"text\" id=\"val"+currIndex+"\" value=\""+localStorage.getItem("val"+currIndex)+"\"></td>");
-					}
-					currIndex += 1;
-				}
-				else if (i % 3 == 0) {
-					document.write("<td><input type=\"text\" list=\"csCourseList\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-				else {
-					document.write("<td><input type=\"text\" id=\"val"+currIndex+"\"></td>");
-					currIndex += 1;
-				}
-			}
-	      document.write("</tr>")
-		  </script>
-		
-		<!-- Check for credits & courses -->
-		<script>
-		for (let i = 0; i < 336; i++) {
-			if ((i - 1) % 3 == 0) {
-				document.getElementById('val'+i).setAttribute("oninput", "this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');");
-			}
-		}
-		
-		elementsArray1 = []
-		elementsArray2 = []
-		elementsArray3 = []
-		elementsArray4 = []
-		elementsArray5 = []
-		elementsArray6 = []
-		elementsArray7 = []
-		elementsArray8 = []
-		elementsArray9 = []
-		elementsArray10 = []
-		elementsArray11 = []
-		elementsArray12 = []
-		elementsArray13 = []
-		elementsArray14 = []
-		elementsArray15 = []
-		elementsArray16 = []
-		elementsArray17 = []
-		elementsArray18 = []
-		elementsArray19 = []
-		elementsArray20 = []
-		elementsArray21 = []
-		elementsArray22 = []
-		elementsArray23 = []
-		elementsArray24 = []
-		elementsArray25 = []
-		elementsArray26 = []
-		elementsArray27 = []
-		elementsArray28 = []
-		elementsArray29 = []
-		elementsArray30 = []
-		elementsArray31 = []
-		elementsArray32 = []
-		
-		for (let i = 0; i < 336; i++) {
-		 if (i % 12 == 0 && i < 84) {
-			elementsArray1.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 1 && i < 84) {
-			elementsArray2.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 3 && i < 84) {
-			elementsArray3.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 4 && i < 84) {
-			elementsArray4.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 6 && i < 84) {
-			elementsArray5.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 7 && i < 84) {
-			elementsArray6.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 9 && i < 84) {
-			elementsArray7.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 10 && i < 84) {
-			elementsArray8.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 0 && i > 84 && i < 128) {
-			elementsArray9.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 1 && i > 84 && i < 128) {
-			elementsArray10.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 3 && i > 84 && i < 128) {
-			elementsArray11.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 4 && i > 84 && i < 128) {
-			elementsArray12.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 6 && i > 84 && i < 128) {
-			elementsArray13.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 7 && i > 84 && i < 128) {
-			elementsArray14.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 9 && i > 84 && i < 128) {
-			elementsArray15.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 10 && i > 84 && i < 128) {
-			elementsArray16.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 0 && i > 128 && i < 252) {
-			elementsArray17.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 1 && i > 128 && i < 252) {
-			elementsArray18.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 3 && i > 128 && i < 252) {
-			elementsArray19.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 4 && i > 128 && i < 252) {
-			elementsArray20.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 6 && i > 128 && i < 252) {
-			elementsArray21.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 7 && i > 128 && i < 252) {
-			elementsArray22.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 9 && i > 128 && i < 252) {
-			elementsArray23.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 10 && i > 128 && i < 252) {
-			elementsArray24.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 0 && i > 252 && i < 336) {
-			elementsArray25.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 1 && i > 252 && i < 336) {
-			elementsArray26.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 3 && i > 252 && i < 336) {
-			elementsArray27.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 4 && i > 252 && i < 336) {
-			elementsArray28.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 6 && i > 252 && i < 336) {
-			elementsArray29.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 7 && i > 252 && i < 336) {
-			elementsArray30.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 9 && i > 252 && i < 336) {
-			elementsArray31.push(document.getElementById("val"+i));
-		 }
-		 if (i % 12 == 10 && i > 252 && i < 336) {
-			elementsArray32.push(document.getElementById("val"+i));
-		 }
-		 
-		}
-		
-		const csCourseList = ["CMSC100", "CMSC106", "CMSC122", "CMSC125", "CMSC131", "CMSC132", "CMSC198",
-		"CMSC216", "CMSC250", "CMSC298", "CMSC320", "CMSC330", "CMSC351", "CMSC388", "CMSC389", "CMSC390",
-		"CMSC395", "CMSC396", "CMSC402", "CMSC411", "CMSC412", "CMSC414", "CMSC416", "CMSC417", "CMSC420",
-		"CMSC421", "CMSC422", "CMSC423", "CMSC424", "CMSC425", "CMSC426", "CMSC427", "CMSC430", "CMSC433",
-		"CMSC434", "CMSC435", "CMSC436", "CMSC451", "CMSC452", "CMSC454", "CMSC456", "CMSC457", "CMSC460",
-		"CMSC466", "CMSC470", "CMSC472", "CMSC473", "CMSC474", "CMSC475", "CMSC476", "CMSC477", "CMSC488",
-		"CMSC499"];
-		
-		courses = [elementsArray1, elementsArray3, elementsArray5, elementsArray7, 
-		elementsArray9, elementsArray11, elementsArray13, elementsArray15, elementsArray17, elementsArray19, 
-		elementsArray21, elementsArray23, elementsArray25, elementsArray27, elementsArray29, elementsArray31]
-		
-		
-		credits = [elementsArray2, elementsArray4, elementsArray6, elementsArray8, 
-		elementsArray10, elementsArray12, elementsArray14, elementsArray16, elementsArray18, elementsArray20, 
-		elementsArray22, elementsArray24, elementsArray26, elementsArray28, elementsArray30, elementsArray32]
-		
-		for (let i = 0; i < courses.length; i++) {
-			for (let j = 0; j < courses[i].length; j++) {
-				courses[i][j].addEventListener("input", function() {
-					csClassCounter = 0
-					for (let k = 0; k < courses[i].length; k++) {
-						if (csCourseList.includes(courses[i][k].value)) {
-						  csClassCounter++;
-						}
-					}
-					
-					if (csClassCounter >= 3) {
-						alert("You are advised not to take more than 2 CS classes in one semester.");
-					}
-				});
-			}
-		}
-
-		
-		for (let i = 0; i < credits.length; i++) {
-			for (let j = 0; j < credits[i].length; j++) {
-				credits[i][j].addEventListener("input", function() {
-					creditsCounter = 0;
-					for (let k = 0; k < credits[i].length; k++) {
-						if (credits[i][k].value != null) {
-							creditsCounter += Number(credits[i][k].value);
-						}
-					}
-				
-					console.log(creditsCounter);
-					if (creditsCounter > 15) {
-						alert("You are advised not to take more than 15 credits in one semester.");
-					}
-				});
-			}
-		}
-		
-		
-		
-		</script>
-		
-		</table>
-			<div class="dropdown">
-			<button id="willSaveCheck" type="button" class="dropbtn" onclick="dropdownFunction();"><span> Save & Check Requirements</span></button>
-			<div id="myDropdown" class="dropdown-content">
-				<a href="#" onclick = "saveCheck('gentrack');">CS General Track</a>
-				<a href="#" onclick = "saveCheck('cybsec');">Cybersecurity</a>
-				<a href="#" onclick = "saveCheck('datsci');">Data Science</a>
-				<a href="#" onclick = "saveCheck('maclearn');">Machine Learning</a>
-				<a href="#" onclick = "saveCheck('quant');">Quantum Information</a>
-			</div>
-		</div>
-		
-		<datalist id="csCourseList"></datalist>
-		</div>
-		</form>
-		
-
-		<div style="text-align:center">
-			<button id="goBack" class="back" onclick="history.back();"><span>Go Back</span></button>
-			<button id="saveExit" class="back" onclick="saveExit();"><span> Save & Exit</span></button>
-		
-		</div>
-		<div id="keyboard" class="keyboard">
-			<button id="keyboardButton" onclick="switchKeyboard(this)">
-			  Keyboard &#8743
-			</button>
-			<img id="keyboardSvg" src="../keyboard.svg" alt="Keyboard" />
-		  </div>
-</div>
-	<script>
-		showKeyboard = false;
+    <div id="keyboard" class="keyboard">
+      <button id="keyboardButton" onclick="switchKeyboard(this)">
+        Keyboard &#8743
+      </button>
+      <img id="keyboardSvg" src="../keyboard.svg" alt="Keyboard" />
+    </div>
+  </div>
+  <script>
+    showKeyboard = false;
     function switchKeyboard(x) {
       x.classList.toggle("change");
       if (showKeyboard) {
@@ -1302,7 +1304,7 @@
         showKeyboard = true;
       }
     }
-	</script>
+  </script>
 </body>
 
 </html>

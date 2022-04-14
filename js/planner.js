@@ -5711,7 +5711,7 @@ function completed45LEPBenchmark(classes, gpa) {
   var msg = "";
 
   for (i = 0; i < sortedClasses.length; i++) {
-    var courseId = sortedClasses[i].course_id;
+    var courseId = sortedClasses[i];
     if (courseId == "CMSC131") {
       c131 = true;
     }
@@ -5928,12 +5928,9 @@ function completedGeneralTrack(classes) {
   }
 
   for (i = 0; i < sortedClasses.length; i++) {
-	 
-    if (typeof sortedClasses[i].course_id !== 'undefined'){
-	   if (getCourseArea(sortedClasses[i].course_id) != 0) {
-      nonZeroAreas++;
+    if (getCourseArea(sortedClasses[i]) != 0) {
+        nonZeroAreas++;
     }
-	}
   }
 
   for (i = 0; i < electiveList.length; i++) {
@@ -6005,7 +6002,7 @@ function completedCybersecurity(classes) {
     } else if (curr = "CMSC411" || curr == "CMSC412" || curr == "CMSC417" || curr == "CMSC430" || curr == "CMSC433" || curr == "CMSC451") {
       count++;
     } else {
-      electives += sorted[i].credits;
+      electives += getCreditByCourseId(sorted[i]);
     }
   }
 
@@ -6116,7 +6113,7 @@ function completedQuantumInformation(classes) {
       if (category == 4) {
         a4++;
       } else if (category == 6) {
-        electives+= sorted[i].credits;
+        electives+= getCreditByCourseId(sorted[i]);
       } else {
         otherArea++;
       }
@@ -6174,7 +6171,7 @@ function completedMachineLearning(classes) {
     } else if (curr == "CMSC426" || curr == "CMSC460" || curr == "CMSC466" || curr == "MATH401" || curr == "CMSC470" || curr == "CMSC472" || curr == "CMSC473" || curr == "CMSC474" || curr == "CMSC476") {
       category1++;
     } else {
-      electives += sorted[i].credits;
+      electives += getCreditByCourseId(sorted[i]);
     }
   }
 

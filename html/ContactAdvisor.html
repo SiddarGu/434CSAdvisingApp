@@ -79,7 +79,36 @@
       <div id="buttons">
       <button class="back" onclick="location.href = 'CSAdvisors.html'"><span>Go Back</span></button>
       </div>
+
+      <div id="keyboard" class="keyboard">
+        <button id="keyboardButton" onclick="switchKeyboard(this)">
+          Keyboard &#8743
+        </button>
+        <img id="keyboardSvg" src="../keyboard.svg" alt="Keyboard" />
+      </div>
   </div>
+
+  <script>
+    showKeyboard = false;
+    function switchKeyboard(x) {
+      x.classList.toggle("change");
+      if (showKeyboard) {
+        document.getElementById("keyboard").style.height = "0";
+        document.getElementById("keyboardSvg").style.height = "0";
+        document.getElementById("mainContainer").style.marginBottom = "0";
+        document.getElementById("keyboardButton").style.marginBottom = "0";
+        document.getElementById("keyboardButton").innerHTML = "Keyboard &#8743";
+        showKeyboard = false;
+      } else {
+        document.getElementById("keyboard").style.height = "324px";
+        document.getElementById("keyboardSvg").style.height = "304px";
+        document.getElementById("mainContainer").style.marginBottom = "324px";
+        document.getElementById("keyboardButton").style.marginBottom = "304px";
+        document.getElementById("keyboardButton").innerHTML = "Keyboard &#8744";
+        showKeyboard = true;
+      }
+    }
+  </script>
 </body>
 
 </html>

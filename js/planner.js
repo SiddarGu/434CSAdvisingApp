@@ -5711,7 +5711,7 @@ function completed45LEPBenchmark(classes, gpa) {
   var msg = "";
 
   for (i = 0; i < sortedClasses.length; i++) {
-    var courseId = sortedClasses[i].course_id;
+    var courseId = sortedClasses[i];
     if (courseId == "CMSC131") {
       c131 = true;
     }
@@ -5928,12 +5928,9 @@ function completedGeneralTrack(classes) {
   }
 
   for (i = 0; i < sortedClasses.length; i++) {
-	 
-    if (typeof sortedClasses[i].course_id !== 'undefined'){
-	   if (getCourseArea(sortedClasses[i].course_id) != 0) {
-      nonZeroAreas++;
+    if (getCourseArea(sortedClasses[i]) != 0) {
+        nonZeroAreas++;
     }
-	}
   }
 
   for (i = 0; i < electiveList.length; i++) {

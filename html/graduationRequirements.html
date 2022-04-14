@@ -7,6 +7,17 @@
   <link rel="icon" type="image/x-icon" href="../logo.ico">
   <link rel="stylesheet" href="../css/graduationRequirements.css" type="text/css" />
   <script src="../js/gradReqs.js" defer></script>
+  
+  <script>
+  function toggleLEP() {
+	if (document.getElementById("LEPtable").getAttribute("hidden") != null) {
+		document.getElementById("LEPtable").removeAttribute("hidden");
+	}
+	else {
+		document.getElementById("LEPtable").hidden = true;
+	}
+  }
+  </script>
 </head>
 
 <body>
@@ -33,10 +44,10 @@
     <!-- LEP Requirements -->
     <div id="lep">
       <label>Check here if you are not yet a Computer Science major and intend to become one:</label>
-      <input class="checkbox" type="checkbox" name="LEP" onchange="changeAll(name)">
+      <input class="checkbox" type="checkbox" name="LEP" onchange="toggleLEP(); changeAll(name)">
       <br>
       <br>
-      <table>
+      <table id="LEPtable" hidden>
         <tr>
           <th colspan="4">Computer Science Limited Enrollment Program (LEP) Requirements (Must pass with a grade of C- or
             higher)</th>

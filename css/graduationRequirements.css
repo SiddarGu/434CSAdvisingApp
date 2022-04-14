@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 html {
   font-family: sans-serif;
   font-size: 15px;

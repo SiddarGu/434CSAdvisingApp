@@ -66,7 +66,7 @@
           <option>Shreya Singh</option>
         </optgroup>
       </select><br>
-      <form class="form" method="post" onSubmit= "alert('You have successfully scheduled an appointment with the advisor. Please join the Zoom room at go.umd.edu/csadvising on time.')">
+      <form class="form" method="post" onSubmit= "alert('You have successfully scheduled an appointment. Please join the Zoom room at go.umd.edu/csadvising on time.')">
         <label>Select a Date:</label>
         <input type="date" required><br>
         <label>Select a Time: </label>
@@ -90,15 +90,15 @@
             <option>4:00</option>
             <option>4:30</option>
           </select><br>
-        <label>Name (First Last):</label><input type="text" size = "30" minlength=1 required><br>
-        <label>UID:</label><input type="text" size = "30" pattern="[0-9]{9}" required><br>
-        <label>University Email (@umd.edu or @terpmail.umd.edu):</label><input type="email" size = "30" required><br>
+        <label>Name (First Last): </label><input type="text" size = "30" minlength=1 pattern="[a-zA-Z ]+" required><br>
+        <label>UID: &emsp; &emsp; &emsp; &emsp; &emsp; </label><input type="text" size = "30" pattern="[0-9]{9}" required><br>
+        <label>University Email (@umd.edu or @terpmail.umd.edu): </label><input type="email" size = "30" required><br>
         <button type="submit">Schedule Appointment</button><br>
       </form>
       
     </div>
     <div id="buttons">
-      <button class="back" onclick="history.back()"><span>Go Back</span></button>
+      <button class="back" onclick="location.href = 'CSAdvisors.html'"><span>Go Back</span></button>
     </div>
   </div>
 </body>

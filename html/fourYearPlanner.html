@@ -28,13 +28,13 @@
 		}
 		
 		/*dropdown list for planner*/
-		var csCourseList = ["CMSC100", "CMSC106", "CMSC122", "CMSC125", "CMSC131", "CMSC132", "CMSC198",
+		const csCourseList = ["CMSC100", "CMSC106", "CMSC122", "CMSC125", "CMSC131", "CMSC132", "CMSC198",
 		"CMSC216", "CMSC250", "CMSC298", "CMSC320", "CMSC330", "CMSC351", "CMSC388", "CMSC389", "CMSC390",
 		"CMSC395", "CMSC396", "CMSC402", "CMSC411", "CMSC412", "CMSC414", "CMSC416", "CMSC417", "CMSC420",
 		"CMSC421", "CMSC422", "CMSC423", "CMSC424", "CMSC425", "CMSC426", "CMSC427", "CMSC430", "CMSC433",
 		"CMSC434", "CMSC435", "CMSC436", "CMSC451", "CMSC452", "CMSC454", "CMSC456", "CMSC457", "CMSC460",
 		"CMSC466", "CMSC470", "CMSC472", "CMSC473", "CMSC474", "CMSC475", "CMSC476", "CMSC477", "CMSC488",
-		"CMSC499"]
+		"CMSC499"];
 		
 		var options = '';
 		
@@ -66,7 +66,7 @@
 	
 	function newPlan() {
 		if (plannerEmpty()) {
-			loadPlan();
+			editPlan();
 		}
 		else {
 		//Alert user that they are deleting old plan
@@ -78,16 +78,17 @@
 					}
 				}
 				
-				loadPlan()
+				editPlan()
 			}
 		}
 	}
 	 
-	function loadPlan() {
+	function editPlan() {
 
 	  //Hide buttons
 	  document.getElementById("newPlan").classList.toggle("hidden");
 	  document.getElementById("editPlan").classList.toggle("hidden");
+	  document.getElementById("samplePlan").classList.toggle("hidden");
 	  document.getElementById("goBack").classList.toggle("hidden");
 
      //Show new buttons
@@ -95,6 +96,72 @@
 	  document.getElementById("saveExit").classList.toggle("hidden");
 	  document.getElementById("willSaveCheck").classList.toggle("hidden");
 	  
+	}
+	
+	function samplePlan() {
+		newPlan();
+		
+		for (let i = 0; i < 336; i++) {
+			document.getElementById("val0").value = "CMSC131";
+			document.getElementById("val12").value = "CMSC100";
+			document.getElementById("val24").value = "MATH140";
+			document.getElementById("val36").value = "COMM107";
+			document.getElementById("val48").value = "ENGL101";
+			
+			document.getElementById("val1").value = "4";
+			document.getElementById("val13").value = "1";
+			document.getElementById("val25").value = "4";
+			document.getElementById("val37").value = "3";
+			document.getElementById("val49").value = "3";
+			
+			document.getElementById("val6").value = "CMSC132";
+			document.getElementById("val18").value = "MATH141";
+			
+			document.getElementById("val7").value = "4";
+			document.getElementById("val19").value = "4";
+			
+			document.getElementById("val84").value = "CMSC216";
+			document.getElementById("val96").value = "CMSC250";
+			document.getElementById("val108").value = "MATH2XX";
+			
+			document.getElementById("val85").value = "4";
+			document.getElementById("val97").value = "4";
+			document.getElementById("val109").value = "4";
+			
+			document.getElementById("val90").value = "CMSC330";
+			document.getElementById("val102").value = "CMSC351";
+			document.getElementById("val114").value = "STAT4XX";
+			
+			document.getElementById("val91").value = "3";
+			document.getElementById("val103").value = "3";
+			document.getElementById("val115").value = "3";
+			
+			document.getElementById("val168").value = "CMSC4XX";
+			document.getElementById("val180").value = "CMSC4XX";
+			
+			document.getElementById("val169").value = "3";
+			document.getElementById("val181").value = "3";
+			
+			document.getElementById("val174").value = "CMSC4XX";
+			document.getElementById("val186").value = "CMSC4XX";
+			document.getElementById("val198").value = "ENGL393";
+			
+			document.getElementById("val175").value = "3";
+			document.getElementById("val187").value = "3";
+			document.getElementById("val199").value = "3";
+			
+			document.getElementById("val252").value = "CMSC4XX";
+			document.getElementById("val264").value = "CMSC4XX";
+			
+			document.getElementById("val253").value = "3";
+			document.getElementById("val265").value = "3";
+			
+			document.getElementById("val258").value = "CMSC4XX";
+			document.getElementById("val259").value = "3";
+			
+			
+		}
+	
 	}
 	
 	function saveExit() {
@@ -119,6 +186,7 @@
 	  //show old buttons
 	  document.getElementById("newPlan").classList.toggle("hidden");
 	  document.getElementById("editPlan").classList.toggle("hidden");
+	  document.getElementById("samplePlan").classList.toggle("hidden");
 	  document.getElementById("goBack").classList.toggle("hidden");
 
 	}
@@ -198,7 +266,11 @@
           <button id="newPlan" onclick="newPlan();" class="back">Create New Plan</button>
         
         <br>
-          <button id="editPlan" onclick="loadPlan();" class="back">Edit Existing Plan</button>
+          <button id="editPlan" onclick="editPlan();" class="back">Edit Existing Plan</button>
+		  
+		<br>
+		
+		 <button id="samplePlan" onclick="samplePlan();" class="back">Load Sample Plan</button>
 		
 		
 		<form id = "plannerForm" onsubmit="validateData()" autocomplete="off">
@@ -816,7 +888,8 @@
 			<td> Credits </td>
 			<td> Grade </td>
 		  </tr>
-			  
+		
+		  
 		  <script>
 		  document.write("<tr>")
 		    
@@ -981,6 +1054,205 @@
 			}
 	      document.write("</tr>")
 		  </script>
+		
+		<!-- Check for credits & courses -->
+		<script>
+		for (let i = 0; i < 336; i++) {
+			if ((i - 1) % 3 == 0) {
+				document.getElementById('val'+i).setAttribute("oninput", "this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');");
+			}
+		}
+		
+		elementsArray1 = []
+		elementsArray2 = []
+		elementsArray3 = []
+		elementsArray4 = []
+		elementsArray5 = []
+		elementsArray6 = []
+		elementsArray7 = []
+		elementsArray8 = []
+		elementsArray9 = []
+		elementsArray10 = []
+		elementsArray11 = []
+		elementsArray12 = []
+		elementsArray13 = []
+		elementsArray14 = []
+		elementsArray15 = []
+		elementsArray16 = []
+		elementsArray17 = []
+		elementsArray18 = []
+		elementsArray19 = []
+		elementsArray20 = []
+		elementsArray21 = []
+		elementsArray22 = []
+		elementsArray23 = []
+		elementsArray24 = []
+		elementsArray25 = []
+		elementsArray26 = []
+		elementsArray27 = []
+		elementsArray28 = []
+		elementsArray29 = []
+		elementsArray30 = []
+		elementsArray31 = []
+		elementsArray32 = []
+		
+		for (let i = 0; i < 336; i++) {
+		 if (i % 12 == 0 && i < 84) {
+			elementsArray1.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 1 && i < 84) {
+			elementsArray2.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 3 && i < 84) {
+			elementsArray3.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 4 && i < 84) {
+			elementsArray4.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 6 && i < 84) {
+			elementsArray5.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 7 && i < 84) {
+			elementsArray6.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 9 && i < 84) {
+			elementsArray7.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 10 && i < 84) {
+			elementsArray8.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 0 && i > 84 && i < 128) {
+			elementsArray9.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 1 && i > 84 && i < 128) {
+			elementsArray10.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 3 && i > 84 && i < 128) {
+			elementsArray11.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 4 && i > 84 && i < 128) {
+			elementsArray12.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 6 && i > 84 && i < 128) {
+			elementsArray13.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 7 && i > 84 && i < 128) {
+			elementsArray14.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 9 && i > 84 && i < 128) {
+			elementsArray15.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 10 && i > 84 && i < 128) {
+			elementsArray16.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 0 && i > 128 && i < 252) {
+			elementsArray17.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 1 && i > 128 && i < 252) {
+			elementsArray18.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 3 && i > 128 && i < 252) {
+			elementsArray19.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 4 && i > 128 && i < 252) {
+			elementsArray20.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 6 && i > 128 && i < 252) {
+			elementsArray21.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 7 && i > 128 && i < 252) {
+			elementsArray22.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 9 && i > 128 && i < 252) {
+			elementsArray23.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 10 && i > 128 && i < 252) {
+			elementsArray24.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 0 && i > 252 && i < 336) {
+			elementsArray25.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 1 && i > 252 && i < 336) {
+			elementsArray26.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 3 && i > 252 && i < 336) {
+			elementsArray27.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 4 && i > 252 && i < 336) {
+			elementsArray28.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 6 && i > 252 && i < 336) {
+			elementsArray29.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 7 && i > 252 && i < 336) {
+			elementsArray30.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 9 && i > 252 && i < 336) {
+			elementsArray31.push(document.getElementById("val"+i));
+		 }
+		 if (i % 12 == 10 && i > 252 && i < 336) {
+			elementsArray32.push(document.getElementById("val"+i));
+		 }
+		 
+		}
+		
+		const csCourseList = ["CMSC100", "CMSC106", "CMSC122", "CMSC125", "CMSC131", "CMSC132", "CMSC198",
+		"CMSC216", "CMSC250", "CMSC298", "CMSC320", "CMSC330", "CMSC351", "CMSC388", "CMSC389", "CMSC390",
+		"CMSC395", "CMSC396", "CMSC402", "CMSC411", "CMSC412", "CMSC414", "CMSC416", "CMSC417", "CMSC420",
+		"CMSC421", "CMSC422", "CMSC423", "CMSC424", "CMSC425", "CMSC426", "CMSC427", "CMSC430", "CMSC433",
+		"CMSC434", "CMSC435", "CMSC436", "CMSC451", "CMSC452", "CMSC454", "CMSC456", "CMSC457", "CMSC460",
+		"CMSC466", "CMSC470", "CMSC472", "CMSC473", "CMSC474", "CMSC475", "CMSC476", "CMSC477", "CMSC488",
+		"CMSC499"];
+		
+		courses = [elementsArray1, elementsArray3, elementsArray5, elementsArray7, 
+		elementsArray9, elementsArray11, elementsArray13, elementsArray15, elementsArray17, elementsArray19, 
+		elementsArray21, elementsArray23, elementsArray25, elementsArray27, elementsArray29, elementsArray31]
+		
+		
+		credits = [elementsArray2, elementsArray4, elementsArray6, elementsArray8, 
+		elementsArray10, elementsArray12, elementsArray14, elementsArray16, elementsArray18, elementsArray20, 
+		elementsArray22, elementsArray24, elementsArray26, elementsArray28, elementsArray30, elementsArray32]
+		
+		for (let i = 0; i < courses.length; i++) {
+			for (let j = 0; j < courses[i].length; j++) {
+				courses[i][j].addEventListener("input", function() {
+					csClassCounter = 0
+					for (let k = 0; k < courses[i].length; k++) {
+						if (csCourseList.includes(courses[i][k].value)) {
+						  csClassCounter++;
+						}
+					}
+					
+					if (csClassCounter >= 3) {
+						alert("You are advised not to take more than 2 CS classes in one semester.");
+					}
+				});
+			}
+		}
+
+		
+		for (let i = 0; i < credits.length; i++) {
+			for (let j = 0; j < credits[i].length; j++) {
+				credits[i][j].addEventListener("input", function() {
+					creditsCounter = 0;
+					for (let k = 0; k < credits[i].length; k++) {
+						if (credits[i][k].value != null) {
+							creditsCounter += Number(credits[i][k].value);
+						}
+					}
+				
+					console.log(creditsCounter);
+					if (creditsCounter > 15) {
+						alert("You are advised not to take more than 15 credits in one semester.");
+					}
+				});
+			}
+		}
+		
+		
+		
+		</script>
+		
 		</table>
 			<div class="dropdown">
 			<button id="willSaveCheck" type="button" class="dropbtn" onclick="dropdownFunction();"><span> Save & Check Requirements</span></button>

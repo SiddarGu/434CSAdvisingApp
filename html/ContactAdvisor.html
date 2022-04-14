@@ -67,7 +67,7 @@
         </div>
         <div>
         <form class="form" method="post" onSubmit= "alert('You have successfully sent an email to the advisor. Expect an email back from them in the next 3-5 business days.')">
-            <label>Name (First Last): </label><input type="text" size = "30" pattern = "[a-zA-Z]+" required><br>
+            <label>Name (First Last): </label><input type="text" size = "30" pattern = "[a-zA-Z ]+" required><br>
             <label>UID: </label><input type="text" pattern = "[0-9]{9}" required><br>
             <label>University Email (@umd.edu or @terpmail.umd.edu): </label><input type="text" size = "30" minlength = 1 required><br>
             <label>Subject: </label><input type="text" size = "40" minlength = 1 required><br>
@@ -77,7 +77,7 @@
       <label id = "submitted">"You have successfully sent an email to the advisor. Expect an email back from them in the next 3-5 business days."</label>
         </div>
       <div id="buttons">
-      <button class="back" onclick="history.back()"><span>Go Back</span></button>
+      <button class="back" onclick="location.href = 'CSAdvisors.html'"><span>Go Back</span></button>
       </div>
   </div>
 </body>

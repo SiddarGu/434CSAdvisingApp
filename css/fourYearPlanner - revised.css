@@ -368,12 +368,22 @@
     flex-flow: row;
   }
   
-  td {
+  th {
     height: 60px;
+    width: 100px;
+    font-size: 20px;
+  }
+
+  td {
+    height: 40px;
     width: 100px;
     font-size: 20px;
   }
   
   input {
     height: 100%;
+  }
+
+  .left_right {
+    font-size: 20px
   }

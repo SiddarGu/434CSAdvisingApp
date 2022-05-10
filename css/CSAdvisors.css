@@ -292,3 +292,7 @@ tr:nth-child(even) {
   opacity: 1;
   left: 0;
 }
+
+span {
+  font-size: 20px;
+}
